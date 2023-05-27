@@ -20,13 +20,6 @@
     <link rel="stylesheet" href="<?= base_url('assets/bs/'); ?>assets/css/owl.css">
     <link rel="stylesheet" href="<?= base_url('assets/bs/'); ?>assets/css/animate.css">
     <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
-<!--
-
-TemplateMo 579 Cyborg Gaming
-
-https://templatemo.com/tm-579-cyborg-gaming
-
--->
   </head>
 
 <body>
