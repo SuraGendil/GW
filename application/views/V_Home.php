@@ -20,6 +20,13 @@
     <link rel="stylesheet" href="<?= base_url('assets/bs/'); ?>assets/css/owl.css">
     <link rel="stylesheet" href="<?= base_url('assets/bs/'); ?>assets/css/animate.css">
     <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+<!--
+
+TemplateMo 579 Cyborg Gaming
+
+https://templatemo.com/tm-579-cyborg-gaming
+
+-->
   </head>
 
 <body>
@@ -44,7 +51,7 @@
             <div class="col-12">
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
-                    <a href="index.html" class="logo">
+                    <a href="<?= base_url()?>" class="logo">
                         <img src="<?= base_url('assets/bs/'); ?>assets/images/logo.png" alt="">
                     </a>
                     <!-- ***** Logo End ***** -->
@@ -58,11 +65,11 @@
                     <!-- ***** Search End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                        <li><a href="index.html" class="active">Home</a></li>
+                        <li><a class="active">Home</a></li>
                         <li><a href="browse.html">Browse</a></li>
                         <li><a href="details.html">Details</a></li>
                         <li><a href="streams.html">Streams</a></li>
-                        <li><a href="profile.html">Profile <img src="<?= base_url('assets/bs/'); ?>assets/images/profile-header.jpg" alt=""></a></li>
+                        <li><a href="<?php echo site_url ('C_Gw/Login_Admin'); ?>">apanih<img src="<?= base_url('assets/bs/'); ?>assets/images/profile-header.jpg" alt=""></a></li>
                     </ul>   
                     <a class='menu-trigger'>
                         <span>Menu</span>
@@ -85,8 +92,9 @@
             <div class="row">
               <div class="col-lg-7">
                 <div class="header-text">
-                  <h6>Welcome To GW</h6>
-                  <h4><em>Browse</em> Our Popular Games Here</h4>
+                  <h6>Welcome To <em>GW</em></h6>
+                  <h4><em>Anda</em> Senang <em> Kami </em>Senang</h4>
+                  <h5>Toko Top UP Voucher Game, APK Premium dan pulsa <em>TERMURAH</em> </h5><br>
                   <div class="main-button">
                     <a href="browse.html">Browse Now</a>
                   </div>
@@ -111,7 +119,7 @@
                       ?>
                   <div class="col-lg-3 col-sm-6">
                     <div class="item">
-                      <a href="#"><img src="<?= base_url('assets/bs/'); ?>assets/images/<?= $dt_produk->foto_produk?>" alt="">
+                      <a href="<?php echo base_url('index.php/C_Gw/linkbeli/'). $dt_produk->id_produk ?>"><img src="<?= base_url('assets/bs/'); ?>assets/images/<?= $dt_produk->foto_produk?>" alt="">
                       <h4><?= $dt_produk->nama_produk?></h4></a>
                       <ul>
                         <li><i class="fa fa-cart-arrow-down"></i> : <?= $dt_produk->terjual_produk?></li>
@@ -142,7 +150,7 @@
                       ?>
                   <div class="col-lg-3 col-sm-6">
                     <div class="item">
-                      <a href="#"><img src="<?= base_url('assets/bs/'); ?>assets/images/<?= $dt_produk->foto_produk?>" alt="">
+                      <a href="<?php echo base_url('index.php/C_Gw/linkbeli/'). $dt_produk->id_produk ?>"><img src="<?= base_url('assets/bs/'); ?>assets/images/<?= $dt_produk->foto_produk?>" alt="">
                       <h4><?= $dt_produk->nama_produk?></h4></a>
                       <ul>
                         <li><i class="fa fa-cart-arrow-down"></i> : <?= $dt_produk->terjual_produk?></li>
@@ -173,7 +181,7 @@
                       ?>
                   <div class="col-lg-3 col-sm-6">
                     <div class="item">
-                      <a href="#"><img src="<?= base_url('assets/bs/'); ?>assets/images/<?= $dt_produk->foto_produk?>" alt="">
+                      <a href="<?php echo base_url('index.php/C_Gw/linkbeli/'). $dt_produk->id_produk ?>"><img src="<?= base_url('assets/bs/'); ?>assets/images/<?= $dt_produk->foto_produk?>" alt="">
                       <h4><?= $dt_produk->nama_produk?></h4></a>
                       <ul>
                         <li><i class="fa fa-cart-arrow-down"></i> : <?= $dt_produk->terjual_produk?></li>
@@ -188,51 +196,6 @@
             </div>
           </div>
           <!-- ***** Most Popular End ***** -->
-
-          <!-- ***** Gaming Library Start ***** -->
-          <div class="gaming-library">
-            <div class="col-lg-12">
-              <div class="heading-section">
-                <h4><em>Your Gaming</em> Library</h4>
-              </div>
-              <div class="item">
-                <ul>
-                  <li><img src="<?= base_url('assets/bs/'); ?>assets/images/game-01.jpg" alt="" class="templatemo-item"></li>
-                  <li><h4>Dota 2</h4><span>Sandbox</span></li>
-                  <li><h4>Date Added</h4><span>24/08/2036</span></li>
-                  <li><h4>Hours Played</h4><span>634 H 22 Mins</span></li>
-                  <li><h4>Currently</h4><span>Downloaded</span></li>
-                  <li><div class="main-border-button border-no-active"><a href="#">Donwloaded</a></div></li>
-                </ul>
-              </div>
-              <div class="item">
-                <ul>
-                  <li><img src="<?= base_url('assets/bs/'); ?>assets/images/game-02.jpg" alt="" class="templatemo-item"></li>
-                  <li><h4>Fortnite</h4><span>Sandbox</span></li>
-                  <li><h4>Date Added</h4><span>22/06/2036</span></li>
-                  <li><h4>Hours Played</h4><span>740 H 52 Mins</span></li>
-                  <li><h4>Currently</h4><span>Downloaded</span></li>
-                  <li><div class="main-border-button"><a href="#">Donwload</a></div></li>
-                </ul>
-              </div>
-              <div class="item last-item">
-                <ul>
-                  <li><img src="<?= base_url('assets/bs/'); ?>assets/images/game-03.jpg" alt="" class="templatemo-item"></li>
-                  <li><h4>CS-GO</h4><span>Sandbox</span></li>
-                  <li><h4>Date Added</h4><span>21/04/2036</span></li>
-                  <li><h4>Hours Played</h4><span>892 H 14 Mins</span></li>
-                  <li><h4>Currently</h4><span>Downloaded</span></li>
-                  <li><div class="main-border-button border-no-active"><a href="#">Donwloaded</a></div></li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-lg-12">
-              <div class="main-button">
-                <a href="profile.html">View Your Library</a>
-              </div>
-            </div>
-          </div>
-          <!-- ***** Gaming Library End ***** -->
         </div>
       </div>
     </div>
@@ -242,9 +205,7 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <p>Copyright © 2036 <a href="#">Cyborg Gaming</a> Company. All rights reserved. 
-          
-          <br>Design: <a href="https://templatemo.com" target="_blank" title="free CSS templates">TemplateMo</a></p>
+          <p>Copyright © 2023 <a href="#">GW STORE</a> Company. All rights reserved. 
         </div>
     </div>
     </div>
