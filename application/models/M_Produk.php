@@ -8,7 +8,7 @@ class M_Produk extends CI_Model {
 		$this->db->select('*');
 		$this->db->from('t_produk');
 		$this->db->join('t_jenis_produk', 't_jenis_produk.id_jenis_produk = t_produk.id_jenis_produk');
-		$this -> db -> order_by ('t_produk.id_jenis_produk', 'ASC');
+		$this -> db -> order_by ('t_produk.nama_produk', 'ASC');
 		$query = $this->db->get();
 
         return $query->result();
