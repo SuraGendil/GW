@@ -175,7 +175,6 @@ https://templatemo.com/tm-579-cyborg-gaming
                         <?php
                           }
                         ?>
-                        
 
                         <br><br><br>
                         <br>
@@ -189,8 +188,6 @@ https://templatemo.com/tm-579-cyborg-gaming
                           </div>
                         </section>
                         </form>
-
-                        <!-- Button trigger modal -->
 
                         <script type="text/javascript">
                             function radioValidation(){
@@ -219,7 +216,6 @@ https://templatemo.com/tm-579-cyborg-gaming
                                     alert("Tolong Pilih Metode Pembayaran");
                                     return false;
                                 }
-
                             }
                         </script>
 

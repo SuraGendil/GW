@@ -22,8 +22,8 @@
     <link rel="stylesheet" href="<?= base_url('assets/bs/'); ?>assets/css/templatemo-cyborg-gaming.css">
     <link rel="stylesheet" href="<?= base_url('assets/bs/'); ?>assets/css/owl.css">
     <link rel="stylesheet" href="<?= base_url('assets/bs/'); ?>assets/css/animate.css">
-    <link rel="stylesheet" href="<?= base_url('assets/bs/'); ?>assets/css/radio.scss">
-    <link rel="stylesheet" href="<?= base_url('assets/bs/'); ?>assets/css/login.scss">
+    <!-- <link rel="stylesheet" href="<?= base_url('assets/bs/'); ?>assets/css/radio.scss"> -->
+    <link rel="stylesheet" href="<?= base_url('assets/bs/'); ?>assets/css/login.css">
     <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
 <!--
 
