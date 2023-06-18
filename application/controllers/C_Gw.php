@@ -283,7 +283,7 @@ class C_Gw extends CI_Controller {
 		redirect (base_url('/index.php/C_Gw/t_produk/'));
 	}
 
-}
+
 
 	public function __construct() {
         parent::__construct();
