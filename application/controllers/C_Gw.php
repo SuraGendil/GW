@@ -55,7 +55,6 @@ class C_Gw extends CI_Controller {
 
 		//akses v_mitra beserta data
 		$this->load->view('V_Beli', $temp);
-		// $this->load->view('V_Beli', compact('dtp','dtn', 'dtmp'));
 	}
 
 	public function beliAction($id){
@@ -66,6 +65,12 @@ class C_Gw extends CI_Controller {
 		$metode = $this->input->post('metode');
 		// $status = $this->input->post('status');
 
+		// $nominal = NULL;
+		// echo " nominal " . is_null($nominal) . "<br>";
+
+		// if($nominal == NULL){
+
+		// }
 
 		//menyiapkan array
 		$pembelianbaru = array(
@@ -92,7 +97,7 @@ class C_Gw extends CI_Controller {
 
 	public function login()
 	{
-		
+
 		$blnthn = date('Y-m');
 
 		$this-> load -> Model ('M_Pembelian');
@@ -117,6 +122,7 @@ class C_Gw extends CI_Controller {
 		$temp['djk'] = $djk;
 		
 		$this->load-> view('V_Login', $temp);
+
 	}
 
 	public function login_admin()
