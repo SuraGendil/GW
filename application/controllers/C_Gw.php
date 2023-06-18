@@ -41,9 +41,9 @@ class C_Gw extends CI_Controller {
 		$this -> load -> Model ('M_Metode_Pembayaran');
 
 		//memanggil fungsi getAll pada M_Mitra
-		$dtp = $this -> M_Produk -> getById ($id);
+		$dtp = $this -> M_Produk -> getByJenis ($id);
 		$dtjp = $this -> M_Produk -> getJenis ($id);
-		$dtn = $this -> M_Nominal -> getById ($id);
+		$dtn = $this -> M_Nominal -> getByProduk ($id);
 		$dtmp = $this -> M_Metode_Pembayaran -> getAll ();
 
 		//menampung data pada temp
@@ -166,15 +166,18 @@ class C_Gw extends CI_Controller {
 		$this->load-> view('V_Produk', $temp);
 	}
 
-	public function t_nominal(){
+	public function t_nominal($id){
 		$this-> load -> Model ('M_Nominal');
 		$this-> load -> Model ('M_Login');
 
-		$dn = $this ->M_Nominal -> getAll();
+		$title = $this->M_Produk->getById($id);
+		$dn = $this ->M_Nominal -> getByProduk($id);
 		$dt = $this -> M_Login -> getAll();
 		$dr = $this -> M_Login -> getRole(1);
 		$djk = $this -> M_Login -> getJK(1);
 
+		$temp['id'] = $id;
+		$temp['title'] = $title;
 		$temp['dn'] = $dn;
 		$temp['data'] = $dt;
 		$temp['dr'] = $dr;
@@ -283,6 +286,97 @@ class C_Gw extends CI_Controller {
 		redirect (base_url('/index.php/C_Gw/t_produk/'));
 	}
 
+	public function addNominal($id){
+		$lp = $this ->M_Produk -> getById($id);
+		$temp['lp'] = $lp;
+		$temp['id'] = $id;
+		$this->load->view('V_AddNominal', $temp);
+	}
+
+	public function AddNominalAction($id) {
+		$this-> load -> Model ('M_Nominal');
+
+		$nama_nominal= $this->input->post('nama_nominal');
+		$harga_nominal = $this->input->post('harga');
+		$id_produk = $id;
+
+		$addNominalAction = array(
+			'nama_nominal' => $nama_nominal,
+			'harga_nominal' => $harga_nominal,
+			'id_produk' => $id_produk,
+		);
+		$this->M_Nominal->insertNominal($addNominalAction);
+		redirect (base_url('/index.php/C_Gw/t_nominal/'). $id);
+	}
+
+	public function updateNominal($id){
+		$this-> load -> Model ('M_Nominal');
+
+		$ln = $this->M_Nominal -> getById($id);
+		// $lp = $this ->M_Produk -> getById($id);
+		$temp['ln'] = $ln;
+		// $temp['lp'] = $lp;
+		$temp['id'] = $id;
+		$this->load->view('V_UpdateNominal', $temp);
+	}
+
+	public function updateNominalAction($id) {
+		$this-> load -> Model ('M_Nominal');
+		
+		$id_nominal = $this->input->post('id_nominal');
+		$nama_nominal= $this->input->post('nama_nominal');
+		$harga_nominal = $this->input->post('harga');
+		$id_produk = $this->input->post('id_produk');
+
+		$updateNominalAction = array(
+			'id_nominal' => $id_nominal,
+			'nama_nominal' => $nama_nominal,
+			'harga_nominal' => $harga_nominal,
+			'id_produk' => $id_produk,
+		);
+		$this->M_Nominal->updateNominal($updateNominalAction, $id);
+		redirect (base_url('/index.php/C_Gw/t_nominal/'). $id_produk);
+	}
+
+	public function addPembayaran(){
+		$this->load->view('V_AddPembayaran');
+	}
+
+	public function addPembayaranAction(){
+		$this-> load -> Model ('M_Metode_Pembayaran');
+
+		$nama_metode = $this->input->post('nama_metode');
+
+		$addPembayaranAction = array(
+			'nama_metode' => $nama_metode,
+		);
+
+		$this->M_Metode_Pembayaran->insertPembayaran($addPembayaranAction);
+		redirect (base_url('/index.php/C_Gw/t_metodePembayaran/'));
+	}
+
+	public function updatePembayaran($id){
+		$this-> load -> Model ('M_Metode_Pembayaran');
+
+		$lmp = $this ->M_Metode_Pembayaran -> getById($id);
+		$temp['lmp'] = $lmp;
+		$this->load->view('V_UpdatePembayaran', $temp);
+	}
+
+	public function updatePembayaranAction($id){
+		$this-> load -> Model ('M_Metode_Pembayaran');
+
+		$id_metode = $this->input->post('id_metode');
+		$nama_metode = $this->input->post('nama_metode');
+
+		$updatePembayaranAction = array(
+			'id_metode_pembayaran' => $id_metode,
+			'nama_metode' => $nama_metode,
+		);
+		
+		$this->M_Metode_Pembayaran->updatePembayaran($updatePembayaranAction, $id);
+		redirect (base_url('/index.php/C_Gw/t_metodePembayaran/'));
+	}
 
 
 	public function __construct() {

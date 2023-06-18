@@ -125,10 +125,10 @@ https://templatemo.com/tm-579-cyborg-gaming
                       <h4><?=$dt_admin->nama_admin?></h4>
                       <p><?=$dt_admin->moto_admin?></p>
                       <div class="main-border-button">
-                        <a href="https://youtu.be/YPWXAYWzWsg">Add Admin</a>
+                        
                         <a href="<?php echo site_url ('C_Gw/login'); ?>">Tabel Pembelian</a>
                         <a href="<?php echo site_url ('C_Gw/t_produk'); ?>">Tabel Produk</a>
-                        <a href="<?php echo site_url ('C_Gw/t_nominal'); ?>">Tabel Nominal</a>
+                        
                         <a href="<?php echo site_url ('C_Gw/t_metodePembayaran'); ?>">Tabel Metode Pembayaran</a>
                       </div>
                     </div>
@@ -166,7 +166,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                 <h4><em>Tabel</em> Metode Pembayaran</h4>
               </div>
               <div class="heading-section">
-                  <button type="button" class="btn btn-primary">Tambah Metode Pembayaran</button>
+                  <a href="<?=base_url('/index.php/C_Gw/addPembayaran/')?>" type="button" class="btn btn-primary">Tambah Metode Pembayaran</a>
               </div><br>
               <table id="pembelian" class="table">
                 <tr>
@@ -182,7 +182,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                 <tr>
                   <td><?= $cacah ?> </td>
                   <td><?= $dt->nama_metode ?> </td>
-                  <td><button type="button" class="btn btn-success">Update</button>
+                  <td><a href="<?=base_url('/index.php/C_Gw/updatePembayaran/'). $dt->id_metode_pembayaran?>" type="button" class="btn btn-success">Update</a>
                       <button type="button" class="btn btn-danger">Hide</button> </td>
                   
                 </tr>
