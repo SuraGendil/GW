@@ -32,5 +32,7 @@ class M_Login extends CI_Model {
 		// $query = $this->db->get_where('t_jenis_produk', array('id_jenis_produk' => $id));
         return $query -> result();
 	}
+
+	
 }
 ?>

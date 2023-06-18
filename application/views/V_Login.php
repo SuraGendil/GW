@@ -87,10 +87,10 @@ https://templatemo.com/tm-579-cyborg-gaming
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
                         <li><a href="<?php echo site_url ('C_Gw/index'); ?>">Home</a></li>
-                        <li><a href="browse.html">Browse</a></li>
-                        <li><a href="details.html">Details</a></li>
-                        <li><a href="streams.html">Streams</a></li>
-                        <li><a href="profile.html" class="active">Profile <img src="<?= base_url('assets/bs/'); ?>assets/images/profile-header.jpg" alt=""></a></li>
+                        <!-- <li><a href="browse.html">Browse</a></li> -->
+                        <!-- <li><a href="details.html">Details</a></li> -->
+                        <!-- <li><a href="streams.html">Streams</a></li> -->
+                        <li><a href="<?php echo site_url ('C_Gw/login'); ?>" class="active">Profile <img src="<?= base_url('assets/bs/'); ?>assets/images/profile-header.jpg" alt=""></a></li>
                     </ul>   
                     <a class='menu-trigger'>
                         <span>Menu</span>
@@ -125,7 +125,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                       <h4><?=$dt_admin->nama_admin?></h4>
                       <p><?=$dt_admin->moto_admin?></p>
                       <div class="main-border-button">
-                        <a href="https://youtu.be/YPWXAYWzWsg">Add Admin</a>
+                        <!-- <a href="https://youtu.be/YPWXAYWzWsg">Add Admin</a> -->
                         <a href="<?php echo site_url ('C_Gw/login'); ?>">Tabel Pembelian</a>
                         <a href="<?php echo site_url ('C_Gw/t_produk'); ?>">Tabel Produk</a>
                         <a href="<?php echo site_url ('C_Gw/t_nominal'); ?>">Nominal</a>
@@ -181,7 +181,6 @@ https://templatemo.com/tm-579-cyborg-gaming
                     <?php foreach ($ppg as $ppg):?>
                   <li><h4>Terbanyak Dibeli</h4><span><?=$ppg->terpopuler ?></span></li>
                   <?php endforeach;?>
-
                   <li><div class="main-border-button border-no-active"><a href="https://docs.google.com/spreadsheets/d/1kTlC1o6IHDixodnJUIAosuUCTCfaaUIesDoVhQtl7R4/edit#gid=1724625262">Recap</a></div></li>
                 </ul>
               </div>

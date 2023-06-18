@@ -202,6 +202,7 @@ class C_Gw extends CI_Controller {
 		$this->load-> view('V_Metode_Pembayaran', $temp);
 	}
 
+
 	public function addProduk(){
 		$lj = $this ->M_Produk -> getAllJenis();
 		$temp['lj'] = $lj;
@@ -281,5 +282,47 @@ class C_Gw extends CI_Controller {
 		$this->M_Produk->editProduk($addProdukAction, $id);
 		redirect (base_url('/index.php/C_Gw/t_produk/'));
 	}
+
+}
+
+	public function __construct() {
+        parent::__construct();
+        $this->load->model('M_Login_Admin');
+        $this->load->library('form_validation');
+    }
+
+    public function index_login()
+    {
+        if ($this->input->post('submit')) {
+            
+            $this->form_validation->set_rules('username', 'Username', 'required');
+            $this->form_validation->set_rules('password', 'Password', 'required');
+
+            
+            if ($this->form_validation->run()) {
+                $username = $this->input->post('username');
+                $password = $this->input->post('password');
+
+                
+                $login_success = $this->M_Login_Admin->login_admin($username, $password);
+
+                if ($login_success) {
+                    
+                    redirect('V_Home');
+                } else {
+                    
+                    $data['error'] = 'Invalid username or password';
+                    $this->load->view('V_Login_Admin', $data);
+                }
+            } else {
+                
+                $this->load->view('V_Login_Admin');
+            }
+        } else {
+            
+            $this->load->view('V_Login_Admin');
+        }
+    }
+
 
 }
