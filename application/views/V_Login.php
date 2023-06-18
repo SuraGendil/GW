@@ -174,10 +174,14 @@ https://templatemo.com/tm-579-cyborg-gaming
                   $shg->total_pendapatan = 0;
                 }
                 ?>
-                    <li><h4>Pendapatan</h4><span><?= number_format($shg->total_pendapatan, 0, "", ".")?></span></li>
+                    <li><h4>Pendapatan</h4><span>Rp.<?= number_format($shg->total_pendapatan, 0, "", ".")?></span></li>
                     <li><h4>Pembeli</h4><span><?=$shg->jumlah_dibeli ?></span></li>
                     <?php endforeach;?>
-                  <li><h4>Currently</h4><span>Downloaded</span></li>
+                  
+                    <?php foreach ($ppg as $ppg):?>
+                  <li><h4>Terbanyak Dibeli</h4><span><?=$ppg->terpopuler ?></span></li>
+                  <?php endforeach;?>
+
                   <li><div class="main-border-button border-no-active"><a href="https://docs.google.com/spreadsheets/d/1kTlC1o6IHDixodnJUIAosuUCTCfaaUIesDoVhQtl7R4/edit#gid=1724625262">Recap</a></div></li>
                 </ul>
               </div>
@@ -190,10 +194,12 @@ https://templatemo.com/tm-579-cyborg-gaming
                         $shp->total_pendapatan = 0;
                       }
                     ?>
-                    <li><h4>Pendapatan</h4><span><?= number_format($shp->total_pendapatan, 0, "", ".")?></span></li>
+                    <li><h4>Pendapatan</h4><span>Rp.<?= number_format($shp->total_pendapatan, 0, "", ".")?></span></li>
                     <li><h4>Pembeli</h4><span><?=$shp->jumlah_dibeli ?></span></li>
                     <?php endforeach;?>
-                  <li><h4>Currently</h4><span>Downloaded</span></li>
+                    <?php foreach ($ppa as $ppa):?>
+                  <li><h4>Terbanyak Dibeli</h4><span><?=$ppa->terpopuler ?></span></li>
+                  <?php endforeach;?>
                   <li><div class="main-border-button border-no-active"><a href="https://docs.google.com/spreadsheets/d/1kTlC1o6IHDixodnJUIAosuUCTCfaaUIesDoVhQtl7R4/edit#gid=1724625262">Recap</a></div></li>
                 </ul>
               </div>
@@ -206,10 +212,12 @@ https://templatemo.com/tm-579-cyborg-gaming
                         $sha->total_pendapatan = 0;
                       }
                     ?>
-                    <li><h4>Pendapatan</h4><span><?= number_format($sha->total_pendapatan, 0, "", ".")?></span></li>
+                    <li><h4>Pendapatan</h4><span>Rp.<?= number_format($sha->total_pendapatan, 0, "", ".")?></span></li>
                     <li><h4>Pembeli</h4><span><?=$sha->jumlah_dibeli ?></span></li>
                     <?php endforeach;?>
-                  <li><h4>Currently</h4><span>Downloaded</span></li>
+                    <?php foreach ($ppp as $ppp):?>
+                  <li><h4>Terbanyak Dibeli</h4><span><?=$ppp->terpopuler ?></span></li>
+                  <?php endforeach;?>
                   <li><div class="main-border-button border-no-active"><a href="https://docs.google.com/spreadsheets/d/1kTlC1o6IHDixodnJUIAosuUCTCfaaUIesDoVhQtl7R4/edit#gid=1724625262">Recap</a></div></li>
                 </ul>
               </div>
@@ -220,6 +228,12 @@ https://templatemo.com/tm-579-cyborg-gaming
           <!-- ***** Gaming Library Start ***** -->
           <div class="gaming-library profile-library">
             <div class="col-lg-12">
+              <?php foreach ($sh as $sh):?>
+              <div class="heading-section">
+                <br>
+                <h4><em>Total Pendapatan :</em> <?= number_format($sh->total_pendapatan, 0, "", ".")?></h4>
+              </div>
+                <?php endforeach;?>
               <div class="heading-section">
                 <h4><em>Tabel</em> Pembelian</h4>
               </div>
@@ -257,12 +271,7 @@ https://templatemo.com/tm-579-cyborg-gaming
 
 
               </table>
-              <?php foreach ($sh as $sh):?>
-              <div class="heading-section">
-                <br>
-                <h4><em>Total Pendapatan :</em> <?= number_format($sh->total_pendapatan, 0, "", ".")?></h4>
-                <?php endforeach;?>
-              </div>
+              
             </div>
           </div>
           <!-- ***** Gaming Library End ***** -->
