@@ -108,6 +108,9 @@ class C_Gw extends CI_Controller {
 		$shg = $this -> M_Pembelian -> getSumProduk(1, $blnthn);
 		$shp = $this -> M_Pembelian -> getSumProduk(2, $blnthn);
 		$sha = $this -> M_Pembelian -> getSumProduk(3, $blnthn);
+		$ppg = $this -> M_Pembelian -> getpopulerProduk(1, $blnthn);
+		$ppa = $this -> M_Pembelian -> getpopulerProduk(2, $blnthn);
+		$ppp = $this -> M_Pembelian -> getpopulerProduk(3, $blnthn);
 		$dt = $this -> M_login -> getAll();
 		$dr = $this -> M_login -> getRole(1);
 		$djk = $this -> M_login -> getJK(1);
@@ -117,6 +120,9 @@ class C_Gw extends CI_Controller {
 		$temp['shg'] = $shg;
 		$temp['shp'] = $shp;
 		$temp['sha'] = $sha;
+		$temp['ppg'] = $ppg;
+		$temp['ppa'] = $ppa;
+		$temp['ppp'] = $ppp;
 		$temp['data'] = $dt;
 		$temp['dr'] = $dr;
 		$temp['djk'] = $djk;
@@ -195,6 +201,89 @@ class C_Gw extends CI_Controller {
 		
 		$this->load-> view('V_Metode_Pembayaran', $temp);
 	}
+
+
+	public function addProduk(){
+		$lj = $this ->M_Produk -> getAllJenis();
+		$temp['lj'] = $lj;
+		$this->load->view('V_AddProduk', $temp);
+	}
+
+	public function addProdukAction(){
+		$nama_produk = $this->input->post('nama_produk');
+		$id_jenis_produk = $this->input->post('jenis_produk');
+		$terjual_produk = 0;
+
+		$config['upload_path'] = './assets/bs/assets/images/';
+		$config['allowed_types'] = 'JPG|PNG|gif|JPEG|jpg|jpeg|png';
+		$config['max_size'] = 20000;
+		$config['max_width'] = 20000;
+		$config['max_height'] = 20000;
+
+
+		$this->load->library('upload', $config);
+
+		if( ! $this->upload->do_upload('userfile')){
+			$foto_produk = "profile.jpg";
+		} else{
+			$foto_produk = $this->upload->data('file_name');
+		}
+		
+		$addProdukAction = array(
+			'nama_produk' => $nama_produk,
+			'id_jenis_produk' => $id_jenis_produk,
+			'foto_produk' => $foto_produk,
+			'terjual_produk' => $terjual_produk
+		);
+		$this->M_Produk->insertProduk($addProdukAction);
+		redirect (base_url('/index.php/C_Gw/t_produk/'));
+
+
+	}
+
+	public function updateProduk($id){
+		$createProduk = $this->M_Produk->getById($id);
+		$lj = $this ->M_Produk -> getAllJenis();
+		
+		$temp['dataProduk'] = $createProduk;
+		$temp['lj'] = $lj;
+		$this->load->view('V_UpdateProduk', $temp);
+	}
+
+
+	public function updateProdukAction($id){
+		$id_produk = $this->input->post('id_produk');
+		$nama_produk = $this->input->post('nama_produk');
+		$id_jenis_produk = $this->input->post('jenis_produk');
+		$terjual_produk = $this->input->post('terjual_produk');
+
+		$config['upload_path'] = './assets/bs/assets/images/';
+		$config['allowed_types'] = 'JPG|PNG|gif|JPEG|jpg|jpeg|png';
+		$config['max_size'] = 20000;
+		$config['max_width'] = 20000;
+		$config['max_height'] = 20000;
+
+
+		$this->load->library('upload', $config);
+
+		if( ! $this->upload->do_upload('userfile')){
+			$foto_produk = $this->input->post('temp_foto');
+		} else{
+			$foto_produk = $this->upload->data('file_name');
+		}
+		
+		$addProdukAction = array(
+			'id_produk' => $id_produk,
+			'nama_produk' => $nama_produk,
+			'id_jenis_produk' => $id_jenis_produk,
+			'foto_produk' => $foto_produk,
+			'terjual_produk' => $terjual_produk
+		);
+		$this->M_Produk->editProduk($addProdukAction, $id);
+		redirect (base_url('/index.php/C_Gw/t_produk/'));
+	}
+
+}
 
 	public function __construct() {
         parent::__construct();

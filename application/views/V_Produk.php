@@ -166,7 +166,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                 <h4><em>Tabel</em> Produk</h4>
               </div>
               <div class="heading-section">
-                  <button type="button" class="btn btn-primary">Tambah produk</button>
+                  <a href="<?php echo site_url ('C_Gw/addProduk/') ?>" type="button" class="btn btn-primary">Tambah produk</a>
               </div><br>
               <table id="pembelian" class="table">
                 <tr>
@@ -188,7 +188,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                   <td><?= $dt->nama_jenis_produk ?> </td>
                   <td> <a href="<?= base_url('assets/bs/'); ?>assets/images/<?= $dt->foto_produk?>">  <?= $dt->foto_produk ?> </a></td> 
                   <td><?= $dt->terjual_produk?> </td>
-                  <td><button type="button" class="btn btn-success">Update</button>
+                  <td><a href="<?php echo site_url ('C_Gw/updateProduk/') . $dt->id_produk ?>" type="button" class="btn btn-success">Update</a>
                       <button type="button" class="btn btn-danger">Hide</button> </td>
                   
                 </tr>

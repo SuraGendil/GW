@@ -13,11 +13,22 @@ class M_Produk extends CI_Model {
 
         return $query->result();
 	}
+
 	public function getById($id)
 	{
-		$query = $this->db->get_where('t_produk', array('id_produk' => $id));
-        return $query -> result();
+		$this->db->where('id_produk', $id);
+		$query = $this->db->get('t_produk');
+        return $query -> row();
 	}
+
+	// public function getProdukId($id){
+	// 	$this->db->select('*');
+	// 	$this->db->from('t_produk');
+	// 	$this->db->where('id_produk', $id);
+	// 	$query = $this->db->get();
+    //     return $query -> result();
+
+	// }
 
 	public function getJenis($id)
 	{
@@ -36,6 +47,26 @@ class M_Produk extends CI_Model {
 		// $this->db->where('id_produk', $id);
 		// $this->db->update('t_produk');
 		$this->db->query("UPDATE `t_produk` SET `terjual_produk` = `terjual_produk`+1 WHERE `id_produk` = $id");
+	}
+
+	public function getAllJenis()
+	{
+		$this->db->select('*');
+		$this->db->from('t_jenis_produk');
+		$query = $this->db->get();
+
+		// $query = $this->db->get_where('t_jenis_produk', array('id_jenis_produk' => $id));
+        return $query -> result();
+	}
+
+	public function insertProduk($data){
+		$this->db->insert('t_produk',$data);
+	}
+
+	public function editProduk($data, $id)
+	{
+		$this->db->where('id_produk',$id);
+		$this->db->update('t_produk',$data);
 	}
 }
 ?>

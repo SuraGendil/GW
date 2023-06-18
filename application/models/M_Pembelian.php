@@ -54,5 +54,19 @@ class M_Pembelian extends CI_Model {
 		// SELECT COALESCE(angka, 0) AS angka FROM coba;
         return $query -> result();
 	}
+
+	public function getpopulerProduk($id, $blnthn){
+		$this->db->select('nama_produk as terpopuler');
+		$this->db->from('t_pembelian');
+		$this->db->join('t_nominal', 't_pembelian.id_nominal = t_nominal.id_nominal');
+		$this->db->join('t_produk', 't_nominal.id_produk = t_produk.id_produk');
+		$this->db->where('t_produk.id_jenis_produk', $id);
+		$this->db->like('tgl_pembelian', $blnthn, 'after');
+		$this->db->limit('1');
+		$query = $this->db->get();
+		// SELECT COALESCE(angka, 0) AS angka FROM coba;
+        return $query -> result();
+
+	}
 }
 ?>
