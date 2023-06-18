@@ -14,6 +14,13 @@ class M_Produk extends CI_Model {
         return $query->result();
 	}
 
+	public function getByJenis($id)
+	{
+		$this->db->where('id_produk', $id);
+		$query = $this->db->get('t_produk');
+        return $query -> result();
+	}
+
 	public function getById($id)
 	{
 		$this->db->where('id_produk', $id);

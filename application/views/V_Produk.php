@@ -125,10 +125,10 @@ https://templatemo.com/tm-579-cyborg-gaming
                       <h4><?=$dt_admin->nama_admin?></h4>
                       <p><?=$dt_admin->moto_admin?></p>
                       <div class="main-border-button">
-                        <a href="https://youtu.be/YPWXAYWzWsg">Add Admin</a>
+                        
                         <a href="<?php echo site_url ('C_Gw/login'); ?>">Tabel Pembelian</a>
                         <a href="<?php echo site_url ('C_Gw/t_produk'); ?>">Tabel Produk</a>
-                        <a href="<?php echo site_url ('C_Gw/t_nominal'); ?>">Tabel Nominal</a>
+                        
                         <a href="<?php echo site_url ('C_Gw/t_metodePembayaran'); ?>">Tabel Metode Pembayaran</a>
                       </div>
                     </div>
@@ -176,6 +176,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                   <th>Foto Produk</th>
                   <th>Terjual</th>
                   <th>Action</th>
+                  <th></th>
                 </tr>
                 <?php
                 $cacah=1;
@@ -190,7 +191,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                   <td><?= $dt->terjual_produk?> </td>
                   <td><a href="<?php echo site_url ('C_Gw/updateProduk/') . $dt->id_produk ?>" type="button" class="btn btn-success">Update</a>
                       <button type="button" class="btn btn-danger">Hide</button> </td>
-                  
+                  <td><a href="<?php echo site_url ('C_Gw/t_nominal/') . $dt->id_produk ?>" type="button" class="btn btn-secondary">Nominal</a></td>
                 </tr>
                 <?php
                   $cacah++;

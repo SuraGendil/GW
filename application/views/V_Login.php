@@ -125,10 +125,9 @@ https://templatemo.com/tm-579-cyborg-gaming
                       <h4><?=$dt_admin->nama_admin?></h4>
                       <p><?=$dt_admin->moto_admin?></p>
                       <div class="main-border-button">
-                        <!-- <a href="https://youtu.be/YPWXAYWzWsg">Add Admin</a> -->
+                        <!--  -->
                         <a href="<?php echo site_url ('C_Gw/login'); ?>">Tabel Pembelian</a>
                         <a href="<?php echo site_url ('C_Gw/t_produk'); ?>">Tabel Produk</a>
-                        <a href="<?php echo site_url ('C_Gw/t_nominal'); ?>">Nominal</a>
                         <a href="<?php echo site_url ('C_Gw/t_metodePembayaran'); ?>">Tabel Metode Pembayaran</a>
                       </div>
                     </div>

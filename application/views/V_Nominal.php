@@ -125,10 +125,10 @@ https://templatemo.com/tm-579-cyborg-gaming
                       <h4><?=$dt_admin->nama_admin?></h4>
                       <p><?=$dt_admin->moto_admin?></p>
                       <div class="main-border-button">
-                        <a href="https://youtu.be/YPWXAYWzWsg">Add Admin</a>
+                        
                         <a href="<?php echo site_url ('C_Gw/login'); ?>">Tabel Pembelian</a>
                         <a href="<?php echo site_url ('C_Gw/t_produk'); ?>">Tabel Produk</a>
-                        <a href="<?php echo site_url ('C_Gw/t_nominal'); ?>">Tabel Nominal</a>
+                        
                         <a href="<?php echo site_url ('C_Gw/t_metodePembayaran'); ?>">Tabel Metode Pembayaran</a>
                       </div>
                     </div>
@@ -163,17 +163,17 @@ https://templatemo.com/tm-579-cyborg-gaming
           <div class="gaming-library profile-library" id="tabel">
             <div class="col-lg-12">
               <div class="heading-section">
-                <h4><em>Tabel</em> Nominal</h4>
+                <h4><em>Tabel Nominal</em> <?php echo $title->nama_produk?></h4>
               </div>
               <div class="heading-section">
-                  <button type="button" class="btn btn-primary">Tambah Nominal</button>
+                  <a href="<?php echo site_url ('C_Gw/addNominal/'). $id ?>" type="button" class="btn btn-primary">Tambah Nominal</a>
+                  <a href="<?php echo site_url ('C_Gw/t_produk'); ?>" type="button" class="btn btn-danger">Back</a>
               </div><br>
               <table id="pembelian" class="table">
                 <tr>
                   <th>No</th>
                   <th>Nama Nominal</th>
                   <th>Harga Nominal</th>
-                  <th>Nama Produk</th>
                   <th>Action</th>
                 </tr>
                 <?php
@@ -185,8 +185,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                   <td><?= $cacah ?> </td>
                   <td><?= $dt->nama_nominal ?> </td>
                   <td>Rp. <?= number_format($dt->harga_nominal,0,"",".") ?> </td> 
-                  <td><?= $dt->nama_produk?> </td>
-                  <td><button type="button" class="btn btn-success">Update</button>
+                  <td><a href="<?php echo site_url ('C_Gw/updateNominal/'). $dt->id_nominal ?>" type="button" class="btn btn-success">Update</a>
                       <button type="button" class="btn btn-danger">Hide</button> </td>
                   
                 </tr>

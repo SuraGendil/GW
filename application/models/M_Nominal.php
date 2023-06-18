@@ -13,10 +13,33 @@ class M_Nominal extends CI_Model {
 
         return $query->result();
 	}
-	public function getById($id)
+
+	public function getByProduk($id)
 	{
 		$query = $this->db->get_where('t_nominal', array('id_produk' => $id));
         return $query -> result();
+	}
+
+	public function getById($id)
+	{
+		// $query = $this->db->get_where('t_nominal', array('id_nominal' => $id));
+		$this->db->select('*');
+		$this->db->from('t_nominal');
+		$this->db->join('t_produk', 't_produk.id_produk = t_nominal.id_produk');
+		$this -> db -> where ('id_nominal', $id);
+
+		$query = $this->db->get();
+        return $query -> row();
+	}
+
+	public function insertNominal($data){
+		$this->db->insert('t_nominal',$data);
+	}
+
+	public function updateNominal($data, $id)
+	{
+		$this->db->where('id_nominal',$id);
+		$this->db->update('t_nominal',$data);
 	}
 
 	// public function sumterjual($id){
