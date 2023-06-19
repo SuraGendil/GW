@@ -96,7 +96,7 @@ class C_Gw extends CI_Controller {
 		redirect (base_url('/index.php/C_Gw/linkbeli/'. $id));
 	}
 
-	public function login()
+	public function login($id)
 	{
 
 		$blnthn = date('Y-m');
@@ -112,9 +112,9 @@ class C_Gw extends CI_Controller {
 		$ppg = $this -> M_Pembelian -> getpopulerProduk(1, $blnthn);
 		$ppa = $this -> M_Pembelian -> getpopulerProduk(2, $blnthn);
 		$ppp = $this -> M_Pembelian -> getpopulerProduk(3, $blnthn);
-		$dt = $this -> M_login -> getAll();
-		$dr = $this -> M_login -> getRole(1);
-		$djk = $this -> M_login -> getJK(1);
+		$dt = $this -> M_login -> getById($id);
+		// $dr = $this -> M_login -> getRole(1);
+		// $djk = $this -> M_login -> getJK(1);
 
 		$temp['dp'] = $dp;
 		$temp['sh'] = $sh;
@@ -125,8 +125,6 @@ class C_Gw extends CI_Controller {
 		$temp['ppa'] = $ppa;
 		$temp['ppp'] = $ppp;
 		$temp['data'] = $dt;
-		$temp['dr'] = $dr;
-		$temp['djk'] = $djk;
 
 		
 		$this->load-> view('V_Login', $temp);
@@ -162,19 +160,16 @@ class C_Gw extends CI_Controller {
 
 	}
 
-	public function t_produk(){
+	public function t_produk($id){
 		$this-> load -> Model ('M_Produk');
 		$this-> load -> Model ('M_Login');
 
 		$dp = $this ->M_Produk -> getAll();
-		$dt = $this -> M_Login -> getAll();
-		$dr = $this -> M_Login -> getRole(1);
-		$djk = $this -> M_Login -> getJK(1);
+		$dt = $this ->M_Login -> getById($id);
+
 
 		$temp['dp'] = $dp;
 		$temp['data'] = $dt;
-		$temp['dr'] = $dr;
-		$temp['djk'] = $djk;
 
 		
 		$this->load-> view('V_Produk', $temp);
@@ -201,19 +196,16 @@ class C_Gw extends CI_Controller {
 		$this->load-> view('V_Nominal', $temp);
 	}
 
-	public function t_metodePembayaran(){
+	public function t_metodePembayaran($id){
 		$this-> load -> Model ('M_Metode_Pembayaran');
 		$this-> load -> Model ('M_Login');
 
 		$dmp = $this ->M_Metode_Pembayaran -> getAll();
-		$dt = $this -> M_Login -> getAll();
-		$dr = $this -> M_Login -> getRole(1);
-		$djk = $this -> M_Login -> getJK(1);
+		$dt = $this ->M_Login -> getById($id);
+
 
 		$temp['dmp'] = $dmp;
 		$temp['data'] = $dt;
-		$temp['dr'] = $dr;
-		$temp['djk'] = $djk;
 
 		
 		$this->load-> view('V_Metode_Pembayaran', $temp);
@@ -536,7 +528,7 @@ class C_Gw extends CI_Controller {
 					'password' => $pass
 			);
 
-			$ceklogin = $this->M_Login_Admin->cek_login($where)->num_rows();
+			$ceklogin = $this->M_Login_Admin->cek_login($where)->row_array();
 
 			if ($ceklogin > 0) {
 				$sess_data = array(
@@ -544,8 +536,13 @@ class C_Gw extends CI_Controller {
 					'login' => 'OK'
 				);
 
+				// $id = $this->M_Login_Admin->getId($user);
+				// $temp['kode'] = $id;
+
+				// $id = $kode->id_admin;
+
 				$this->session->set_userdata($sess_data);
-				redirect (base_url('/index.php/C_Gw/login/'));
+				redirect (base_url('/index.php/C_Gw/login/'). $ceklogin['id_admin']);
 			}else{
 				redirect (base_url('/index.php/C_Gw/login_admin/'));
 			}

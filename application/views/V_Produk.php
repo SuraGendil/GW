@@ -113,17 +113,13 @@ https://templatemo.com/tm-579-cyborg-gaming
             <div class="col-lg-12">
               <div class="main-profile ">
                 <div class="row">
-                  <?php
-                    foreach($data as $dt_admin)
-                    {
-                      ?>
                   <div class="col-lg-4">
                     <img src="<?= base_url('assets/bs/'); ?>assets/images/profile.jpg" alt="" style="border-radius: 23px;">
                   </div>
                   <div class="col-lg-4 align-self-center">
                     <div class="main-info header-text">
-                      <h4><?=$dt_admin->nama_admin?></h4>
-                      <p><?=$dt_admin->moto_admin?></p>
+                      <h4><?=$data->username?></h4>
+                      <p><?=$data->moto_admin?></p>
                       <div class="main-border-button">
                         
                         <a href="<?php echo site_url ('C_Gw/login'); ?>">Tabel Pembelian</a>
@@ -135,20 +131,13 @@ https://templatemo.com/tm-579-cyborg-gaming
                   </div>
                   <div class="col-lg-4 align-self-center">
                     <ul>
-                    <?php foreach ($dr as $dt_role):?>
-                      <li>Role<span><?=$dt_role->Role?></span></li>
-                      <?php endforeach;?>
-                      <?php foreach ($djk as $dt_jk):?>
-                        <li>Jenis Kelamin <span><?=$dt_jk->jenis_kelamin?></span></li>
-                        <?php endforeach;?>
+                      <li>Role<span><?=$data->Role?></span></li>
+                        <li>Jenis Kelamin <span><?=$data->jenis_kelamin?></span></li>
                         <!-- <li>Live Streams <span>None</span></li>
                       <li>Clips <span>29</span></li> -->
                     </ul>
                   </div>
                 </div>
-                <?php
-                    }
-                    ?>
 
                 <div class="row">
                   <div class="col-lg-12">
