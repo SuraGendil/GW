@@ -7,6 +7,17 @@ class M_Login_Admin extends CI_Model
     {
         return $this->db->get_where('t_admin', $where);   
     }
+
+    function getAdmin($username){
+        $this->db->select('*');
+        $this->db->from('t_admin');
+        $this->db->where('username', $username);
+		$query = $this->db->get();
+
+        return $query->row();
+
+
+    }
     // public function login_admin($username, $password)
     // {
     //     $this->db->where('nama_admin', $username);

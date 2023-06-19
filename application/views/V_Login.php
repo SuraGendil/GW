@@ -8,7 +8,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    <title>Cyborg - Awesome HTML5 Template</title>
+    <title>Admin</title>
 
     <!-- Bootstrap core CSS -->
     <link href="<?= base_url('assets/bs/'); ?>vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -89,8 +89,10 @@ https://templatemo.com/tm-579-cyborg-gaming
                         <li><a href="<?php echo site_url ('C_Gw/index'); ?>">Home</a></li>
                         <!-- <li><a href="browse.html">Browse</a></li> -->
                         <!-- <li><a href="details.html">Details</a></li> -->
+
                         <li><a href="<?php echo site_url('C_Gw/logout_aksi');?>">Logout</a></li>
                         <li><a href="<?php echo site_url ('C_Gw/login'); ?>" class="active">Profile <img src="<?= base_url('assets/bs/'); ?>assets/images/profile-header.jpg" alt=""></a></li>
+
                     </ul>   
                     <a class='menu-trigger'>
                         <span>Menu</span>
@@ -113,41 +115,30 @@ https://templatemo.com/tm-579-cyborg-gaming
             <div class="col-lg-12">
               <div class="main-profile ">
                 <div class="row">
-                  <?php
-                    foreach($data as $dt_admin)
-                    {
-                      ?>
                   <div class="col-lg-4">
                     <img src="<?= base_url('assets/bs/'); ?>assets/images/profile.jpg" alt="" style="border-radius: 23px;">
                   </div>
                   <div class="col-lg-4 align-self-center">
                     <div class="main-info header-text">
-                      <h4><?=$dt_admin->username?></h4>
-                      <p><?=$dt_admin->moto_admin?></p>
+                      <h4><?=$data->username?></h4>
+                      <p><?=$data->moto_admin?></p>
                       <div class="main-border-button">
                         <!--  -->
-                        <a href="<?php echo site_url ('C_Gw/login'); ?>">Tabel Pembelian</a>
-                        <a href="<?php echo site_url ('C_Gw/t_produk'); ?>">Tabel Produk</a>
-                        <a href="<?php echo site_url ('C_Gw/t_metodePembayaran'); ?>">Tabel Metode Pembayaran</a>
+                        <a href="<?php echo site_url ('C_Gw/login/'). $data->id_admin; ?>">Tabel Pembelian</a>
+                        <a href="<?php echo site_url ('C_Gw/t_produk/'). $data->id_admin; ?>">Tabel Produk</a>
+                        <a href="<?php echo site_url ('C_Gw/t_metodePembayaran/'). $data->id_admin;; ?>">Tabel Metode Pembayaran</a>
                       </div>
                     </div>
                   </div>
                   <div class="col-lg-4 align-self-center">
                     <ul>
-                    <?php foreach ($dr as $dt_role):?>
-                      <li>Role<span><?=$dt_role->Role?></span></li>
-                      <?php endforeach;?>
-                      <?php foreach ($djk as $dt_jk):?>
-                        <li>Jenis Kelamin <span><?=$dt_jk->jenis_kelamin?></span></li>
-                        <?php endforeach;?>
+                      <li>Role<span><?=$data->Role?></span></li>
+                        <li>Jenis Kelamin <span><?=$data->jenis_kelamin?></span></li>
                         <!-- <li>Live Streams <span>None</span></li>
                       <li>Clips <span>29</span></li> -->
                     </ul>
                   </div>
                 </div>
-                <?php
-                    }
-                    ?>
 
                 <div class="row">
                   <div class="col-lg-12">
