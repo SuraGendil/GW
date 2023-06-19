@@ -9,8 +9,10 @@ class M_Login_Admin extends CI_Model
     }
 
     function getAdmin($username){
-        $this->db->select('*');
+        $this->db->select('id_admin','username', 'moto_admin', 'Role', 'jenis_kelamin', 'email');
         $this->db->from('t_admin');
+        // $this->db->join('t_role', 't_admin.id_role = t_role.id_role');
+		// $this->db->join('t_jenis_kelamin', 't_admin.id_jenis_kelamin = t_jenis_kelamin.id_jenis_kelamin');
         $this->db->where('username', $username);
 		$query = $this->db->get();
 
