@@ -574,4 +574,12 @@ class C_Gw extends CI_Controller {
 			$this->load->view('V_Login_Admin');
 		}
 	}
+
+	public function logout_aksi()
+	{
+		$this->session->sess_destroy();
+		$this->session->set_flashdata('message', '<div class="alert alert-danger">Anda Berhasil Logout</div>');
+
+		redirect (base_url('/index.php/C_Gw/login_admin/'));
+	}		
 }
