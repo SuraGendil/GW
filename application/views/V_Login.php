@@ -122,7 +122,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                   </div>
                   <div class="col-lg-4 align-self-center">
                     <div class="main-info header-text">
-                      <h4><?=$dt_admin->nama_admin?></h4>
+                      <h4><?=$dt_admin->username?></h4>
                       <p><?=$dt_admin->moto_admin?></p>
                       <div class="main-border-button">
                         <!--  -->

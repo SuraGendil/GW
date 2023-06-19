@@ -40,16 +40,6 @@ https://templatemo.com/tm-579-cyborg-gaming
   </head>
 
 <body>
-<div class="heading-section">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="heading-section">
-                    <h4><center><em>Login</em>admin</center></h4>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div class="login-reg-panel">
         <div class="login-info-box">
             <h2>Have an account?</h2>
@@ -66,24 +56,24 @@ https://templatemo.com/tm-579-cyborg-gaming
         </div>
 
         <div class="white-panel">
+
             <div class="login-show">
+                <form class="user" method="post" action="<?php echo site_url('C_Gw/login_aksi');?>">
                 <h2>LOGIN</h2>
-                <?php echo validation_errors(); ?>
-                <?php if (isset($error)) { ?>
-                    <div class="alert alert-danger" role="alert"><?= $error ?></div>
-                <?php } ?>
-                <form class="user" method="post" action="<?= site_url('C_Gw/index_login'); ?>">
                     <div class="form-group">
-                        <input name="username" type="text" id="username" value="<?= set_value('username'); ?>" placeholder="Username">
+                        <input type="text" class="form-control form-control-user" id="username" name="username" placeholder="username">
+                        <?= form_error('username', '<small class="text-danger pl-2">', '</small>'); ?>
                     </div>
                     <div class="form-group">
-                        <input name="password" type="password" placeholder="Password">
+                        <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Password">
+                        <?= form_error('password', '<small class="text-danger pl-2">', '</small>'); ?>
                     </div>
-                    <button class="btn btn-lg btn-primary btn-block" name="submit" type="submit">Login</button>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
                 </form>
             </div>
 
             <div class="register-show">
+                <form action="#", method="", class=""></form>
                 <h2>REGISTER</h2>
                 <input type="text" placeholder="Email">
                 <input type="password" placeholder="Password">
