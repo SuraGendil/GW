@@ -24,7 +24,7 @@ class C_Gw extends CI_Controller {
 		$this -> load -> Model ('M_Produk');
 
 		//memanggil fungsi getAll pada M_Mitra
-		$dt = $this -> M_Produk -> getAll ();
+		$dt = $this -> M_Produk -> getAllShow ();
 
 		//menampung data pada temp
 		$temp['data'] = $dt;
@@ -43,8 +43,8 @@ class C_Gw extends CI_Controller {
 		//memanggil fungsi getAll pada M_Mitra
 		$dtp = $this -> M_Produk -> getByJenis ($id);
 		$dtjp = $this -> M_Produk -> getJenis ($id);
-		$dtn = $this -> M_Nominal -> getByProduk ($id);
-		$dtmp = $this -> M_Metode_Pembayaran -> getAll ();
+		$dtn = $this -> M_Nominal -> getByProdukShow ($id);
+		$dtmp = $this -> M_Metode_Pembayaran -> getAllShow ();
 
 		//menampung data pada temp
 		$temp['dtp'] = $dtp;
@@ -58,6 +58,7 @@ class C_Gw extends CI_Controller {
 	}
 
 	public function beliAction($id){
+		
 		//mengambil semua variabel yang berasal dari form
 		// $no_reg = $this->input->post('no_reg');
 		$uid = $this->input->post('uid');
@@ -213,34 +214,48 @@ class C_Gw extends CI_Controller {
 	}
 
 	public function addProdukAction(){
-		$nama_produk = $this->input->post('nama_produk');
-		$id_jenis_produk = $this->input->post('jenis_produk');
-		$terjual_produk = 0;
 
-		$config['upload_path'] = './assets/bs/assets/images/';
-		$config['allowed_types'] = 'JPG|PNG|gif|JPEG|jpg|jpeg|png';
-		$config['max_size'] = 20000;
-		$config['max_width'] = 20000;
-		$config['max_height'] = 20000;
+		$this->form_validation->set_rules('nama_produk','Nama Produk', 'required');
 
+		if($this->form_validation->run() == FALSE){
+			$this->addProduk();
+		} else {
 
-		$this->load->library('upload', $config);
+			
+			$nama_produk = $this->input->post('nama_produk');
+			$id_jenis_produk = $this->input->post('jenis_produk');
+			$terjual_produk = 0;
+			$status_produk = 1;
+			
+			$config['upload_path'] = './assets/bs/assets/images/';
+			$config['allowed_types'] = 'JPG|PNG|gif|JPEG|jpg|jpeg|png';
+			$config['max_size'] = 20000;
+			$config['max_width'] = 20000;
+			$config['max_height'] = 20000;
+			
+			
+			$this->load->library('upload', $config);
+			
+			if( ! $this->upload->do_upload('userfile')){
+				$this->session->set_flashdata('flashfoto', 'Foto di set default');
+				$foto_produk = "profile.jpg";
+			} else{
+				$foto_produk = $this->upload->data('file_name');
+			}
+			
+			$addProdukAction = array(
+				'nama_produk' => $nama_produk,
+				'id_jenis_produk' => $id_jenis_produk,
+				'foto_produk' => $foto_produk,
+				'terjual_produk' => $terjual_produk,
+				'status_produk' => $status_produk
+			);
 
-		if( ! $this->upload->do_upload('userfile')){
-			$foto_produk = "profile.jpg";
-		} else{
-			$foto_produk = $this->upload->data('file_name');
+			$this->M_Produk->insertProduk($addProdukAction);
+			$this->session->set_flashdata('flash', 'Ditambahkan');
+			redirect (base_url('/index.php/C_Gw/t_produk/'));
 		}
 		
-		$addProdukAction = array(
-			'nama_produk' => $nama_produk,
-			'id_jenis_produk' => $id_jenis_produk,
-			'foto_produk' => $foto_produk,
-			'terjual_produk' => $terjual_produk
-		);
-		$this->M_Produk->insertProduk($addProdukAction);
-		redirect (base_url('/index.php/C_Gw/t_produk/'));
-
 
 	}
 
@@ -255,35 +270,46 @@ class C_Gw extends CI_Controller {
 
 
 	public function updateProdukAction($id){
-		$id_produk = $this->input->post('id_produk');
-		$nama_produk = $this->input->post('nama_produk');
-		$id_jenis_produk = $this->input->post('jenis_produk');
-		$terjual_produk = $this->input->post('terjual_produk');
 
-		$config['upload_path'] = './assets/bs/assets/images/';
-		$config['allowed_types'] = 'JPG|PNG|gif|JPEG|jpg|jpeg|png';
-		$config['max_size'] = 20000;
-		$config['max_width'] = 20000;
-		$config['max_height'] = 20000;
+		$this->form_validation->set_rules('nama_produk','Nama Produk', 'required');
+
+		if($this->form_validation->run() == FALSE){
+			$this->updateProduk($id);
+		} else {
+
+			$id_produk = $this->input->post('id_produk');
+			$nama_produk = $this->input->post('nama_produk');
+			$id_jenis_produk = $this->input->post('jenis_produk');
+			$terjual_produk = $this->input->post('terjual_produk');
+			$status_produk = $this->input->post('status_produk');
+
+			$config['upload_path'] = './assets/bs/assets/images/';
+			$config['allowed_types'] = 'JPG|PNG|gif|JPEG|jpg|jpeg|png';
+			$config['max_size'] = 20000;
+			$config['max_width'] = 20000;
+			$config['max_height'] = 20000;
 
 
-		$this->load->library('upload', $config);
+			$this->load->library('upload', $config);
 
-		if( ! $this->upload->do_upload('userfile')){
-			$foto_produk = $this->input->post('temp_foto');
-		} else{
-			$foto_produk = $this->upload->data('file_name');
+			if( ! $this->upload->do_upload('userfile')){
+				$foto_produk = $this->input->post('temp_foto');
+			} else{
+				$foto_produk = $this->upload->data('file_name');
+			}
+			
+			$addProdukAction = array(
+				'id_produk' => $id_produk,
+				'nama_produk' => $nama_produk,
+				'id_jenis_produk' => $id_jenis_produk,
+				'foto_produk' => $foto_produk,
+				'terjual_produk' => $terjual_produk,
+				'status_produk' => $status_produk
+			);
+			$this->M_Produk->editProduk($addProdukAction, $id);
+			$this->session->set_flashdata('flash', 'DiUpdate');
+			redirect (base_url('/index.php/C_Gw/t_produk/'));
 		}
-		
-		$addProdukAction = array(
-			'id_produk' => $id_produk,
-			'nama_produk' => $nama_produk,
-			'id_jenis_produk' => $id_jenis_produk,
-			'foto_produk' => $foto_produk,
-			'terjual_produk' => $terjual_produk
-		);
-		$this->M_Produk->editProduk($addProdukAction, $id);
-		redirect (base_url('/index.php/C_Gw/t_produk/'));
 	}
 
 	public function addNominal($id){
@@ -294,19 +320,29 @@ class C_Gw extends CI_Controller {
 	}
 
 	public function AddNominalAction($id) {
-		$this-> load -> Model ('M_Nominal');
+		$this->form_validation->set_rules('nama_nominal','Nama Nominal', 'required');
+		$this->form_validation->set_rules('harga','Harga Nominal', 'required');
 
-		$nama_nominal= $this->input->post('nama_nominal');
-		$harga_nominal = $this->input->post('harga');
-		$id_produk = $id;
+		if($this->form_validation->run() == FALSE){
+			$this->addNominal($id);
+		} else {
+			$this-> load -> Model ('M_Nominal');
 
-		$addNominalAction = array(
-			'nama_nominal' => $nama_nominal,
-			'harga_nominal' => $harga_nominal,
-			'id_produk' => $id_produk,
-		);
-		$this->M_Nominal->insertNominal($addNominalAction);
-		redirect (base_url('/index.php/C_Gw/t_nominal/'). $id);
+			$nama_nominal= $this->input->post('nama_nominal');
+			$harga_nominal = $this->input->post('harga');
+			$id_produk = $id;
+			$status_nominal = 1;
+
+			$addNominalAction = array(
+				'nama_nominal' => $nama_nominal,
+				'harga_nominal' => $harga_nominal,
+				'id_produk' => $id_produk,
+				'status_nominal' => $status_nominal
+			);
+			$this->M_Nominal->insertNominal($addNominalAction);
+			$this->session->set_flashdata('flash', 'DiTambah');
+			redirect (base_url('/index.php/C_Gw/t_nominal/'). $id);
+		}
 	}
 
 	public function updateNominal($id){
@@ -321,21 +357,31 @@ class C_Gw extends CI_Controller {
 	}
 
 	public function updateNominalAction($id) {
-		$this-> load -> Model ('M_Nominal');
-		
-		$id_nominal = $this->input->post('id_nominal');
-		$nama_nominal= $this->input->post('nama_nominal');
-		$harga_nominal = $this->input->post('harga');
-		$id_produk = $this->input->post('id_produk');
+		$this->form_validation->set_rules('nama_nominal','Nama Nominal', 'required');
+		$this->form_validation->set_rules('harga','Harga Nominal', 'required');
 
-		$updateNominalAction = array(
-			'id_nominal' => $id_nominal,
-			'nama_nominal' => $nama_nominal,
-			'harga_nominal' => $harga_nominal,
-			'id_produk' => $id_produk,
-		);
-		$this->M_Nominal->updateNominal($updateNominalAction, $id);
-		redirect (base_url('/index.php/C_Gw/t_nominal/'). $id_produk);
+		if($this->form_validation->run() == FALSE){
+			$this->updateNominal($id);
+		} else {
+			$this-> load -> Model ('M_Nominal');
+			
+			$id_nominal = $this->input->post('id_nominal');
+			$nama_nominal= $this->input->post('nama_nominal');
+			$harga_nominal = $this->input->post('harga');
+			$id_produk = $this->input->post('id_produk');
+			$status_nominal = $this->input->post('status_nominal');
+
+			$updateNominalAction = array(
+				'id_nominal' => $id_nominal,
+				'nama_nominal' => $nama_nominal,
+				'harga_nominal' => $harga_nominal,
+				'id_produk' => $id_produk,
+				'status_nominal' => $status_nominal
+			);
+			$this->M_Nominal->updateNominal($updateNominalAction, $id);
+			$this->session->set_flashdata('flash', 'DiUpdate');
+			redirect (base_url('/index.php/C_Gw/t_nominal/'). $id_produk);
+		}
 	}
 
 	public function addPembayaran(){
@@ -343,16 +389,25 @@ class C_Gw extends CI_Controller {
 	}
 
 	public function addPembayaranAction(){
-		$this-> load -> Model ('M_Metode_Pembayaran');
+		$this->form_validation->set_rules('nama_metode','Nama Metode Pembayaran', 'required');
 
-		$nama_metode = $this->input->post('nama_metode');
+		if($this->form_validation->run() == FALSE){
+			$this->addPembayaran();
+		} else {
+			$this-> load -> Model ('M_Metode_Pembayaran');
 
-		$addPembayaranAction = array(
-			'nama_metode' => $nama_metode,
-		);
+			$nama_metode = $this->input->post('nama_metode');
+			$status_metode = 1;
 
-		$this->M_Metode_Pembayaran->insertPembayaran($addPembayaranAction);
-		redirect (base_url('/index.php/C_Gw/t_metodePembayaran/'));
+			$addPembayaranAction = array(
+				'nama_metode' => $nama_metode,
+				'status_metode' => $status_metode
+			);
+
+			$this->M_Metode_Pembayaran->insertPembayaran($addPembayaranAction);
+			$this->session->set_flashdata('flash', 'DiTambahkan');
+			redirect (base_url('/index.php/C_Gw/t_metodePembayaran/'));
+		}
 	}
 
 	public function updatePembayaran($id){
@@ -364,18 +419,80 @@ class C_Gw extends CI_Controller {
 	}
 
 	public function updatePembayaranAction($id){
-		$this-> load -> Model ('M_Metode_Pembayaran');
+		$this->form_validation->set_rules('nama_metode','Nama Metode Pembayaran', 'required');
 
-		$id_metode = $this->input->post('id_metode');
-		$nama_metode = $this->input->post('nama_metode');
+		if($this->form_validation->run() == FALSE){
+			$this->updatePembayaran($id);
+		} else {
 
-		$updatePembayaranAction = array(
-			'id_metode_pembayaran' => $id_metode,
-			'nama_metode' => $nama_metode,
-		);
+			$this-> load -> Model ('M_Metode_Pembayaran');
+			
+			$id_metode = $this->input->post('id_metode');
+			$nama_metode = $this->input->post('nama_metode');
+			$status_metode = $this->input->post('status_metode');
+			
+			$updatePembayaranAction = array(
+				'id_metode_pembayaran' => $id_metode,
+				'nama_metode' => $nama_metode,
+				'status_metode' => $status_metode
+			);
+			
+			$this->M_Metode_Pembayaran->updatePembayaran($updatePembayaranAction, $id);
+			$this->session->set_flashdata('flash', 'DiUpdate');
+			redirect (base_url('/index.php/C_Gw/t_metodePembayaran/'));
+		}
+	}
+
+	public function hideStatusProduk($id){
 		
-		$this->M_Metode_Pembayaran->updatePembayaran($updatePembayaranAction, $id);
-		redirect (base_url('/index.php/C_Gw/t_metodePembayaran/'));
+		$this->M_Produk->changeStatusHide($id);
+		
+		$this->session->set_flashdata('flash', 'Disembunyikan');
+		redirect (base_url('/index.php/C_Gw/t_produk/'));
+	}
+
+	public function showStatusProduk($id){
+		
+		$this->M_Produk->changeStatusShow($id);
+
+		$this->session->set_flashdata('flash', 'Ditampilkan');
+		redirect (base_url('/index.php/C_Gw/t_produk/'));
+	}
+
+	public function hideStatusNominal($id){
+		$this-> load -> Model ('M_Nominal');
+		
+		$this->M_Nominal->changeStatusHide($id);
+		
+		$this->session->set_flashdata('flash', 'Disembunyikan');
+		redirect($_SERVER['HTTP_REFERER']);
+	}
+
+	public function showStatusNominal($id){
+		$this-> load -> Model ('M_Nominal');
+		
+		$this->M_Nominal->changeStatusShow($id);
+		
+		$this->session->set_flashdata('flash', 'DiTampilkan');
+		redirect($_SERVER['HTTP_REFERER']);
+	}
+
+	public function hideStatusPembayaran($id){
+		$this-> load -> Model ('M_Metode_Pembayaran');
+		
+		$this->M_Metode_Pembayaran->changeStatusHide($id);
+		
+		$this->session->set_flashdata('flash', 'Disembunyikan');
+		redirect($_SERVER['HTTP_REFERER']);
+	}
+
+	public function showStatusPembayaran($id){
+		$this-> load -> Model ('M_Metode_Pembayaran');
+		
+		$this->M_Metode_Pembayaran->changeStatusShow($id);
+
+		$this->session->set_flashdata('flash', 'DiTampilkan');
+		redirect($_SERVER['HTTP_REFERER']);
 	}
 
 

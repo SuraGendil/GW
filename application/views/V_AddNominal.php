@@ -98,19 +98,25 @@ https://templatemo.com/tm-579-cyborg-gaming
 
             <div class="col-lg-12">
               <div class="main-profile ">
+              <?php if(validation_errors()): ?>
+                  <div class="alert alert-danger" role="alert">
+                  <?= validation_errors(); ?>
+                </div>
+              <?php endif; ?>
                 <div class="col-lg-3">
                   <div class="topics-detail-block bg-white shadow-lg" id="imgBox">
                     <img id="myImg" src="<?= base_url('assets/bs/'); ?>assets/images/<?= $lp->foto_produk?>"  >
                   </div>
                   <br>
                 </div>
+
                 <form action="<?php echo site_url('C_Gw/AddNominalAction/'). $lp->id_produk ?> "method="post" enctype="multipart/form-data" role="form" >
                     <br>
                     <label for="nama_nominal" style="color: white;">Nama Nominal: </label>
-                    <input type="text" class="form-control"  name="nama_nominal" style="width: 400px;" placeholder="Nama Nominal" required>
+                    <input type="text" class="form-control"  name="nama_nominal" style="width: 400px;" placeholder="Nama Nominal" value="<?= set_value('nama_nominal')?>">
                     <br>
                     <label for="harga" style="color: white;">Harga: </label>
-                    <input type="number" class="form-control"  name="harga" style="width: 400px;" placeholder="Harga Nominal" min="1000" required>
+                    <input type="number" class="form-control"  name="harga" style="width: 400px;" placeholder="Harga Nominal" min="1000" value="<?= set_value('harga')?>">
                     <br>
                    
                       <button type="submit" value="submit" class="btn btn-primary">Tambah Nominal</button>

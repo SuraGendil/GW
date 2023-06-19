@@ -127,6 +127,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                       <input type="hidden" value="<?php echo $dataProduk->foto_produk ?>" name="temp_foto">
                       <input type="hidden" value="<?php echo $dataProduk->id_produk ?>" name="id_produk">
                       <input type="hidden" value="<?php echo $dataProduk->terjual_produk ?>" name="terjual_produk">
+                      <input type="hidden" value="<?php echo $dataProduk->status_produk ?>" name="status_produk">
                       <!-- <input type="text" class="form-control" placeholder="foto Produk" name="foto_produk"> -->
                       <button type="submit" value="update" class="btn btn-primary">Update Produk</button>
                       <a href="<?=base_url('/index.php/C_Gw/t_produk/')?>"  class="btn btn-danger">Cancel</a>

@@ -22,6 +22,7 @@ class M_Pembelian extends CI_Model {
 		$this->db->join('t_produk', 't_nominal.id_produk = t_produk.id_produk');
 		$this->db->join('t_jenis_produk', 't_produk.id_jenis_produk = t_jenis_produk.id_jenis_produk');
 		$this->db->join('t_metode_pembayaran', 't_pembelian.id_metode_pembayaran = t_metode_pembayaran.id_metode_pembayaran');
+		$this -> db -> order_by ('t_pembelian.tgl_pembelian', 'DESC');
 		$query = $this->db->get();
 
 		// $query = $this->db->get_where('t_jenis_produk', array('id_jenis_produk' => $id));

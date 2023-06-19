@@ -108,6 +108,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                     <br>
                     <label for="nama_metode" style="color: white;">Nama Metode Pembayaran: </label>
                     <input type="text" class="form-control"  name="nama_metode" style="width: 400px;" placeholder="Nama Metode Pembayaran" required>
+                    <input type="hidden" class="form-control"  name="status_metode" style="width: 400px;">
                     <br>
                    
                       <button type="submit" value="submit" class="btn btn-primary">Tambah Metode</button>
