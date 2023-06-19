@@ -96,7 +96,7 @@ class C_Gw extends CI_Controller {
 		redirect (base_url('/index.php/C_Gw/linkbeli/'. $id));
 	}
 
-	public function login($id)
+	public function login()
 	{
 
 		$blnthn = date('Y-m');
@@ -112,10 +112,13 @@ class C_Gw extends CI_Controller {
 		$ppg = $this -> M_Pembelian -> getpopulerProduk(1, $blnthn);
 		$ppa = $this -> M_Pembelian -> getpopulerProduk(2, $blnthn);
 		$ppp = $this -> M_Pembelian -> getpopulerProduk(3, $blnthn);
-		$dt = $this -> M_login -> getById($id);
-		// $dr = $this -> M_login -> getRole(1);
-		// $djk = $this -> M_login -> getJK(1);
+		// $dt = $this -> M_login -> getById($id);
+		$user = $this->session->userdata('username');
+		$admin = $this ->db->get_where('t_admin', ['username' => $user])->row_array();
+		$role = $this ->db->get_where('t_role', ['id_role' => $admin['id_role']])->row_array();
+		$jk = $this ->db->get_where('t_jenis_kelamin', ['id_jenis_kelamin' => $admin['id_jenis_kelamin']])->row_array();
 
+		// $this->M_Login_Admin->getAdmin($user);
 		$temp['dp'] = $dp;
 		$temp['sh'] = $sh;
 		$temp['shg'] = $shg;
@@ -124,9 +127,14 @@ class C_Gw extends CI_Controller {
 		$temp['ppg'] = $ppg;
 		$temp['ppa'] = $ppa;
 		$temp['ppp'] = $ppp;
-		$temp['data'] = $dt;
+		$headertemp['data_admin'] = $admin;
+		$headertemp['role'] = $role;
+		$headertemp['jk'] = $jk;
+		// $temp['data'] = $sess_data;
+		// $temp['data'] = $dt;
 
 		
+		$this->load-> view('V_HeaderAdmin', $headertemp);
 		$this->load-> view('V_Login', $temp);
 
 	}
@@ -160,54 +168,67 @@ class C_Gw extends CI_Controller {
 
 	}
 
-	public function t_produk($id){
+	public function t_produk(){
 		$this-> load -> Model ('M_Produk');
-		$this-> load -> Model ('M_Login');
 
 		$dp = $this ->M_Produk -> getAll();
-		$dt = $this ->M_Login -> getById($id);
 
-
-		$temp['dp'] = $dp;
-		$temp['data'] = $dt;
-
+		$user = $this->session->userdata('username');
+		$admin = $this ->db->get_where('t_admin', ['username' => $user])->row_array();
+		$role = $this ->db->get_where('t_role', ['id_role' => $admin['id_role']])->row_array();
+		$jk = $this ->db->get_where('t_jenis_kelamin', ['id_jenis_kelamin' => $admin['id_jenis_kelamin']])->row_array();
 		
+		$headertemp['data_admin'] = $admin;
+		$headertemp['role'] = $role;
+		$headertemp['jk'] = $jk;
+		$temp['dp'] = $dp;
+		
+		$this->load-> view('V_HeaderAdmin', $headertemp);
 		$this->load-> view('V_Produk', $temp);
 	}
 
 	public function t_nominal($id){
 		$this-> load -> Model ('M_Nominal');
-		$this-> load -> Model ('M_Login');
 
 		$title = $this->M_Produk->getById($id);
 		$dn = $this ->M_Nominal -> getByProduk($id);
-		$dt = $this -> M_Login -> getAll();
-		$dr = $this -> M_Login -> getRole(1);
-		$djk = $this -> M_Login -> getJK(1);
 
+		$user = $this->session->userdata('username');
+		$admin = $this ->db->get_where('t_admin', ['username' => $user])->row_array();
+		$role = $this ->db->get_where('t_role', ['id_role' => $admin['id_role']])->row_array();
+		$jk = $this ->db->get_where('t_jenis_kelamin', ['id_jenis_kelamin' => $admin['id_jenis_kelamin']])->row_array();
+		
+		$headertemp['data_admin'] = $admin;
+		$headertemp['role'] = $role;
+		$headertemp['jk'] = $jk;
+		
 		$temp['id'] = $id;
 		$temp['title'] = $title;
 		$temp['dn'] = $dn;
-		$temp['data'] = $dt;
-		$temp['dr'] = $dr;
-		$temp['djk'] = $djk;
-
 		
+		$this->load-> view('V_HeaderAdmin', $headertemp);
 		$this->load-> view('V_Nominal', $temp);
 	}
 
-	public function t_metodePembayaran($id){
+	public function t_metodePembayaran(){
 		$this-> load -> Model ('M_Metode_Pembayaran');
-		$this-> load -> Model ('M_Login');
 
 		$dmp = $this ->M_Metode_Pembayaran -> getAll();
-		$dt = $this ->M_Login -> getById($id);
-
-
-		$temp['dmp'] = $dmp;
-		$temp['data'] = $dt;
-
+		$user = $this->session->userdata('username');
 		
+		$admin = $this ->db->get_where('t_admin', ['username' => $user])->row_array();
+		$role = $this ->db->get_where('t_role', ['id_role' => $admin['id_role']])->row_array();
+		$jk = $this ->db->get_where('t_jenis_kelamin', ['id_jenis_kelamin' => $admin['id_jenis_kelamin']])->row_array();
+		
+		
+		$headertemp['data_admin'] = $admin;
+		$headertemp['role'] = $role;
+		$headertemp['jk'] = $jk;
+		
+		$temp['dmp'] = $dmp;
+		
+		
+		$this->load-> view('V_HeaderAdmin', $headertemp);
 		$this->load-> view('V_Metode_Pembayaran', $temp);
 	}
 
@@ -531,18 +552,20 @@ class C_Gw extends CI_Controller {
 			$ceklogin = $this->M_Login_Admin->cek_login($where)->row_array();
 
 			if ($ceklogin > 0) {
+				
+				$data_admin = $this->M_Login_Admin->getAdmin($user);
 				$sess_data = array(
+					// 'id_admin' => $data_admin['id_admin'],
 					'username' => $user,
+					// 'moto_admin' => $data_admin['moto_admin'],
+					// 'Role' => $data_admin['id_role'],
+					// 'jenis_kelamin' => $data_admin['id_jenis_kelamin'],
+					// 'email' => $data_admin['email'],
 					'login' => 'OK'
 				);
-
-				// $id = $this->M_Login_Admin->getId($user);
-				// $temp['kode'] = $id;
-
-				// $id = $kode->id_admin;
-
+				
 				$this->session->set_userdata($sess_data);
-				redirect (base_url('/index.php/C_Gw/login/'). $ceklogin['id_admin']);
+				redirect (base_url('/index.php/C_Gw/login'));
 			}else{
 				redirect (base_url('/index.php/C_Gw/login_admin/'));
 			}
