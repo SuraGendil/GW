@@ -69,7 +69,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                         <li><a href="browse.html">Browse</a></li>
                         <li><a href="details.html">Details</a></li>
                         <li><a href="streams.html">Streams</a></li>
-                        <li><a href="<?php echo site_url ('C_Gw/Login_Admin'); ?>">apanih<img src="<?= base_url('assets/bs/'); ?>assets/images/profile-header.jpg" alt=""></a></li>
+                        <li><a href="<?php echo site_url ('C_Gw/login_admin'); ?>">apanih<img src="<?= base_url('assets/bs/'); ?>assets/images/profile-header.jpg" alt=""></a></li>
                     </ul>   
                     <a class='menu-trigger'>
                         <span>Menu</span>

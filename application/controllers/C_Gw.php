@@ -126,6 +126,7 @@ class C_Gw extends CI_Controller {
 		$temp['data'] = $dt;
 		$temp['dr'] = $dr;
 		$temp['djk'] = $djk;
+
 		
 		$this->load-> view('V_Login', $temp);
 
@@ -145,6 +146,18 @@ class C_Gw extends CI_Controller {
 		$temp['data'] = $dtjk;
 	
 		$this->load-> view('V_Login_Admin', $temp);
+		
+		// $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+		// $this->form_validation->set_rules('password', 'Password', 'trim|required');
+		
+		// if($this->form_validation->run() == false)
+		// {
+			
+		// }else{
+
+		// 	$this->_login();
+		// }
+
 
 	}
 
@@ -378,45 +391,50 @@ class C_Gw extends CI_Controller {
 		redirect (base_url('/index.php/C_Gw/t_metodePembayaran/'));
 	}
 
-
 	public function __construct() {
         parent::__construct();
+
         $this->load->model('M_Login_Admin');
         $this->load->library('form_validation');
     }
 
-    public function index_login()
-    {
-        if ($this->input->post('submit')) {
-            
-            $this->form_validation->set_rules('username', 'Username', 'required');
-            $this->form_validation->set_rules('password', 'Password', 'required');
 
-            
-            if ($this->form_validation->run()) {
-                $username = $this->input->post('username');
-                $password = $this->input->post('password');
+	public function index_login()
+	{
+		$this->load->view('V_Login_Admin');
+	}
 
-                
-                $login_success = $this->M_Login_Admin->login_admin($username, $password);
+	public function login_aksi()
+	{
+		$user = $this->input->post('username', true);
+		$pass = $this->input->post('password', true);
 
-                if ($login_success) {
-                    
-                    redirect('V_Home');
-                } else {
-                    
-                    $data['error'] = 'Invalid username or password';
-                    $this->load->view('V_Login_Admin', $data);
-                }
-            } else {
-                
-                $this->load->view('V_Login_Admin');
-            }
-        } else {
-            
-            $this->load->view('V_Login_Admin');
-        }
-    }
+		$this->form_validation->set_rules('username', 'Username', 'required');
+		$this->form_validation->set_rules('password', 'Password', 'required');
+		
+		if ($this->form_validation->run() != FALSE) 
+		{
+			$where = array(
+					'username' => $user,
+					'password' => $pass
+			);
 
+			$ceklogin = $this->M_Login_Admin->cek_login($where)->num_rows();
 
+			if ($ceklogin > 0) {
+				$sess_data = array(
+					'username' => $user,
+					'login' => 'OK'
+				);
+
+				$this->session->set_userdata($sess_data);
+				redirect (base_url('/index.php/C_Gw/login/'));
+			}else{
+				redirect (base_url('/index.php/C_Gw/login_admin/'));
+			}
+		}else 
+		{
+			$this->load->view('V_Login_Admin');
+		}
+	}
 }
