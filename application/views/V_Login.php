@@ -257,7 +257,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                   <td><?= $dt->nama_produk ?> </td>
                   <td><?= $dt->nama_nominal ?> </td> 
                   <td><?= $dt->nama_metode?> </td>
-                  <td><?= number_format($dt->harga_nominal,0,"",".")?> </td>
+                  <td>Rp. <?= number_format($dt->harga_nominal,0,"",".")?> </td>
                   <td><?= date("d-F-Y",strtotime($dt->tgl_pembelian ));?> </td>
                   <td><?= $dt->nama_jenis_produk ?> </td>
                   

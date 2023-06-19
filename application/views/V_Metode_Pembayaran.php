@@ -165,6 +165,12 @@ https://templatemo.com/tm-579-cyborg-gaming
               <div class="heading-section">
                 <h4><em>Tabel</em> Metode Pembayaran</h4>
               </div>
+              <?php if($this->session->flashdata('flash')):?>
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                Data metode Pembayaran <strong>Berhasil</strong> <?=$this->session->flashdata('flash')?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+              <?php endif;?>
               <div class="heading-section">
                   <a href="<?=base_url('/index.php/C_Gw/addPembayaran/')?>" type="button" class="btn btn-primary">Tambah Metode Pembayaran</a>
               </div><br>
@@ -172,6 +178,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                 <tr>
                   <th>No</th>
                   <th>Metode Pembayaran</th>
+                  <th>Status</th>
                   <th>Action</th>
                 </tr>
                 <?php
@@ -182,8 +189,10 @@ https://templatemo.com/tm-579-cyborg-gaming
                 <tr>
                   <td><?= $cacah ?> </td>
                   <td><?= $dt->nama_metode ?> </td>
+                  <td><?= $dt->nama_jenis_status ?> </td>
                   <td><a href="<?=base_url('/index.php/C_Gw/updatePembayaran/'). $dt->id_metode_pembayaran?>" type="button" class="btn btn-success">Update</a>
-                      <button type="button" class="btn btn-danger">Hide</button> </td>
+                  <a href="<?php echo site_url ('C_Gw/hideStatusPembayaran/') . $dt->id_metode_pembayaran ?>" <?php if($dt->status_metode == 2) echo "hidden";  ?> type="button" class="btn btn-danger" onclick="return confirm ('yakin sembunyikan?');">Hide</a>
+                      <a href="<?php echo site_url ('C_Gw/showStatusPembayaran/') . $dt->id_metode_pembayaran ?>" <?php if($dt->status_metode == 1) echo "hidden";  ?> type="button" class="btn btn-info" onclick="return confirm ('yakin tampilkan?');">Show</a> </td>
                   
                 </tr>
                 <?php

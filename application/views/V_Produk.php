@@ -165,6 +165,13 @@ https://templatemo.com/tm-579-cyborg-gaming
               <div class="heading-section">
                 <h4><em>Tabel</em> Produk</h4>
               </div>
+              <?php if($this->session->flashdata('flash')):?>
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                Data Produk <strong>Berhasil</strong> <?=$this->session->flashdata('flash')?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+              <?php endif;?>
+
               <div class="heading-section">
                   <a href="<?php echo site_url ('C_Gw/addProduk/') ?>" type="button" class="btn btn-primary">Tambah produk</a>
               </div><br>
@@ -175,6 +182,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                   <th>Jenis Produk</th>
                   <th>Foto Produk</th>
                   <th>Terjual</th>
+                  <th>Status</th>
                   <th>Action</th>
                   <th></th>
                 </tr>
@@ -189,8 +197,10 @@ https://templatemo.com/tm-579-cyborg-gaming
                   <td><?= $dt->nama_jenis_produk ?> </td>
                   <td> <a href="<?= base_url('assets/bs/'); ?>assets/images/<?= $dt->foto_produk?>">  <?= $dt->foto_produk ?> </a></td> 
                   <td><?= $dt->terjual_produk?> </td>
+                  <td><?= $dt->nama_jenis_status?> </td>
                   <td><a href="<?php echo site_url ('C_Gw/updateProduk/') . $dt->id_produk ?>" type="button" class="btn btn-success">Update</a>
-                      <button type="button" class="btn btn-danger">Hide</button> </td>
+                      <a href="<?php echo site_url ('C_Gw/hideStatusProduk/') . $dt->id_produk ?>" <?php if($dt->status_produk == 2) echo "hidden";  ?> type="button" class="btn btn-danger" onclick="return confirm ('yakin sembunyikan?');">Hide</a>
+                      <a href="<?php echo site_url ('C_Gw/showStatusProduk/') . $dt->id_produk ?>" <?php if($dt->status_produk == 1) echo "hidden";  ?> type="button" class="btn btn-info" onclick="return confirm ('yakin tampilkan?');">Show</a> </td>
                   <td><a href="<?php echo site_url ('C_Gw/t_nominal/') . $dt->id_produk ?>" type="button" class="btn btn-secondary">Nominal</a></td>
                 </tr>
                 <?php
