@@ -153,7 +153,7 @@ class C_Gw extends CI_Controller {
 	{
 		$this-> load -> Model ('M_Produk');
 
-		$dp = $this ->M_Produk -> getAllAdmin();
+		$dp = $this ->M_Produk -> getAll();
 
 		$user = $this->session->userdata('username');
 		$admin = $this ->db->get_where('t_admin', ['username' => $user])->row_array();
@@ -173,7 +173,7 @@ class C_Gw extends CI_Controller {
 	{
 		$this-> load-> model('M_Data_Admin');
 
-		$da = $this->M_Data_Admin -> getALl();
+		$da = $this->M_Data_Admin -> getALlAdmin();
 
 		$user = $this->session->userdata('username');
 		$admin = $this ->db->get_where('t_admin', ['username' => $user])->row_array();
@@ -638,6 +638,7 @@ class C_Gw extends CI_Controller {
 				'id_role' => 2,
 				'id_jenis_kelamin' => 1,
 				'email' => 'gw_admin@gmail.com',
+				'hak_akses' => 'A'
 			];
 
 			$this->M_Admin->insertAdmin($data);
