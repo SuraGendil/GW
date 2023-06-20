@@ -21,9 +21,10 @@ input[type="radio"] {
   display: none;
   &:not(:disabled) ~ label {
     cursor: pointer;
+    color: white;
   }
   &:disabled ~ label {
-    color: hsla(150, 5%, 75%, 1);
+    color: rgb(255, 255, 255);
     border-color: hsla(150, 5%, 75%, 1);
     box-shadow: none;
     cursor: not-allowed;
@@ -34,7 +35,9 @@ input[type="radio"]:hover {
   display: none;
   &:not(:disabled) ~ label {
     cursor: pointer;
-    background-color: aqua;
+    background-color: #1399cd;
+    color: white;
+    
   }
   &:disabled ~ label {
     color: hsla(150, 5%, 75%, 1);
@@ -45,10 +48,11 @@ input[type="radio"]:hover {
 }
 
 label {
+  color: white;
   height: 100%;
   display: block;
   background: white;
-  border: 2px solid hsla(150, 75%, 50%, 1);
+  border: 2px solid #1399cd;
   border-radius: 20px;
   padding: 1rem;
   // margin-bottom: 1rem;
@@ -58,26 +62,26 @@ label {
   // position: relative;
 }
 input[type="radio"]:checked + label {
-  background: hsla(150, 75%, 50%, 1);
+  background: #1399cd;
   color: hsla(215, 0%, 100%, 1);
   // box-shadow: 0px 0px 20px hsla(150, 100%, 50%, 0.75);
   &::after {
-    color: hsla(215, 5%, 25%, 1);
-    font-family: FontAwesome;
+    color: rgb(255, 255, 255);
+    // font-family: FontAwesome;
     border: 2px solid hsla(150, 75%, 45%, 1);
     // content: "\f00c";
     font-size: 24px;
-    position: absolute;
+    // position: absolute;
     top: -25px;
     left: 50%;
-    transform: translateX(-50%);
+    // transform: translateX(-50%);
     height: 50px;
     width: 50px;
     line-height: 50px;
     text-align: center;
     border-radius: 50%;
     background: white;
-    box-shadow: 0px 2px 5px -2px hsla(0, 0%, 0%, 0.25);
+    // box-shadow: 0px 2px 5px -2px hsla(0, 0%, 0%, 0.25);
   }
 }
 
@@ -98,39 +102,42 @@ p {
 
 input[type="text"] {
   background: white;
-  border: 2px solid hsla(150, 75%, 50%, 1);
+  border: 2px solid #1399cd;
   border-radius: 20px;
-  padding: 0.5rem;
-  
+  padding: 20px;
+  width: 300px;
 }
 
 input[type="submit"] {
   background: white;
-  border: 2px solid hsla(150, 75%, 50%, 1);
+  border: 2px solid #1399cd;
   border-radius: 20px;
+  width: 100px;
   padding: 15px;
   
 }
 
 input[type="submit"]:hover{
-  background: hsla(150, 75%, 50%, 1);
-  border: 2px solid hsla(150, 75%, 50%, 1);
+  background: #1399cd;
+  color: white;
+  border: 2px solid white;
   border-radius: 20px;
+  width: 100px;
   padding: 15px;
   
 }
 
 input[type="reset"] {
   background: white;
-  border: 2px solid hsla(150, 75%, 50%, 1);
+  border: 2px solid #f3ef2d;
   border-radius: 20px;
   padding: 15px;
   
 }
 
 input[type="reset"]:hover{
-  background: hwb(199 33% 17%);
-  border: 2px solid hsla(150, 75%, 50%, 1);
+  background: #f3ef2d;
+  border: 2px solid white;
   border-radius: 20px;
   padding: 15px;
   

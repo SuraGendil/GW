@@ -30,6 +30,7 @@ class C_Gw extends CI_Controller {
 		$temp['data'] = $dt;
 
 		//akses v_mitra beserta data
+		$this->load->view('V_HeaderHome');
 		$this->load->view('V_Home', $temp);
 	}
 
@@ -54,6 +55,7 @@ class C_Gw extends CI_Controller {
 		$temp['id'] = $id;
 
 		//akses v_mitra beserta data
+		$this->load->view('V_HeaderHome');
 		$this->load->view('V_Beli', $temp);
 	}
 
@@ -236,6 +238,7 @@ class C_Gw extends CI_Controller {
 	public function addProduk(){
 		$lj = $this ->M_Produk -> getAllJenis();
 		$temp['lj'] = $lj;
+		$this->load->view('V_HeaderCRUD');
 		$this->load->view('V_AddProduk', $temp);
 	}
 
@@ -291,6 +294,7 @@ class C_Gw extends CI_Controller {
 		
 		$temp['dataProduk'] = $createProduk;
 		$temp['lj'] = $lj;
+		$this->load->view('V_HeaderCRUD');
 		$this->load->view('V_UpdateProduk', $temp);
 	}
 
@@ -342,6 +346,7 @@ class C_Gw extends CI_Controller {
 		$lp = $this ->M_Produk -> getById($id);
 		$temp['lp'] = $lp;
 		$temp['id'] = $id;
+		$this->load->view('V_HeaderCRUD');
 		$this->load->view('V_AddNominal', $temp);
 	}
 
@@ -379,6 +384,7 @@ class C_Gw extends CI_Controller {
 		$temp['ln'] = $ln;
 		// $temp['lp'] = $lp;
 		$temp['id'] = $id;
+		$this->load->view('V_HeaderCRUD');
 		$this->load->view('V_UpdateNominal', $temp);
 	}
 
@@ -411,6 +417,7 @@ class C_Gw extends CI_Controller {
 	}
 
 	public function addPembayaran(){
+		$this->load->view('V_HeaderCRUD');
 		$this->load->view('V_AddPembayaran');
 	}
 
@@ -441,6 +448,7 @@ class C_Gw extends CI_Controller {
 
 		$lmp = $this ->M_Metode_Pembayaran -> getById($id);
 		$temp['lmp'] = $lmp;
+		$this->load->view('V_HeaderCRUD');
 		$this->load->view('V_UpdatePembayaran', $temp);
 	}
 
