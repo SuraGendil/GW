@@ -68,9 +68,9 @@ https://templatemo.com/tm-579-cyborg-gaming
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
                         <li><a href="<?php echo site_url ('C_Gw/index'); ?>">Home</a></li>
-                        <li><a href="browse.html">Browse</a></li>
+                        <!-- <li><a href="browse.html">Browse</a></li>
                         <li><a href="details.html">Details</a></li>
-                        <li><a href="streams.html">Streams</a></li>
+                        <li><a href="streams.html">Streams</a></li> -->
                         <li><a href="profile.html" class="active">Profile <img src="<?= base_url('assets/bs/'); ?>assets/images/profile-header.jpg" alt=""></a></li>
                     </ul>   
                     <a class='menu-trigger'>
@@ -97,22 +97,28 @@ https://templatemo.com/tm-579-cyborg-gaming
             <hr>
 
             <div class="col-lg-12">
+
               <div class="main-profile ">
-                  <form action="<?php echo site_url('C_Gw/AddProdukAction') ?> "method="post" enctype="multipart/form-data" role="form" >
+              <?php if(validation_errors()): ?>
+                  <div class="alert alert-danger" role="alert">
+                  <?= validation_errors(); ?>
+                </div>
+              <?php endif; ?>
+                
+                  <form action="<?php echo site_url('C_Gw/AddProdukAction') ?> "method="post" enctype="multipart/form-data" >
                       <div class="col-lg-3">
                         <div class="topics-detail-block bg-white shadow-lg" id="imgBox">
                           <img id="myImg" src="<?= base_url('assets/bs/'); ?>assets/images/profile.jpg"  >
                         </div>
                         <br>
-                        <input type="file"  name="userfile" id="image" accept="image/*" id="file" onchange="onFileSelected(event)" required>
+                        <input type="file"  name="userfile" id="image" accept="image/*" id="file" size="20" onchange="onFileSelected(event)">
                       </div>
                     <br>
                     <label for="nama_produk" style="color: white;">Nama Produk: </label>
-                    <input type="text" class="form-control"  name="nama_produk" style="width: 400px;" placeholder="Nama Produk" required>
+                    <input type="text" class="form-control"  name="nama_produk" style="width: 400px;" placeholder="Nama Produk">
                     <br>
                     <label for="jenis_produk" style="color: white;">Jenis Produk: </label>
-                    <select name="jenis_produk" class="form-select" style="padding-top: 0px;padding-bottom: 0px;margin-bottom: 30px ;width: 200px;" aria-label="Default select example" required>
-                      <option disabled selected>Jenis Produk</option>
+                    <select name="jenis_produk" class="form-select" style="padding-top: 0px;padding-bottom: 0px;margin-bottom: 30px ;width: 200px;" aria-label="Default select example">
                       <?php
                           foreach($lj as $lj){
                             ?>

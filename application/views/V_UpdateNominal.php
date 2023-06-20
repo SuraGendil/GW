@@ -68,9 +68,9 @@ https://templatemo.com/tm-579-cyborg-gaming
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
                         <li><a href="<?php echo site_url ('C_Gw/index'); ?>">Home</a></li>
-                        <li><a href="browse.html">Browse</a></li>
+                        <!-- <li><a href="browse.html">Browse</a></li>
                         <li><a href="details.html">Details</a></li>
-                        <li><a href="streams.html">Streams</a></li>
+                        <li><a href="streams.html">Streams</a></li> -->
                         <li><a href="profile.html" class="active">Profile <img src="<?= base_url('assets/bs/'); ?>assets/images/profile-header.jpg" alt=""></a></li>
                     </ul>   
                     <a class='menu-trigger'>
@@ -98,6 +98,11 @@ https://templatemo.com/tm-579-cyborg-gaming
 
             <div class="col-lg-12">
               <div class="main-profile ">
+              <?php if(validation_errors()): ?>
+                  <div class="alert alert-danger" role="alert">
+                  <?= validation_errors(); ?>
+                </div>
+              <?php endif; ?>
                 <div class="col-lg-3">
                   <div class="topics-detail-block bg-white shadow-lg" id="imgBox">
                     <img id="myImg" src="<?= base_url('assets/bs/'); ?>assets/images/<?= $ln->foto_produk?>"  >
@@ -107,6 +112,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                 <form action="<?php echo site_url('C_Gw/updateNominalAction/'). $ln->id_nominal ?> "method="post" enctype="multipart/form-data" role="form" >
                     <br>
                     <input type="hidden" class="form-control" value="<?=$ln->id_nominal?>" name="id_nominal" style="width: 400px;">
+                    <input type="hidden" class="form-control" value="<?=$ln->status_nominal?>" name="status_nominal" style="width: 400px;">
                     <input type="hidden" class="form-control" value="<?=$ln->id_produk?>" name="id_produk" style="width: 400px;">
                     <label for="nama_nominal" style="color: white;">Nama Nominal: </label>
                     <input type="text" class="form-control" value="<?=$ln->nama_nominal?>" name="nama_nominal" style="width: 400px;" placeholder="Nama Nominal" required>

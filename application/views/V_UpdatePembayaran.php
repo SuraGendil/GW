@@ -68,9 +68,9 @@ https://templatemo.com/tm-579-cyborg-gaming
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
                         <li><a href="<?php echo site_url ('C_Gw/index'); ?>">Home</a></li>
-                        <li><a href="browse.html">Browse</a></li>
+                        <!-- <li><a href="browse.html">Browse</a></li>
                         <li><a href="details.html">Details</a></li>
-                        <li><a href="streams.html">Streams</a></li>
+                        <li><a href="streams.html">Streams</a></li> -->
                         <li><a href="profile.html" class="active">Profile <img src="<?= base_url('assets/bs/'); ?>assets/images/profile-header.jpg" alt=""></a></li>
                     </ul>   
                     <a class='menu-trigger'>
@@ -107,6 +107,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                 <form action="<?php echo site_url('C_Gw/updatePembayaranAction/'). $lmp->id_metode_pembayaran ?> "method="post" enctype="multipart/form-data" role="form" >
                     <br>
                     <input type="hidden" class="form-control" value="<?= $lmp->id_metode_pembayaran?>" name="id_metode" style="width: 400px;">
+                    <input type="hidden" class="form-control" value="<?= $lmp->status_metode?>" name="status_metode" style="width: 400px;">
 
                     <label for="nama_metode" style="color: white;">Nama Metode Pembayaran: </label>
                     <input type="text" class="form-control" value="<?= $lmp->nama_metode?>" name="nama_metode" style="width: 400px;" placeholder="Nama Metode Pembayaran" required>

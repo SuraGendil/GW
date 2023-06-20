@@ -16,7 +16,26 @@ class M_Nominal extends CI_Model {
 
 	public function getByProduk($id)
 	{
-		$query = $this->db->get_where('t_nominal', array('id_produk' => $id));
+		// $query = $this->db->get_where('t_nominal', array('id_produk' => $id));
+		$this->db->select('*');
+		$this->db->from('t_nominal');
+		$this->db->join('t_jenis_status', 't_jenis_status.id_jenis_status = t_nominal.status_nominal');
+		$this -> db -> where ('id_produk', $id);
+
+		$query = $this->db->get();
+        return $query -> result();
+	}
+
+	public function getByProdukShow($id)
+	{
+		// $query = $this->db->get_where('t_nominal', array('id_produk' => $id));
+		$this->db->select('*');
+		$this->db->from('t_nominal');
+		$this->db->join('t_jenis_status', 't_jenis_status.id_jenis_status = t_nominal.status_nominal');
+		$this -> db -> where ('id_produk', $id);
+		$this -> db -> where ('status_nominal', 1);
+
+		$query = $this->db->get();
         return $query -> result();
 	}
 
@@ -40,6 +59,18 @@ class M_Nominal extends CI_Model {
 	{
 		$this->db->where('id_nominal',$id);
 		$this->db->update('t_nominal',$data);
+	}
+
+	public function changeStatusHide($id){
+		
+		$this->db->where('id_nominal',$id);
+		$this->db->update('t_nominal',["status_nominal" => 2]);
+	}
+
+	public function changeStatusShow($id){
+		
+		$this->db->where('id_nominal',$id);
+		$this->db->update('t_nominal',["status_nominal" => 1]);
 	}
 
 	// public function sumterjual($id){

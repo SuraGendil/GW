@@ -68,9 +68,9 @@ https://templatemo.com/tm-579-cyborg-gaming
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
                         <li><a href="<?php echo site_url ('C_Gw/index'); ?>">Home</a></li>
-                        <li><a href="browse.html">Browse</a></li>
+                        <!-- <li><a href="browse.html">Browse</a></li>
                         <li><a href="details.html">Details</a></li>
-                        <li><a href="streams.html">Streams</a></li>
+                        <li><a href="streams.html">Streams</a></li> -->
                         <li><a href="profile.html" class="active">Profile <img src="<?= base_url('assets/bs/'); ?>assets/images/profile-header.jpg" alt=""></a></li>
                     </ul>   
                     <a class='menu-trigger'>
@@ -127,6 +127,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                       <input type="hidden" value="<?php echo $dataProduk->foto_produk ?>" name="temp_foto">
                       <input type="hidden" value="<?php echo $dataProduk->id_produk ?>" name="id_produk">
                       <input type="hidden" value="<?php echo $dataProduk->terjual_produk ?>" name="terjual_produk">
+                      <input type="hidden" value="<?php echo $dataProduk->status_produk ?>" name="status_produk">
                       <!-- <input type="text" class="form-control" placeholder="foto Produk" name="foto_produk"> -->
                       <button type="submit" value="update" class="btn btn-primary">Update Produk</button>
                       <a href="<?=base_url('/index.php/C_Gw/t_produk/')?>"  class="btn btn-danger">Cancel</a>

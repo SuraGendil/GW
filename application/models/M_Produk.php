@@ -8,7 +8,23 @@ class M_Produk extends CI_Model {
 		$this->db->select('*');
 		$this->db->from('t_produk');
 		$this->db->join('t_jenis_produk', 't_jenis_produk.id_jenis_produk = t_produk.id_jenis_produk');
+		$this->db->join('t_jenis_status', 't_jenis_status.id_jenis_status = t_produk.status_produk');
 		$this -> db -> order_by ('t_produk.id_jenis_produk', 'ASC');
+		$this -> db -> order_by ('t_produk.nama_produk', 'ASC');
+		$query = $this->db->get();
+
+        return $query->result();
+	}
+
+	public function getAllShow()
+	{
+		$this->db->select('*');
+		$this->db->from('t_produk');
+		$this->db->join('t_jenis_produk', 't_jenis_produk.id_jenis_produk = t_produk.id_jenis_produk');
+		$this->db->join('t_jenis_status', 't_jenis_status.id_jenis_status = t_produk.status_produk');
+		$this -> db -> order_by ('t_produk.id_jenis_produk', 'ASC');
+		$this -> db -> order_by ('t_produk.nama_produk', 'ASC');
+		$this -> db -> where('t_produk.status_produk', 1);
 		$query = $this->db->get();
 
         return $query->result();
@@ -74,6 +90,18 @@ class M_Produk extends CI_Model {
 	{
 		$this->db->where('id_produk',$id);
 		$this->db->update('t_produk',$data);
+	}
+
+	public function changeStatusHide($id){
+		
+		$this->db->where('id_produk',$id);
+		$this->db->update('t_produk',["status_produk" => 2]);
+	}
+
+	public function changeStatusShow($id){
+		
+		$this->db->where('id_produk',$id);
+		$this->db->update('t_produk',["status_produk" => 1]);
 	}
 }
 ?>

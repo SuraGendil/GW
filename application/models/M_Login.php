@@ -9,6 +9,18 @@ class M_Login extends CI_Model {
         return $query->result();
 	}
 
+	public function getById($id){
+		$this->db->select('*');
+		$this->db->from('t_admin');
+		$this->db->join('t_role', 't_admin.id_role = t_role.id_role');
+		$this->db->join('t_jenis_kelamin', 't_admin.id_jenis_kelamin = t_jenis_kelamin.id_jenis_kelamin');
+		$this->db->where('id_admin', $id);
+		$query = $this->db->get();
+
+		return $query -> row();
+
+	}
+
 	public function getRole($id)
 	{
 		$this->db->select('*');
