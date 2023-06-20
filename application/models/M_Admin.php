@@ -8,5 +8,9 @@ class M_Admin extends CI_Model {
 		$query = $this -> db -> get('t_admin');
         return $query->result();
 	}
+
+	public function insertAdmin($data){
+		$this->db->insert('t_admin', $data);
+	}
 }
 ?>
