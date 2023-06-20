@@ -41,7 +41,6 @@ class M_Login extends CI_Model {
 		$this->db->where('id_admin', $id);
 		$query = $this->db->get();
 
-		// $query = $this->db->get_where('t_jenis_produk', array('id_jenis_produk' => $id));
         return $query -> result();
 	}
 

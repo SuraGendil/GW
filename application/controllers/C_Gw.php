@@ -116,6 +116,7 @@ class C_Gw extends CI_Controller {
 		$ppp = $this -> M_Pembelian -> getpopulerProduk(3, $blnthn);
 		// $dt = $this -> M_login -> getById($id);
 		$user = $this->session->userdata('username');
+		// $hak = $this->session->userdata('hak_akses');
 		$admin = $this ->db->get_where('t_admin', ['username' => $user])->row_array();
 		$role = $this ->db->get_where('t_role', ['id_role' => $admin['id_role']])->row_array();
 		$jk = $this ->db->get_where('t_jenis_kelamin', ['id_jenis_kelamin' => $admin['id_jenis_kelamin']])->row_array();
@@ -160,25 +161,14 @@ class C_Gw extends CI_Controller {
 		$temp['reg'] = $reg;
 		
 		$this->load-> view('V_Login_Admin', $temp);
-		
-		// $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
-		// $this->form_validation->set_rules('password', 'Password', 'trim|required');
-		
-		// if($this->form_validation->run() == false)
-		// {
-			
-		// }else{
-
-		// 	$this->_login();
-		// }
-
 
 	}
 
-	public function t_produk(){
+	public function t_produk()
+	{
 		$this-> load -> Model ('M_Produk');
 
-		$dp = $this ->M_Produk -> getAll();
+		$dp = $this ->M_Produk -> getAllAdmin();
 
 		$user = $this->session->userdata('username');
 		$admin = $this ->db->get_where('t_admin', ['username' => $user])->row_array();
@@ -192,6 +182,27 @@ class C_Gw extends CI_Controller {
 		
 		$this->load-> view('V_HeaderAdmin', $headertemp);
 		$this->load-> view('V_Produk', $temp);
+	}
+
+	public function t_data_admin()
+	{
+		$this-> load-> model('M_Data_Admin');
+
+		$da = $this->M_Data_Admin -> getALl();
+
+		$user = $this->session->userdata('username');
+		$admin = $this ->db->get_where('t_admin', ['username' => $user])->row_array();
+		$role = $this ->db->get_where('t_role', ['id_role' => $admin['id_role']])->row_array();
+		$jk = $this ->db->get_where('t_jenis_kelamin', ['id_jenis_kelamin' => $admin['id_jenis_kelamin']])->row_array();
+		
+		$headertemp['data_admin'] = $admin;
+		$headertemp['role'] = $role;
+		$headertemp['jk'] = $jk;
+		$temp['dp'] = $da;
+		
+		$this->load-> view('V_HeaderAdmin', $headertemp);
+		$this->load-> view('V_Data_Admin', $temp);
+
 	}
 
 	public function t_nominal($id){
@@ -559,7 +570,9 @@ class C_Gw extends CI_Controller {
 		if ($this->form_validation->run() != FALSE) 
 		{
 			$where = array(
+
 					'username' => $user
+
 			);
 
 			$ceklogin = $this->M_Login_Admin->cek_login($where)->row_array();
@@ -568,6 +581,7 @@ class C_Gw extends CI_Controller {
 
 				// $datauser = $this->db->get_where('t_admin', ['username' => $user])->row_array();
 				
+
 				if(password_verify($pass, $ceklogin['password'])){
 					
 					$data_admin = $this->M_Login_Admin->getAdmin($user);
@@ -588,6 +602,7 @@ class C_Gw extends CI_Controller {
 					Password salah.</div>');
 					redirect (base_url('/index.php/C_Gw/login_admin/'));
 				}
+
 			}else{
 				$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
 				Username tidak ditemukan</div>');

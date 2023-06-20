@@ -1,6 +1,8 @@
 
           <!-- ***** Gaming Library Start ***** -->
-          <div class="gaming-library profile-library">
+          <?php if($data_admin['hak_akses'] == 'A' or $data_admin['hak_akses'] == 'O'){
+            ?>
+            <div class="gaming-library profile-library">
             <div class="col-lg-12">
               <div class="heading-section">
                 <h4><em>Hasil</em> Bulan Ini</h4>
@@ -118,6 +120,10 @@
       </div>
     </div>
   </div>
+                      <?php  
+                          }
+                          ?>
+
   
   <footer>
     <div class="container">
