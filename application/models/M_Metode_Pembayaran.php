@@ -5,7 +5,6 @@ class M_Metode_Pembayaran extends CI_Model {
 
 	public function getAll()
 	{
-		// $query = $this -> db -> get('t_metode_pembayaran');
 		$this->db->select('*');
 		$this->db->from('t_metode_pembayaran');
 		$this->db->join('t_jenis_status', 't_jenis_status.id_jenis_status = t_metode_pembayaran.status_metode');
@@ -16,7 +15,6 @@ class M_Metode_Pembayaran extends CI_Model {
 
 	public function getAllShow()
 	{
-		// $query = $this -> db -> get('t_metode_pembayaran');
 		$this->db->select('*');
 		$this->db->from('t_metode_pembayaran');
 		$this->db->join('t_jenis_status', 't_jenis_status.id_jenis_status = t_metode_pembayaran.status_metode');

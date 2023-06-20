@@ -27,7 +27,6 @@
                 </tr>
                 <?php
                 $cacah=1;
-                // echo "<a href='index.php/C_Tobat_Jaya/neworder'><button>NEW</button></a>";
                 foreach ($dp as $dt){
                 ?>
                 <tr>

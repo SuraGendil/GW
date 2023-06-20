@@ -25,7 +25,6 @@ class M_Pembelian extends CI_Model {
 		$this -> db -> order_by ('t_pembelian.tgl_pembelian', 'DESC');
 		$query = $this->db->get();
 
-		// $query = $this->db->get_where('t_jenis_produk', array('id_jenis_produk' => $id));
         return $query -> result();
 	}
 
@@ -33,12 +32,9 @@ class M_Pembelian extends CI_Model {
 		$this->db->select('(SUM(harga_nominal)) AS total_pendapatan');
 		$this->db->from('t_pembelian');
 		$this->db->join('t_nominal', 't_pembelian.id_nominal = t_nominal.id_nominal');
-		// $this->db->join('t_produk', 't_produk.id_jenis_produk = t_jenis_produk.id_jenis_produk');
-		// $this->db->join('t_metode_pembayaran', 't_pembelian.id_metode_pembayaran = t_metode_pembayaran.id_metode_pembayaran');
-		// $this->db->where('t_produk.id_jenis_produk', 1);
+
 		$query = $this->db->get();
 
-		// $query = $this->db->get_where('t_jenis_produk', array('id_jenis_produk' => $id));
         return $query -> result();
 	}
 	
@@ -52,7 +48,7 @@ class M_Pembelian extends CI_Model {
 		$this->db->where('t_produk.id_jenis_produk', $id);
 		$this->db->like('tgl_pembelian', $blnthn, 'after');
 		$query = $this->db->get();
-		// SELECT COALESCE(angka, 0) AS angka FROM coba;
+
         return $query -> result();
 	}
 
@@ -65,7 +61,7 @@ class M_Pembelian extends CI_Model {
 		$this->db->like('tgl_pembelian', $blnthn, 'after');
 		$this->db->limit('1');
 		$query = $this->db->get();
-		// SELECT COALESCE(angka, 0) AS angka FROM coba;
+
         return $query -> result();
 
 	}

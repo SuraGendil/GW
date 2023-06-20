@@ -13,9 +13,6 @@
                   <h6>Welcome To <em>GW</em></h6>
                   <h4><em>Anda</em> Senang <em> Kami </em>Senang</h4>
                   <h5>Toko Top UP Voucher Game, APK Premium dan pulsa <em>TERMURAH</em> </h5><br>
-                  <!-- <div class="main-button">
-                    <a href="browse.html">Browse Now</a>
-                  </div> -->
                 </div>
               </div>
             </div>

@@ -27,9 +27,6 @@
                   <div class="col-lg-4 align-self-center">
                     <ul>
                       <li>Terjual :<span><i class="fa fa-cart-arrow-down"></i>   <?= $dt->terjual_produk ?></span></li>
-                      <!-- <li>Friends Online <span>16</span></li>
-                      <li>Live Streams <span>None</span></li>
-                      <li>Clips <span>29</span></li> -->
                     </ul>
                   </div>
                 </div>

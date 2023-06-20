@@ -61,19 +61,10 @@ class C_Gw extends CI_Controller {
 
 	public function beliAction($id){
 		
-		//mengambil semua variabel yang berasal dari form
-		// $no_reg = $this->input->post('no_reg');
+
 		$uid = $this->input->post('uid');
 		$nominal = $this->input->post('nominal');
 		$metode = $this->input->post('metode');
-		// $status = $this->input->post('status');
-
-		// $nominal = NULL;
-		// echo " nominal " . is_null($nominal) . "<br>";
-
-		// if($nominal == NULL){
-
-		// }
 
 		//menyiapkan array
 		$pembelianbaru = array(
@@ -82,15 +73,7 @@ class C_Gw extends CI_Controller {
 			'id_metode_pembayaran' => $metode
 		);
 
-		//memanggil fungsi insert mitra dengan membawa parameter array
 		$this->M_Pembelian->insertPembelian($pembelianbaru);
-		// $this->load->view('V_NewDetail', $id);
-
-
-		// $this -> load -> Model ('M_Nominal');
-		// $this -> load -> Model ('M_Produk');
-		// $terjual = $this ->M_Nominal -> sumterjual($id);
-		// $dtp = $this -> M_Produk -> getById ($id);
 		
 
 		$this ->M_Produk->updateterjual($id);
@@ -133,8 +116,6 @@ class C_Gw extends CI_Controller {
 		$headertemp['data_admin'] = $admin;
 		$headertemp['role'] = $role;
 		$headertemp['jk'] = $jk;
-		// $temp['data'] = $sess_data;
-		// $temp['data'] = $dt;
 
 		$data['info'] = 'login-info-box';
 
@@ -156,6 +137,7 @@ class C_Gw extends CI_Controller {
 		$temp['data'] = $dr;
 		$temp['data'] = $dtjk;
 
+
 		$temp['info'] = 'login-info-box';
 		$temp['show'] = 'login-show';
 		$reg = 0;
@@ -163,6 +145,7 @@ class C_Gw extends CI_Controller {
 		
 
 		$this->load-> view('V_Login_Admin', $temp);
+
 
 	}
 
@@ -585,6 +568,7 @@ class C_Gw extends CI_Controller {
 				
 
 
+
 				if(password_verify($pass, $ceklogin['password'])){
 					
 					$data_admin = $this->M_Login_Admin->getAdmin($user);
@@ -605,6 +589,7 @@ class C_Gw extends CI_Controller {
 					Password salah.</div>');
 					redirect (base_url('/index.php/C_Gw/login_admin/'));
 				}
+
 
 			}else{
 				$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">

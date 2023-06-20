@@ -75,15 +75,6 @@ https://templatemo.com/tm-579-cyborg-gaming
                     <a href="<?php echo site_url ('C_Gw/index'); ?>" class="logo">
                         <img src="<?= base_url('assets/bs/'); ?>assets/images/logo.png" alt="">
                     </a>
-                    <!-- ***** Logo End ***** -->
-                    <!-- ***** Search End ***** -->
-                    <!-- <div class="search-input">
-                      <form id="search" action="#">
-                        <input type="text" placeholder="Type Something" id='searchText' name="searchKeyword" onkeypress="handle" />
-                        <i class="fa fa-search"></i>
-                      </form>
-                    </div> -->
-                    <!-- ***** Search End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
                         <li><a href="<?php echo site_url ('C_Gw/index'); ?>">Home</a></li>
@@ -141,9 +132,11 @@ https://templatemo.com/tm-579-cyborg-gaming
                     <ul>
                       <li>Role<span><?=$role['Role']?></span></li>
                         <li>Jenis Kelamin <span><?=$jk['jenis_kelamin']?></span></li>
+
                         <li>Email <span><?=$data_admin['email']?></span></li>
                         <!-- <li>Live Streams <span>None</span></li>
                       <li>Clips <span>29</span></li> -->
+
                     </ul>
                   </div>
                 </div>

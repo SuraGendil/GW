@@ -1,6 +1,8 @@
 
           <!-- ***** Gaming Library Start ***** -->
+
           <?php if($data_admin['hak_akses'] == 'A' or $data_admin['hak_akses'] == 'O'){
+
             ?>
             <div class="gaming-library profile-library">
             <div class="col-lg-12">
@@ -91,7 +93,7 @@
                 </tr>
                 <?php
                 $cacah=1;
-                // echo "<a href='index.php/C_Tobat_Jaya/neworder'><button>NEW</button></a>";
+
                 foreach ($dp as $dt){
                 ?>
                 <tr>
