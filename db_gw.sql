@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2023-06-20 15:32:22
+Date: 2023-06-20 23:55:46
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -31,16 +31,17 @@ CREATE TABLE `t_admin` (
   KEY `Role` (`id_role`),
   KEY `Jenis Kelamin` (`id_jenis_kelamin`),
   CONSTRAINT `Jenis Kelamin` FOREIGN KEY (`id_jenis_kelamin`) REFERENCES `t_jenis_kelamin` (`id_jenis_kelamin`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- ----------------------------
 -- Records of t_admin
 -- ----------------------------
 INSERT INTO `t_admin` VALUES ('1', 'GW_01', 'GW123', 'Saya Adalah Saya', '4', '1', 'raisrahmanismail@gmail.com', 'A');
-INSERT INTO `t_admin` VALUES ('2', 'GW_02', 'GW456', 'Kamu Adalah Kamu', '1', '1', 'Wildan@gmail.com', 'P');
+INSERT INTO `t_admin` VALUES ('2', 'GW_02', 'GW456', 'Kamu Adalah Kamu', '1', '1', 'Wildan@gmail.com', 'A');
 INSERT INTO `t_admin` VALUES ('3', 'Gw_03', 'GW789', 'Kamu adalah Saya', '3', '2', 'saya@gmail.com', 'O');
-INSERT INTO `t_admin` VALUES ('5', 'operator', '$2y$10$QciERAu0DLJR07pYIcAOXugmH9OA5TVSOIYEyZqm7GaNpkk9wOC3y', 'selamat datang', '2', '1', 'gw_admin@gmail.com', 'O');
-INSERT INTO `t_admin` VALUES ('6', 'admin', '$2y$10$768S.PHv86mzc2Yndhtye.Icl3fX25vSqE0I7XBFfUosVjVftd9jS', 'selamat datang', '2', '1', 'gw_admin@gmail.com', 'A');
+INSERT INTO `t_admin` VALUES ('5', 'operator', '$2y$10$QciERAu0DLJR07pYIcAOXugmH9OA5TVSOIYEyZqm7GaNpkk9wOC3y', 'terus berenang terus berenang terus berenang', '4', '1', 'dann@gmail.com', 'O');
+INSERT INTO `t_admin` VALUES ('6', 'admin', '$2y$10$768S.PHv86mzc2Yndhtye.Icl3fX25vSqE0I7XBFfUosVjVftd9jS', 'Jangan lupa bernafas', '1', '1', 'leader@gmail.com', 'A');
+INSERT INTO `t_admin` VALUES ('7', 'Wildan', '$2y$10$7JkDNBGDdRTX2qxD9MrFUu44pyHacnny0.eJqle0YYbkw7jpfjMZe', 'Bisa sih, bisa, kan?, bisa lah, bisa ...', '2', '1', 'wildanhraffianshar@gmail.com', 'A');
 
 -- ----------------------------
 -- Table structure for `t_jenis_kelamin`
@@ -116,7 +117,7 @@ INSERT INTO `t_metode_pembayaran` VALUES ('6', 'Dana', '1');
 INSERT INTO `t_metode_pembayaran` VALUES ('7', 'Ovo', '1');
 INSERT INTO `t_metode_pembayaran` VALUES ('8', 'Shopeepay', '1');
 INSERT INTO `t_metode_pembayaran` VALUES ('9', 'Gopay', '1');
-INSERT INTO `t_metode_pembayaran` VALUES ('10', 'COD', '1');
+INSERT INTO `t_metode_pembayaran` VALUES ('10', 'COD', '2');
 INSERT INTO `t_metode_pembayaran` VALUES ('12', 'PayLater', '2');
 INSERT INTO `t_metode_pembayaran` VALUES ('13', 'Kredit', '1');
 
@@ -176,7 +177,7 @@ CREATE TABLE `t_pembelian` (
   KEY `Nominal` (`id_nominal`),
   CONSTRAINT `Metode Pembayaran` FOREIGN KEY (`id_metode_pembayaran`) REFERENCES `t_metode_pembayaran` (`id_metode_pembayaran`),
   CONSTRAINT `Nominal` FOREIGN KEY (`id_nominal`) REFERENCES `t_nominal` (`id_nominal`)
-) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- ----------------------------
 -- Records of t_pembelian
@@ -221,6 +222,12 @@ INSERT INTO `t_pembelian` VALUES ('52', '111', '2', '8', '2023-06-18');
 INSERT INTO `t_pembelian` VALUES ('53', '111', '3', '5', '2023-06-18');
 INSERT INTO `t_pembelian` VALUES ('54', '082213593995', '11', '2', '2023-06-18');
 INSERT INTO `t_pembelian` VALUES ('55', '0888119288', '21', '8', '2023-06-19');
+INSERT INTO `t_pembelian` VALUES ('56', '22 11', '4', '1', '2023-06-20');
+INSERT INTO `t_pembelian` VALUES ('57', '0882213', '5', '3', '2023-06-20');
+INSERT INTO `t_pembelian` VALUES ('58', '0882123', '6', '5', '2023-06-20');
+INSERT INTO `t_pembelian` VALUES ('59', '082213593995', '10', '4', '2023-06-20');
+INSERT INTO `t_pembelian` VALUES ('60', '082213593994', '10', '1', '2023-06-20');
+INSERT INTO `t_pembelian` VALUES ('61', '082213593995', '11', '3', '2023-06-20');
 
 -- ----------------------------
 -- Table structure for `t_produk`
@@ -233,29 +240,30 @@ CREATE TABLE `t_produk` (
   `foto_produk` varchar(50) DEFAULT '',
   `terjual_produk` int(11) DEFAULT NULL,
   `status_produk` int(1) DEFAULT NULL,
+  `deskripsi_produk` text DEFAULT '',
   PRIMARY KEY (`id_produk`),
   KEY `Jenis Produk` (`id_jenis_produk`),
   KEY `Jenis Status` (`status_produk`),
   CONSTRAINT `Jenis Produk` FOREIGN KEY (`id_jenis_produk`) REFERENCES `t_jenis_produk` (`id_jenis_produk`),
   CONSTRAINT `Jenis Status` FOREIGN KEY (`status_produk`) REFERENCES `t_jenis_status` (`id_jenis_status`)
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- ----------------------------
 -- Records of t_produk
 -- ----------------------------
-INSERT INTO `t_produk` VALUES ('1', 'moblie legends', '1', 'ml.jpg', '8', '2');
-INSERT INTO `t_produk` VALUES ('2', 'Genshin Impact', '1', 'gi.jpg', '5', '2');
-INSERT INTO `t_produk` VALUES ('3', 'Dota 2', '1', 'dt2.jpg', '500', '1');
-INSERT INTO `t_produk` VALUES ('4', 'Honkai Impact', '1', 'hi1.png', '10', '2');
-INSERT INTO `t_produk` VALUES ('5', 'Disney +++', '3', 'dy.jpg', '23', '2');
-INSERT INTO `t_produk` VALUES ('6', 'Netflix', '3', 'nf.jpg', '2', '2');
-INSERT INTO `t_produk` VALUES ('7', 'Smartfren', '2', 'sf.jpg', '121', '2');
-INSERT INTO `t_produk` VALUES ('8', 'Telkomsel', '2', 'tf.jpg', '216', '2');
-INSERT INTO `t_produk` VALUES ('9', 'Axis', '2', 'ax.jpg', '8', '2');
-INSERT INTO `t_produk` VALUES ('10', 'Indosat', '2', 'in.jpg', '6', '2');
-INSERT INTO `t_produk` VALUES ('11', 'XL', '2', 'xl.jpg', '21', '2');
-INSERT INTO `t_produk` VALUES ('12', 'Minecraft', '1', 'mc.jpg', '99', '2');
-INSERT INTO `t_produk` VALUES ('41', 'Iqiyi', '3', 'iqiyi.jpg', '1', '2');
+INSERT INTO `t_produk` VALUES ('1', 'Moblie Legends', '1', 'ml.jpg', '8', '1', 'tes');
+INSERT INTO `t_produk` VALUES ('2', 'Genshin Impact', '1', 'gi.jpg', '8', '1', 'tes');
+INSERT INTO `t_produk` VALUES ('3', 'Dota 2', '1', 'dt2.jpg', '500', '1', 'tes');
+INSERT INTO `t_produk` VALUES ('4', 'Honkai Impact', '1', 'hi1.png', '10', '1', 'tes');
+INSERT INTO `t_produk` VALUES ('5', 'Disney +++', '3', 'dy.jpg', '23', '1', 'tes');
+INSERT INTO `t_produk` VALUES ('6', 'Netflix', '3', 'nf.jpg', '4', '1', 'tes');
+INSERT INTO `t_produk` VALUES ('7', 'Smartfren', '2', 'sf.jpg', '121', '1', 'tes');
+INSERT INTO `t_produk` VALUES ('8', 'Telkomsel', '2', 'tf.jpg', '217', '1', 'tes');
+INSERT INTO `t_produk` VALUES ('9', 'Axis', '2', 'ax.jpg', '8', '1', 'tes');
+INSERT INTO `t_produk` VALUES ('10', 'Indosat', '2', 'in.jpg', '6', '1', 'tes');
+INSERT INTO `t_produk` VALUES ('11', 'XL', '2', 'xl.jpg', '21', '1', 'tes');
+INSERT INTO `t_produk` VALUES ('12', 'Minecraft', '1', 'mc.jpg', '99', '1', 'tes');
+INSERT INTO `t_produk` VALUES ('41', 'Iqiyi', '3', 'iqiyi13.jpg', '1', '1', 'tes');
 
 -- ----------------------------
 -- Table structure for `t_role`
