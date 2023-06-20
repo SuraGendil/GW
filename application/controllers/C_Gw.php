@@ -61,19 +61,10 @@ class C_Gw extends CI_Controller {
 
 	public function beliAction($id){
 		
-		//mengambil semua variabel yang berasal dari form
-		// $no_reg = $this->input->post('no_reg');
+
 		$uid = $this->input->post('uid');
 		$nominal = $this->input->post('nominal');
 		$metode = $this->input->post('metode');
-		// $status = $this->input->post('status');
-
-		// $nominal = NULL;
-		// echo " nominal " . is_null($nominal) . "<br>";
-
-		// if($nominal == NULL){
-
-		// }
 
 		//menyiapkan array
 		$pembelianbaru = array(
@@ -82,15 +73,7 @@ class C_Gw extends CI_Controller {
 			'id_metode_pembayaran' => $metode
 		);
 
-		//memanggil fungsi insert mitra dengan membawa parameter array
 		$this->M_Pembelian->insertPembelian($pembelianbaru);
-		// $this->load->view('V_NewDetail', $id);
-
-
-		// $this -> load -> Model ('M_Nominal');
-		// $this -> load -> Model ('M_Produk');
-		// $terjual = $this ->M_Nominal -> sumterjual($id);
-		// $dtp = $this -> M_Produk -> getById ($id);
 		
 
 		$this ->M_Produk->updateterjual($id);
@@ -132,8 +115,6 @@ class C_Gw extends CI_Controller {
 		$headertemp['data_admin'] = $admin;
 		$headertemp['role'] = $role;
 		$headertemp['jk'] = $jk;
-		// $temp['data'] = $sess_data;
-		// $temp['data'] = $dt;
 
 		
 		$this->load-> view('V_HeaderAdmin', $headertemp);
@@ -156,18 +137,6 @@ class C_Gw extends CI_Controller {
 	
 		$this->load-> view('V_Login_Admin', $temp);
 		
-		// $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
-		// $this->form_validation->set_rules('password', 'Password', 'trim|required');
-		
-		// if($this->form_validation->run() == false)
-		// {
-			
-		// }else{
-
-		// 	$this->_login();
-		// }
-
-
 	}
 
 	public function t_produk(){
@@ -563,12 +532,7 @@ class C_Gw extends CI_Controller {
 				
 				$data_admin = $this->M_Login_Admin->getAdmin($user);
 				$sess_data = array(
-					// 'id_admin' => $data_admin['id_admin'],
 					'username' => $user,
-					// 'moto_admin' => $data_admin['moto_admin'],
-					// 'Role' => $data_admin['id_role'],
-					// 'jenis_kelamin' => $data_admin['id_jenis_kelamin'],
-					// 'email' => $data_admin['email'],
 					'login' => 'OK'
 				);
 				

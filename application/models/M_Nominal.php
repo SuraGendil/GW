@@ -16,7 +16,7 @@ class M_Nominal extends CI_Model {
 
 	public function getByProduk($id)
 	{
-		// $query = $this->db->get_where('t_nominal', array('id_produk' => $id));
+
 		$this->db->select('*');
 		$this->db->from('t_nominal');
 		$this->db->join('t_jenis_status', 't_jenis_status.id_jenis_status = t_nominal.status_nominal');
@@ -28,7 +28,6 @@ class M_Nominal extends CI_Model {
 
 	public function getByProdukShow($id)
 	{
-		// $query = $this->db->get_where('t_nominal', array('id_produk' => $id));
 		$this->db->select('*');
 		$this->db->from('t_nominal');
 		$this->db->join('t_jenis_status', 't_jenis_status.id_jenis_status = t_nominal.status_nominal');
@@ -73,12 +72,5 @@ class M_Nominal extends CI_Model {
 		$this->db->update('t_nominal',["status_nominal" => 1]);
 	}
 
-	// public function sumterjual($id){
-	// 	// $query = $this->db->query("SELECT SUM(terjual_nominal) FROM t_nominal WHERE id_produk = $id");
-    //     // return $query -> result();
-	// 	$query = $this->db->query("SELECT SUM(t_nominal.terjual_nominal) FROM t_nominal WHERE t_nominal.id_produk = $id");
-	// 	return $query;
-	// 	// $query = $this->db->get('t_nominal');
-	// }
 }
 ?>

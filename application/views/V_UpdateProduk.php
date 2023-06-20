@@ -46,7 +46,6 @@
                       <input type="hidden" value="<?php echo $dataProduk->id_produk ?>" name="id_produk">
                       <input type="hidden" value="<?php echo $dataProduk->terjual_produk ?>" name="terjual_produk">
                       <input type="hidden" value="<?php echo $dataProduk->status_produk ?>" name="status_produk">
-                      <!-- <input type="text" class="form-control" placeholder="foto Produk" name="foto_produk"> -->
                       <button type="submit" value="update" class="btn btn-primary">Update Produk</button>
                       <a href="<?=base_url('/index.php/C_Gw/t_produk/')?>"  class="btn btn-danger">Cancel</a>
                     </div>  
@@ -55,22 +54,6 @@
               </div>
             </div>
           </div>
-          <!-- ***** Banner End ***** -->
-          
-          <!-- ***** Gaming Library Start ***** -->
-          <!-- <div class="gaming-library profile-library">
-            <div class="col-lg-12">
-              
-            </div>
-          </div> -->
-          <!-- ***** Gaming Library End ***** -->
-
-          <!-- ***** Gaming Library Start ***** -->
-          <!-- <div class="gaming-library profile-library">
-            <div class="col-lg-12">
-              
-            </div>
-          </div> -->
           <!-- ***** Gaming Library End ***** -->
         </div>
       </div>

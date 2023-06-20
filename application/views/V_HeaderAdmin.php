@@ -75,21 +75,10 @@ https://templatemo.com/tm-579-cyborg-gaming
                     <a href="<?php echo site_url ('C_Gw/index'); ?>" class="logo">
                         <img src="<?= base_url('assets/bs/'); ?>assets/images/logo.png" alt="">
                     </a>
-                    <!-- ***** Logo End ***** -->
-                    <!-- ***** Search End ***** -->
-                    <!-- <div class="search-input">
-                      <form id="search" action="#">
-                        <input type="text" placeholder="Type Something" id='searchText' name="searchKeyword" onkeypress="handle" />
-                        <i class="fa fa-search"></i>
-                      </form>
-                    </div> -->
-                    <!-- ***** Search End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
                         <li><a href="<?php echo site_url ('C_Gw/index'); ?>">Home</a></li>
-                        <!-- <li><a href="browse.html">Browse</a></li> -->
-                        <!-- <li><a href="details.html">Details</a></li> -->
-                        <!-- <li><a href="streams.html">Streams</a></li> -->
+                        <li><a href="<?php echo site_url ('C_Gw/logout_aksi'); ?>">Logout</a></li>
                         <li><a href="<?php echo site_url ('C_Gw/login/'); ?>" class="active">Profile <img src="<?= base_url('assets/bs/'); ?>assets/images/profile-header.jpg" alt=""></a></li>
                     </ul>   
                     <a class='menu-trigger'>
@@ -121,10 +110,21 @@ https://templatemo.com/tm-579-cyborg-gaming
                       <h4><?=$data_admin['username']?></h4>
                       <p><?=$data_admin['moto_admin']?></p>
                       <div class="main-border-button">
-                        <!--  -->
-                        <a href="<?php echo site_url ('C_Gw/login/'); ?>">Tabel Pembelian</a>
-                        <a href="<?php echo site_url ('C_Gw/t_produk/'); ?>">Tabel Produk</a>
-                        <a href="<?php echo site_url ('C_Gw/t_metodePembayaran/');; ?>">Tabel Metode Pembayaran</a>
+
+                        <?php if($data_admin['hak_akses'] == 'A'){
+                          ?>
+                            <a href="">Tabel Edit Admin or Operator</a>
+                            <?php  
+                          }
+                          ?>
+                        <?php if($data_admin['hak_akses'] == 'A' or $data_admin['hak_akses'] == 'O'){
+                          ?>
+                          <a href="<?php echo site_url ('C_Gw/login/'); ?>">Tabel Pembelian</a>
+                          <a href="<?php echo site_url ('C_Gw/t_produk/'); ?>">Tabel Produk</a>
+                          <a href="<?php echo site_url ('C_Gw/t_metodePembayaran/');; ?>">Tabel Metode Pembayaran</a>
+                      <?php  
+                          }
+                          ?>
                       </div>
                     </div>
                   </div>
@@ -132,8 +132,6 @@ https://templatemo.com/tm-579-cyborg-gaming
                     <ul>
                       <li>Role<span><?=$role['Role']?></span></li>
                         <li>Jenis Kelamin <span><?=$jk['jenis_kelamin']?></span></li>
-                        <!-- <li>Live Streams <span>None</span></li>
-                      <li>Clips <span>29</span></li> -->
                     </ul>
                   </div>
                 </div>

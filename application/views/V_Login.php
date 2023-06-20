@@ -1,6 +1,9 @@
 
           <!-- ***** Gaming Library Start ***** -->
-          <div class="gaming-library profile-library">
+          <?php if($data_admin['hak_akses'] == 'A' or $data_admin['hak_akses'] == 'O')
+          {
+            ?>
+            <div class="gaming-library profile-library">
             <div class="col-lg-12">
               <div class="heading-section">
                 <h4><em>Hasil</em> Bulan Ini</h4>
@@ -89,7 +92,7 @@
                 </tr>
                 <?php
                 $cacah=1;
-                // echo "<a href='index.php/C_Tobat_Jaya/neworder'><button>NEW</button></a>";
+
                 foreach ($dp as $dt){
                 ?>
                 <tr>
@@ -118,6 +121,10 @@
       </div>
     </div>
   </div>
+                      <?php  
+                          }
+                          ?>
+
   
   <footer>
     <div class="container">
