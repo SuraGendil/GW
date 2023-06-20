@@ -6,14 +6,14 @@
         </div>
         <?php if($this->session->flashdata('flash')):?>
             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                Data Produk <strong>Berhasil</strong> <?=$this->session->flashdata('flash')?>
+                Hak akses admin <strong>Berhasil</strong> <?=$this->session->flashdata('flash')?>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         <?php endif;?>
 
-        <div class="heading-section">
+        <!-- <div class="heading-section">
             <a href="<?php echo site_url ('C_Gw/addAdmin/') ?>" type="button" class="btn btn-primary">Tambah admin</a>
-        </div><br>
+        </div><br> -->
         
         <table id="pembelian" class="table">
             <tr>
@@ -34,17 +34,19 @@
                 <td><?= $cacah ?> </td>
                 <td><?= $dt->username ?> </td>
                 <td><?= $dt->moto_admin ?> </td>
-                <td><?= $dt->id_role ?> </td>
-                <td><?= $dt->id_jenis_kelamin ?> </td>
+                <td><?= $dt->Role ?> </td>
+                <td><?= $dt->jenis_kelamin ?> </td>
                 <td><?= $dt->email ?> </td>
                 <td>
                     <form action="<?php echo site_url('C_Gw/updateHakAkses/') . $dt->id_admin ?>" method="post">
-                        <select name="hak_akses" class="form-select" aria-label="Default select example">
-                            <option <?php if($dt->hak_akses == "O") echo "selected"; ?> value="Admin">A</option>
-                            <option <?php if($dt->hak_akses == "P") echo "selected"; ?> value="User">P</option>
-                            <option <?php if($dt->hak_akses == "O") echo "selected"; ?> value="Admin">O</option>
+                        <select name="hak_akses" class="form-select" aria-label="Default select example" style="width: 125px">
+                            <option <?php if($dt->hak_akses == "A") echo "selected"; ?> value="A">Admin</option>
+                            <option <?php if($dt->hak_akses == "P") echo "selected"; ?> value="P">User</option>
+                            <option <?php if($dt->hak_akses == "O") echo "selected"; ?> value="O">Operator</option>
                         </select>
-                        <button type="submit" class="btn btn-primary">Update</button>
+                        <div id="updatebutton">
+                            <button type="submit" class="btn btn-primary" onclick="return confirm('Apakah Anda yakin ingin mengganti hak akses?');">Update</button>
+                        </div>
                     </form>
                 </td>
                 <td>

@@ -26,12 +26,18 @@
                     <br>
                     <input type="hidden" class="form-control" value="<?= $data['id_admin']?>" name="id_admin" style="width: 400px;">
                     <input type="hidden" class="form-control" value="<?= $data['password']?>" name="password" style="width: 400px;">
+                    <input type="hidden" class="form-control" value="<?= $data['username']?>" name="username" style="width: 400px;">
+                    <input type="hidden" class="form-control" value="<?= $data['hak_akses']?>" name="hak_akses" style="width: 400px;">
 
                     <label for="username" style="color: white;">Username: </label>
-                    <input type="text" class="form-control" value="<?= $data['username']?>" name="username" style="width: 400px;" required readonly>
+                    <input type="text" class="form-control" value="<?= $data['username']?>" style="width: 400px;" disabled>
                     <br>
-                    <label for="hak_akses" style="color: white;">Hak akses: </label>
-                    <input type="text" class="form-control" value="<?= $data['hak_akses']?>" name="hak_akses" style="width: 400px;" required readonly>
+                    <label style="color: white;">Hak akses: </label>
+                    <select class="form-select" aria-label="Default select example" disabled >
+                        <option <?php if($data['hak_akses'] == "A") echo "selected"; ?> value="A">Admin</option>
+                        <option <?php if($data['hak_akses'] == "P") echo "selected"; ?> value="P">User</option>
+                        <option <?php if($data['hak_akses'] == "O") echo "selected"; ?> value="O">Operator</option>
+                    </select>
                     <br>
                     <label for="moto_admin" style="color: white;">Moto hidup: </label>
                     <input type="text" class="form-control" value="<?= $data['moto_admin']?>" name="moto_admin" style="width: 400px;" required>

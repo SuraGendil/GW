@@ -61,7 +61,6 @@ class C_Gw extends CI_Controller {
 
 	public function beliAction($id){
 		
-
 		$uid = $this->input->post('uid');
 		$nominal = $this->input->post('nominal');
 		$metode = $this->input->post('metode');
@@ -83,6 +82,9 @@ class C_Gw extends CI_Controller {
 
 	public function login()
 	{
+		if(empty($this->session->userdata('login'))){
+			redirect(base_url('/index.php/C_Gw/login_admin/'));
+		}
 
 		$blnthn = date('Y-m');
 
@@ -151,6 +153,9 @@ class C_Gw extends CI_Controller {
 
 	public function t_produk()
 	{
+		if(empty($this->session->userdata('login'))){
+			redirect(base_url('/index.php/C_Gw/login_admin/'));
+		}
 		$this-> load -> Model ('M_Produk');
 
 		$dp = $this ->M_Produk -> getAll();
@@ -169,28 +174,10 @@ class C_Gw extends CI_Controller {
 		$this->load-> view('V_Produk', $temp);
 	}
 
-	// public function t_data_admin()
-	// {
-	// 	$this-> load-> model('M_Data_Admin');
-
-	// 	$da = $this->M_Data_Admin -> getALlAdmin();
-
-	// 	$user = $this->session->userdata('username');
-	// 	$admin = $this ->db->get_where('t_admin', ['username' => $user])->row_array();
-	// 	$role = $this ->db->get_where('t_role', ['id_role' => $admin['id_role']])->row_array();
-	// 	$jk = $this ->db->get_where('t_jenis_kelamin', ['id_jenis_kelamin' => $admin['id_jenis_kelamin']])->row_array();
-		
-	// 	$headertemp['data_admin'] = $admin;
-	// 	$headertemp['role'] = $role;
-	// 	$headertemp['jk'] = $jk;
-	// 	$temp['dp'] = $da;
-		
-	// 	$this->load-> view('V_HeaderAdmin', $headertemp);
-	// 	$this->load-> view('V_Data_Admin', $temp);
-
-	// }
-
 	public function t_nominal($id){
+		if(empty($this->session->userdata('login'))){
+			redirect(base_url('/index.php/C_Gw/login_admin/'));
+		}
 		$this-> load -> Model ('M_Nominal');
 
 		$title = $this->M_Produk->getById($id);
@@ -214,6 +201,9 @@ class C_Gw extends CI_Controller {
 	}
 
 	public function t_metodePembayaran(){
+		if(empty($this->session->userdata('login'))){
+			redirect(base_url('/index.php/C_Gw/login_admin/'));
+		}
 		$this-> load -> Model ('M_Metode_Pembayaran');
 
 		$dmp = $this ->M_Metode_Pembayaran -> getAll();
@@ -237,6 +227,9 @@ class C_Gw extends CI_Controller {
 
 
 	public function addProduk(){
+		if(empty($this->session->userdata('login'))){
+			redirect(base_url('/index.php/C_Gw/login_admin/'));
+		}
 		$lj = $this ->M_Produk -> getAllJenis();
 		$temp['lj'] = $lj;
 		$this->load->view('V_HeaderCRUD');
@@ -244,6 +237,9 @@ class C_Gw extends CI_Controller {
 	}
 
 	public function addProdukAction(){
+		if(empty($this->session->userdata('login'))){
+			redirect(base_url('/index.php/C_Gw/login_admin/'));
+		}
 
 		$this->form_validation->set_rules('nama_produk','Nama Produk', 'required');
 
@@ -290,6 +286,9 @@ class C_Gw extends CI_Controller {
 	}
 
 	public function updateProduk($id){
+		if(empty($this->session->userdata('login'))){
+			redirect(base_url('/index.php/C_Gw/login_admin/'));
+		}
 		$createProduk = $this->M_Produk->getById($id);
 		$lj = $this ->M_Produk -> getAllJenis();
 		
@@ -301,6 +300,9 @@ class C_Gw extends CI_Controller {
 
 
 	public function updateProdukAction($id){
+		if(empty($this->session->userdata('login'))){
+			redirect(base_url('/index.php/C_Gw/login_admin/'));
+		}
 
 		$this->form_validation->set_rules('nama_produk','Nama Produk', 'required');
 
@@ -344,6 +346,9 @@ class C_Gw extends CI_Controller {
 	}
 
 	public function addNominal($id){
+		if(empty($this->session->userdata('login'))){
+			redirect(base_url('/index.php/C_Gw/login_admin/'));
+		}
 		$lp = $this ->M_Produk -> getById($id);
 		$temp['lp'] = $lp;
 		$temp['id'] = $id;
@@ -352,6 +357,9 @@ class C_Gw extends CI_Controller {
 	}
 
 	public function AddNominalAction($id) {
+		if(empty($this->session->userdata('login'))){
+			redirect(base_url('/index.php/C_Gw/login_admin/'));
+		}
 		$this->form_validation->set_rules('nama_nominal','Nama Nominal', 'required');
 		$this->form_validation->set_rules('harga','Harga Nominal', 'required');
 
@@ -378,6 +386,9 @@ class C_Gw extends CI_Controller {
 	}
 
 	public function updateNominal($id){
+		if(empty($this->session->userdata('login'))){
+			redirect(base_url('/index.php/C_Gw/login_admin/'));
+		}
 		$this-> load -> Model ('M_Nominal');
 
 		$ln = $this->M_Nominal -> getById($id);
@@ -390,6 +401,9 @@ class C_Gw extends CI_Controller {
 	}
 
 	public function updateNominalAction($id) {
+		if(empty($this->session->userdata('login'))){
+			redirect(base_url('/index.php/C_Gw/login_admin/'));
+		}
 		$this->form_validation->set_rules('nama_nominal','Nama Nominal', 'required');
 		$this->form_validation->set_rules('harga','Harga Nominal', 'required');
 
@@ -418,11 +432,17 @@ class C_Gw extends CI_Controller {
 	}
 
 	public function addPembayaran(){
+		if(empty($this->session->userdata('login'))){
+			redirect(base_url('/index.php/C_Gw/login_admin/'));
+		}
 		$this->load->view('V_HeaderCRUD');
 		$this->load->view('V_AddPembayaran');
 	}
 
 	public function addPembayaranAction(){
+		if(empty($this->session->userdata('login'))){
+			redirect(base_url('/index.php/C_Gw/login_admin/'));
+		}
 		$this->form_validation->set_rules('nama_metode','Nama Metode Pembayaran', 'required');
 
 		if($this->form_validation->run() == FALSE){
@@ -445,6 +465,9 @@ class C_Gw extends CI_Controller {
 	}
 
 	public function updatePembayaran($id){
+		if(empty($this->session->userdata('login'))){
+			redirect(base_url('/index.php/C_Gw/login_admin/'));
+		}
 		$this-> load -> Model ('M_Metode_Pembayaran');
 
 		$lmp = $this ->M_Metode_Pembayaran -> getById($id);
@@ -454,6 +477,9 @@ class C_Gw extends CI_Controller {
 	}
 
 	public function updatePembayaranAction($id){
+		if(empty($this->session->userdata('login'))){
+			redirect(base_url('/index.php/C_Gw/login_admin/'));
+		}
 		$this->form_validation->set_rules('nama_metode','Nama Metode Pembayaran', 'required');
 
 		if($this->form_validation->run() == FALSE){
@@ -479,6 +505,9 @@ class C_Gw extends CI_Controller {
 	}
 
 	public function hideStatusProduk($id){
+		if(empty($this->session->userdata('login'))){
+			redirect(base_url('/index.php/C_Gw/login_admin/'));
+		}
 		
 		$this->M_Produk->changeStatusHide($id);
 		
@@ -487,6 +516,9 @@ class C_Gw extends CI_Controller {
 	}
 
 	public function showStatusProduk($id){
+		if(empty($this->session->userdata('login'))){
+			redirect(base_url('/index.php/C_Gw/login_admin/'));
+		}
 		
 		$this->M_Produk->changeStatusShow($id);
 
@@ -495,6 +527,9 @@ class C_Gw extends CI_Controller {
 	}
 
 	public function hideStatusNominal($id){
+		if(empty($this->session->userdata('login'))){
+			redirect(base_url('/index.php/C_Gw/login_admin/'));
+		}
 		$this-> load -> Model ('M_Nominal');
 		
 		$this->M_Nominal->changeStatusHide($id);
@@ -504,6 +539,9 @@ class C_Gw extends CI_Controller {
 	}
 
 	public function showStatusNominal($id){
+		if(empty($this->session->userdata('login'))){
+			redirect(base_url('/index.php/C_Gw/login_admin/'));
+		}
 		$this-> load -> Model ('M_Nominal');
 		
 		$this->M_Nominal->changeStatusShow($id);
@@ -513,6 +551,9 @@ class C_Gw extends CI_Controller {
 	}
 
 	public function hideStatusPembayaran($id){
+		if(empty($this->session->userdata('login'))){
+			redirect(base_url('/index.php/C_Gw/login_admin/'));
+		}
 		$this-> load -> Model ('M_Metode_Pembayaran');
 		
 		$this->M_Metode_Pembayaran->changeStatusHide($id);
@@ -522,6 +563,9 @@ class C_Gw extends CI_Controller {
 	}
 
 	public function showStatusPembayaran($id){
+		if(empty($this->session->userdata('login'))){
+			redirect(base_url('/index.php/C_Gw/login_admin/'));
+		}
 		$this-> load -> Model ('M_Metode_Pembayaran');
 		
 		$this->M_Metode_Pembayaran->changeStatusShow($id);
@@ -607,10 +651,13 @@ class C_Gw extends CI_Controller {
 
 	public function logout_aksi()
 	{
+		if(empty($this->session->userdata('login'))){
+			redirect(base_url('/index.php/C_Gw/login_admin/'));
+		}
 		$this->session->sess_destroy();
 		$this->session->set_flashdata('message', '<div class="alert alert-danger">Anda Berhasil Logout</div>');
 
-		redirect (base_url('/index.php/C_Gw/login_admin/'));
+		redirect (base_url('/index.php/C_Gw/index'));
 	}
 
 	public function registrasi(){
@@ -651,6 +698,9 @@ class C_Gw extends CI_Controller {
 
 
 	public function editprofil(){
+		if(empty($this->session->userdata('login'))){
+			redirect(base_url('/index.php/C_Gw/login_admin/'));
+		}
 		$user = $this->session->userdata('username');
 		$admin = $this ->db->get_where('t_admin', ['username' => $user])->row_array();
 		$role = $this->db->get('t_role')->result();
@@ -664,6 +714,9 @@ class C_Gw extends CI_Controller {
 	}
 
 	public function editProfilAction(){
+		if(empty($this->session->userdata('login'))){
+			redirect(base_url('/index.php/C_Gw/login_admin/'));
+		}
 		$this-> load -> Model ('M_Admin');
 			
 			$id_admin = $this->input->post('id_admin');
@@ -693,128 +746,128 @@ class C_Gw extends CI_Controller {
 
 	public function t_admin()
 	{
+		if(empty($this->session->userdata('login'))){
+			redirect(base_url('/index.php/C_Gw/login_admin/'));
+		}
 		$this->load->model('M_Data_Admin');
 
 		$dp = $this->M_Data_Admin->getAll();
+
 
 		$user = $this->session->userdata('username');
 		$admin = $this->db->get_where('t_admin', ['username' => $user])->row_array();
 		$role = $this->db->get_where('t_role', ['id_role' => $admin['id_role']])->row_array();
 		$jk = $this->db->get_where('t_jenis_kelamin', ['id_jenis_kelamin' => $admin['id_jenis_kelamin']])->row_array();
 
+		$temp['dp'] = $dp;
 		$headertemp['data_admin'] = $admin;
 		$headertemp['role'] = $role;
 		$headertemp['jk'] = $jk;
-		$temp['dp'] = $dp;
 
 		$this->load->view('V_HeaderAdmin', $headertemp);
 		$this->load->view('V_Data_Admin', $temp);
 	}
 
-	public function addAdmin()
-	{
-		$lj = $this->M_Data_Admin->getAllRole();
-		$jk = $this->M_Data_Admin->getAllJenisKelamin();
-		$temp['lj'] = $lj;
-		$temp['jk'] = $jk;
-		$this->load->view('V_HeaderCRUD');
-		$this->load->view('V_AddAdmin', $temp);
-	}
+	// public function addAdmin()
+	// {
+	// 	$lj = $this->M_Data_Admin->getAllRole();
+	// 	$jk = $this->M_Data_Admin->getAllJenisKelamin();
+	// 	$temp['lj'] = $lj;
+	// 	$temp['jk'] = $jk;
+	// 	$this->load->view('V_HeaderCRUD');
+	// 	$this->load->view('V_AddAdmin', $temp);
+	// }
 
-	public function addAdminAction()
-	{
-		$this->form_validation->set_rules('username', 'Username', 'required');
-		$this->form_validation->set_rules('password', 'Password', 'required');
-		$this->form_validation->set_rules('id_role', 'Role', 'required');
-		$this->form_validation->set_rules('id_jenis_kelamin', 'Jenis Kelamin', 'required');
+	// public function addAdminAction()
+	// {
+	// 	$this->form_validation->set_rules('username', 'Username', 'required');
+	// 	$this->form_validation->set_rules('password', 'Password', 'required');
+	// 	$this->form_validation->set_rules('id_role', 'Role', 'required');
+	// 	$this->form_validation->set_rules('id_jenis_kelamin', 'Jenis Kelamin', 'required');
 
-		if ($this->form_validation->run() == FALSE) 
-		{
+	// 	if ($this->form_validation->run() == FALSE) 
+	// 	{
 
-			$this->addAdmin();
+	// 		$this->addAdmin();
 
-		} else {
-			$username = $this->input->post('username');
-			$password = $this->input->post('password');
-			$id_role = $this->input->post('id_role');
-			$id_jenis_kelamin = $this->input->post('id_jenis_kelamin');
-			$moto_admin = $this->input->post('moto_admin');
+	// 	} else {
+	// 		$username = $this->input->post('username');
+	// 		$password = $this->input->post('password');
+	// 		$id_role = $this->input->post('id_role');
+	// 		$id_jenis_kelamin = $this->input->post('id_jenis_kelamin');
+	// 		$moto_admin = $this->input->post('moto_admin');
 
-			$addAdminAction = array(
-				'username' => $username,
-				'password' => $password,
-				'id_role' => $id_role,
-				'id_jenis_kelamin' => $id_jenis_kelamin,
-				'moto_admin' => $moto_admin
-			);
+	// 		$addAdminAction = array(
+	// 			'username' => $username,
+	// 			'password' => $password,
+	// 			'id_role' => $id_role,
+	// 			'id_jenis_kelamin' => $id_jenis_kelamin,
+	// 			'moto_admin' => $moto_admin
+	// 		);
 
-			$this->M_Admin->insertAdmin($addAdminAction);
-			$this->session->set_flashdata('flash', 'Ditambahkan');
-			redirect(base_url('/index.php/C_Gw/t_admin/'));
-		}
-	}
+	// 		$this->M_Admin->insertAdmin($addAdminAction);
+	// 		$this->session->set_flashdata('flash', 'Ditambahkan');
+	// 		redirect(base_url('/index.php/C_Gw/t_admin/'));
+	// 	}
+	// }
 
-	public function updateAdmin($id)
-	{
-		$createAdmin = $this->M_Admin->getById($id);
-		$lj = $this->M_Admin->getAllRole();
-		$jk = $this->M_Admin->getAllJenisKelamin();
+	// public function updateAdmin($id)
+	// {
+	// 	$createAdmin = $this->M_Admin->getById($id);
+	// 	$lj = $this->M_Admin->getAllRole();
+	// 	$jk = $this->M_Admin->getAllJenisKelamin();
 
-		$temp['dataAdmin'] = $createAdmin;
-		$temp['lj'] = $lj;
-		$temp['jk'] = $jk;
-		$this->load->view('V_HeaderCRUD');
-		$this->load->view('V_UpdateAdmin', $temp);
-	}
+	// 	$temp['dataAdmin'] = $createAdmin;
+	// 	$temp['lj'] = $lj;
+	// 	$temp['jk'] = $jk;
+	// 	$this->load->view('V_HeaderCRUD');
+	// 	$this->load->view('V_UpdateAdmin', $temp);
+	// }
 
-	public function updateAdminAction($id)
-	{
-		$this->form_validation->set_rules('username', 'Username', 'required');
-		$this->form_validation->set_rules('password', 'Password', 'required');
-		$this->form_validation->set_rules('id_role', 'Role', 'required');
-		$this->form_validation->set_rules('id_jenis_kelamin', 'Jenis Kelamin', 'required');
+	// public function updateAdminAction($id)
+	// {
+	// 	$this->form_validation->set_rules('username', 'Username', 'required');
+	// 	$this->form_validation->set_rules('password', 'Password', 'required');
+	// 	$this->form_validation->set_rules('id_role', 'Role', 'required');
+	// 	$this->form_validation->set_rules('id_jenis_kelamin', 'Jenis Kelamin', 'required');
 
-		if ($this->form_validation->run() == FALSE) {
-			$this->updateAdmin($id);
-		} else {
-			$username = $this->input->post('username');
-			$password = $this->input->post('password');
-			$id_role = $this->input->post('id_role');
-			$id_jenis_kelamin = $this->input->post('id_jenis_kelamin');
-			$moto_admin = $this->input->post('moto_admin');
+	// 	if ($this->form_validation->run() == FALSE) {
+	// 		$this->updateAdmin($id);
+	// 	} else {
+	// 		$username = $this->input->post('username');
+	// 		$password = $this->input->post('password');
+	// 		$id_role = $this->input->post('id_role');
+	// 		$id_jenis_kelamin = $this->input->post('id_jenis_kelamin');
+	// 		$moto_admin = $this->input->post('moto_admin');
 
-			$updateAdminAction = array(
-				'username' => $username,
-				'password' => $password,
-				'id_role' => $id_role,
-				'id_jenis_kelamin' => $id_jenis_kelamin,
-				'moto_admin' => $moto_admin
-			);
+	// 		$updateAdminAction = array(
+	// 			'username' => $username,
+	// 			'password' => $password,
+	// 			'id_role' => $id_role,
+	// 			'id_jenis_kelamin' => $id_jenis_kelamin,
+	// 			'moto_admin' => $moto_admin
+	// 		);
 
-			$this->M_Admin->editAdmin($updateAdminAction, $id);
-			$this->session->set_flashdata('flash', 'DiUpdate');
-			redirect(base_url('/index.php/C_Gw/t_admin/'));
-		}
-	}
+	// 		$this->M_Admin->editAdmin($updateAdminAction, $id);
+	// 		$this->session->set_flashdata('flash', 'DiUpdate');
+	// 		redirect(base_url('/index.php/C_Gw/t_admin/'));
+	// 	}
+	// }
 
 	public function updateHakAkses($id_admin) {
-		if ($this->input->server('REQUEST_METHOD') == 'POST') {
-			$hak_akses = $this->input->post('hak_akses');
-	
-			// Lakukan update hak akses admin di database sesuai dengan $id_admin
-			$this->load->model('M_Data_Admin');
-			$this->M_Data_Admin->updateHakAkses($id_admin, $hak_akses);
-	
-			// Setelah berhasil melakukan update, Anda dapat menampilkan pesan sukses atau melakukan redirect ke halaman lain
-			$this->session->set_flashdata('flash', 'Hak akses admin berhasil diperbarui.');
-			redirect(base_url('/index.php/C_Gw/t_admin/'));
-		} else {
-			// Jika method bukan POST, tampilkan halaman form update hak akses
-			$this->load->model('M_Data_Admin');
-			$data['admin'] = $this->M_Data_Admin->getAdminById($id_admin);
-	
-			$this->load->view('V_Data_Admin', $data);
+		if(empty($this->session->userdata('login'))){
+			redirect(base_url('/index.php/C_Gw/login_admin/'));
 		}
+		$hak_akses = $this->input->post('hak_akses');
+
+		// Lakukan update hak akses admin di database sesuai dengan $id_admin
+		$this->load->model('M_Data_Admin');
+		$this->M_Data_Admin->updateHakAkses($id_admin, $hak_akses);
+
+		// Setelah berhasil melakukan update, Anda dapat menampilkan pesan sukses atau melakukan redirect ke halaman lain
+		$this->session->set_flashdata('flash', 'diperbarui.');
+		redirect(base_url('/index.php/C_Gw/t_admin/'));
+		
 	}
 	
 
