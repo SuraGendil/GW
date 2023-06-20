@@ -155,11 +155,13 @@ class C_Gw extends CI_Controller {
 		$temp['data'] = $dt;
 		$temp['data'] = $dr;
 		$temp['data'] = $dtjk;
+
 		$temp['info'] = 'login-info-box';
 		$temp['show'] = 'login-show';
 		$reg = 0;
 		$temp['reg'] = $reg;
 		
+
 		$this->load-> view('V_Login_Admin', $temp);
 
 	}
@@ -581,6 +583,7 @@ class C_Gw extends CI_Controller {
 
 				// $datauser = $this->db->get_where('t_admin', ['username' => $user])->row_array();
 				
+
 
 				if(password_verify($pass, $ceklogin['password'])){
 					
