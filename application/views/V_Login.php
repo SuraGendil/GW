@@ -1,7 +1,8 @@
 
           <!-- ***** Gaming Library Start ***** -->
-          <?php if($data_admin['hak_akses'] == 'A' or $data_admin['hak_akses'] == 'O')
-          {
+
+          <?php if($data_admin['hak_akses'] == 'A' or $data_admin['hak_akses'] == 'O'){
+
             ?>
             <div class="gaming-library profile-library">
             <div class="col-lg-12">

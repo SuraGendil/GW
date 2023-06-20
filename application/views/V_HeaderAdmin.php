@@ -132,6 +132,11 @@ https://templatemo.com/tm-579-cyborg-gaming
                     <ul>
                       <li>Role<span><?=$role['Role']?></span></li>
                         <li>Jenis Kelamin <span><?=$jk['jenis_kelamin']?></span></li>
+
+                        <li>Email <span><?=$data_admin['email']?></span></li>
+                        <!-- <li>Live Streams <span>None</span></li>
+                      <li>Clips <span>29</span></li> -->
+
                     </ul>
                   </div>
                 </div>
