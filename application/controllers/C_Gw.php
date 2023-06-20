@@ -649,6 +649,48 @@ class C_Gw extends CI_Controller {
 		}
 	}
 
+
+	public function editprofil(){
+		$user = $this->session->userdata('username');
+		$admin = $this ->db->get_where('t_admin', ['username' => $user])->row_array();
+		$role = $this->db->get('t_role')->result();
+		$jk = $this->db->get('t_jenis_kelamin')->result();
+
+		$temp['data'] = $admin;
+		$temp['role'] = $role;
+		$temp['jk'] = $jk;
+		$this->load->view('V_HeaderCRUD');
+		$this->load->view('V_EditProfil', $temp);
+	}
+
+	public function editProfilAction(){
+		$this-> load -> Model ('M_Admin');
+			
+			$id_admin = $this->input->post('id_admin');
+			$username = $this->input->post('username');
+			$password = $this->input->post('password');
+			$moto_admin = $this->input->post('moto_admin');
+			$id_role = $this->input->post('id_role');
+			$id_jenis_kelamin = $this->input->post('id_jenis_kelamin');
+			$email = $this->input->post('email');
+			$hak_akses = $this->input->post('hak_akses');
+			
+			$editProfilAction = array(
+				'id_admin' => $id_admin,
+				'username' => $username,
+				'password' => $password,
+				'moto_admin' => $moto_admin,
+				'id_role' => $id_role,
+				'id_jenis_kelamin' => $id_jenis_kelamin,
+				'email' => $email,
+				'hak_akses' => $hak_akses
+				
+			);
+			
+			$this->M_Admin->updateAdmin($editProfilAction, $id_admin);
+			redirect (base_url('/index.php/C_Gw/login/'));
+	}
+
 	public function t_admin()
 	{
 		$this->load->model('M_Data_Admin');
@@ -775,4 +817,5 @@ class C_Gw extends CI_Controller {
 		}
 	}
 	
+
 }
