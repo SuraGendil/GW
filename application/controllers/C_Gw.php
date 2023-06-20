@@ -136,7 +136,8 @@ class C_Gw extends CI_Controller {
 		// $temp['data'] = $sess_data;
 		// $temp['data'] = $dt;
 
-		
+		$data['info'] = 'login-info-box';
+
 		$this->load-> view('V_HeaderAdmin', $headertemp);
 		$this->load-> view('V_Login', $temp);
 
@@ -154,7 +155,13 @@ class C_Gw extends CI_Controller {
 		$temp['data'] = $dt;
 		$temp['data'] = $dr;
 		$temp['data'] = $dtjk;
-	
+
+		$temp['info'] = 'login-info-box';
+		$temp['show'] = 'login-show';
+		$reg = 0;
+		$temp['reg'] = $reg;
+		
+
 		$this->load-> view('V_Login_Admin', $temp);
 
 	}
@@ -163,7 +170,7 @@ class C_Gw extends CI_Controller {
 	{
 		$this-> load -> Model ('M_Produk');
 
-		$dp = $this ->M_Produk -> getAll();
+		$dp = $this ->M_Produk -> getAllAdmin();
 
 		$user = $this->session->userdata('username');
 		$admin = $this ->db->get_where('t_admin', ['username' => $user])->row_array();
@@ -550,7 +557,8 @@ class C_Gw extends CI_Controller {
 
 	public function index_login()
 	{
-		$this->load->view('V_Login_Admin');
+		$data['show'] = 'login-show';
+		$this->load->view('V_Login_Admin', $data);
 	}
 
 	public function login_aksi()
@@ -564,36 +572,51 @@ class C_Gw extends CI_Controller {
 		if ($this->form_validation->run() != FALSE) 
 		{
 			$where = array(
-					'username' => $user,
-					'password' => $pass,
-					// 'hak_akses' => $hak
+
+					'username' => $user
+
 			);
 
 			$ceklogin = $this->M_Login_Admin->cek_login($where)->row_array();
 
 			if ($ceklogin > 0) {
+
+				// $datauser = $this->db->get_where('t_admin', ['username' => $user])->row_array();
 				
-				$data_admin = $this->M_Login_Admin->getAdmin($user);
-				$sess_data = array(
-					// 'id_admin' => $data_admin['id_admin'],
-					'username' => $user,
-					// 'hak_akses' => $data_admin['hak_akses'],
-					// 'hak_askes' => $hak
-					// 'moto_admin' => $data_admin['moto_admin'],
-					// 'Role' => $data_admin['id_role'],
-					// 'jenis_kelamin' => $data_admin['id_jenis_kelamin'],
-					// 'email' => $data_admin['email'],
-					'login' => 'OK'
-				);
-				
-				$this->session->set_userdata($sess_data);
-				redirect (base_url('/index.php/C_Gw/login'));
+
+
+				if(password_verify($pass, $ceklogin['password'])){
+					
+					$data_admin = $this->M_Login_Admin->getAdmin($user);
+					$sess_data = array(
+						// 'id_admin' => $data_admin['id_admin'],
+						'username' => $user,
+						// 'moto_admin' => $data_admin['moto_admin'],
+						// 'Role' => $data_admin['id_role'],
+						// 'jenis_kelamin' => $data_admin['id_jenis_kelamin'],
+						// 'email' => $data_admin['email'],
+						'login' => 'OK'
+					);
+					
+					$this->session->set_userdata($sess_data);
+					redirect (base_url('/index.php/C_Gw/login'));
+				} else{
+					$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+					Password salah.</div>');
+					redirect (base_url('/index.php/C_Gw/login_admin/'));
+				}
+
 			}else{
+				$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+				Username tidak ditemukan</div>');
 				redirect (base_url('/index.php/C_Gw/login_admin/'));
 			}
 		}else 
 		{
-			$this->load->view('V_Login_Admin');
+			$data['info'] = 'login-info-box';
+			$data['show'] = 'login-show';
+			$data['reg'] = 0;
+			$this->load->view('V_Login_Admin', $data);
 		}
 	}
 
@@ -603,5 +626,40 @@ class C_Gw extends CI_Controller {
 		$this->session->set_flashdata('message', '<div class="alert alert-danger">Anda Berhasil Logout</div>');
 
 		redirect (base_url('/index.php/C_Gw/login_admin/'));
-	}		
+	}
+
+	public function registrasi(){
+
+		$this->form_validation->set_rules('username', 'Username', 'required|is_unique[t_admin.username]',
+		[
+			'is_unique' => 'Username has been registered'
+		]);
+		$this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[4]|matches[confirm]',
+		['matches' => 'Password dont match!',
+		'min_length' => 'Password too short!'
+		]);
+		$this->form_validation->set_rules('confirm', 'Confirm', 'required|trim|matches[password]');
+		
+		
+		if($this->form_validation->run() == false){
+			$data['reg'] = 1;
+			$this->load->view('V_Login_Admin', $data);
+		} else{
+			
+			$data = [
+				'username' => htmlspecialchars($this->input->post('username', true)),
+				'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
+				'moto_admin' => 'selamat datang',
+				'id_role' => 2,
+				'id_jenis_kelamin' => 1,
+				'email' => 'gw_admin@gmail.com',
+			];
+
+			$this->M_Admin->insertAdmin($data);
+
+			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+			Akun terdaftar! Silahkan login.</div>');
+			redirect (base_url('/index.php/C_Gw/login_admin/'));
+		}
+	}
 }
