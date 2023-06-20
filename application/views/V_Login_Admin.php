@@ -45,7 +45,7 @@ https://templatemo.com/tm-579-cyborg-gaming
             <h2>Have an account?</h2>
             <p>Login Please</p>
             <label id="label-register" for="log-reg-show">Login</label>
-            <input type="radio" name="active-log-panel" id="log-reg-show" checked="checked">
+            <input type="radio" name="active-log-panel" id="log-reg-show">
         </div>
 
         <div class="register-info-box">
@@ -58,10 +58,11 @@ https://templatemo.com/tm-579-cyborg-gaming
         <div class="white-panel">
 
             <div class="login-show">
-                <form class="user" method="post" action="<?php echo site_url('C_Gw/login_aksi');?>">
+                <form class="user" method="post" action="<?php echo site_url('C_Gw/login_aksi');?> " enctype="multipart/form-data">
                 <h2>LOGIN</h2>
+                <?= $this->session->flashdata('message') ?>
                     <div class="form-group">
-                        <input type="text" class="form-control form-control-user" id="username" name="username" placeholder="username">
+                        <input type="text" class="form-control form-control-user" id="username" name="username" placeholder="username" value="<?= set_value('username')?>">
                         <?= form_error('username', '<small class="text-danger pl-2">', '</small>'); ?>
                     </div>
                     <div class="form-group">
@@ -73,12 +74,15 @@ https://templatemo.com/tm-579-cyborg-gaming
             </div>
 
             <div class="register-show">
-                <form action="#", method="", class=""></form>
-                <h2>REGISTER</h2>
-                <input type="text" placeholder="Email">
-                <input type="password" placeholder="Password">
-                <input type="password" placeholder="Confirm Password">
-                <input type="button" value="Register">
+                <form class="user" method="post" action="<?php echo site_url('C_Gw/registrasi');?>">
+                    <h2>REGISTER</h2>
+                    <input type="text" placeholder="Username" name="username" value="<?= set_value('username')?>">
+                    <?= form_error('username', '<small class="text-danger pl-2">', '</small>'); ?>
+                    <input type="password" placeholder="Password" name="password" value="<?= set_value('password')?>">
+                    <?= form_error('password', '<small class="text-danger pl-2">', '</small>'); ?>
+                    <input type="password" placeholder="Confirm Password" name="confirm">
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+                </form>
             </div>
         </div>
     </div>
@@ -88,43 +92,52 @@ https://templatemo.com/tm-579-cyborg-gaming
 
 
     $(document).ready(function(){
-    $('.login-info-box').fadeOut();
-    $('.login-show').addClass('show-log-panel');
-});
+        <?php if ($reg == 1):?>
+            $('.register-info-box').fadeOut(); 
+            $('.login-info-box').fadeIn();
+            
+            $('.white-panel').addClass('right-log');
+            $('.register-show').addClass('show-log-panel');
+            $('.login-show').removeClass('show-log-panel');
+        <?php elseif($reg == 0): ?>
+            $('.login-show').addClass('show-log-panel');
+            $('.login-info-box').fadeOut();
+        <?php endif;?>
+    });
 
 
-$('.login-reg-panel input[type="radio"]').on('change', function() {
-    if($('#log-login-show').is(':checked')) {
-        $('.register-info-box').fadeOut(); 
-        $('.login-info-box').fadeIn();
-        
-        $('.white-panel').addClass('right-log');
-        $('.register-show').addClass('show-log-panel');
-        $('.login-show').removeClass('show-log-panel');
-        
-    }
-    else if($('#log-reg-show').is(':checked')) {
-        $('.register-info-box').fadeIn();
-        $('.login-info-box').fadeOut();
-        
-        $('.white-panel').removeClass('right-log');
-        
-        $('.login-show').addClass('show-log-panel');
-        $('.register-show').removeClass('show-log-panel');
-    }
-});
+    $('.login-reg-panel input[type="radio"]').on('change', function() {
+        if($('#log-login-show').is(':checked')) {
+            $('.register-info-box').fadeOut(); 
+            $('.login-info-box').fadeIn();
+            
+            $('.white-panel').addClass('right-log');
+            $('.register-show').addClass('show-log-panel');
+            $('.login-show').removeClass('show-log-panel');
+            
+        }
+        else if($('#log-reg-show').is(':checked')) {
+            $('.register-info-box').fadeIn();
+            $('.login-info-box').fadeOut();
+            
+            $('.white-panel').removeClass('right-log');
+            
+            $('.login-show').addClass('show-log-panel');
+            $('.register-show').removeClass('show-log-panel');
+        }
+    });
 
     </script>
     <!-- Bootstrap core JavaScript -->
-<script src="<?= base_url('assets/bs/'); ?>vendor/jquery/jquery.min.js"></script>
-<script src="<?= base_url('assets/bs/'); ?>vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="<?= base_url('assets/bs/'); ?>vendor/jquery/jquery.min.js"></script>
+    <script src="<?= base_url('assets/bs/'); ?>vendor/bootstrap/js/bootstrap.min.js"></script>
 
-<script src="<?= base_url('assets/bs/'); ?>assets/js/isotope.min.js"></script>
-<script src="<?= base_url('assets/bs/'); ?>assets/js/owl-carousel.js"></script>
-<script src="<?= base_url('assets/bs/'); ?>assets/js/tabs.js"></script>
-<script src="<?= base_url('assets/bs/'); ?>assets/js/popup.js"></script>
-<script src="<?= base_url('assets/bs/'); ?>assets/js/custom.js"></script>
-<script src="<?= base_url('assets/bs/'); ?>assets/js/login.js"></script>
+    <script src="<?= base_url('assets/bs/'); ?>assets/js/isotope.min.js"></script>
+    <script src="<?= base_url('assets/bs/'); ?>assets/js/owl-carousel.js"></script>
+    <script src="<?= base_url('assets/bs/'); ?>assets/js/tabs.js"></script>
+    <script src="<?= base_url('assets/bs/'); ?>assets/js/popup.js"></script>
+    <script src="<?= base_url('assets/bs/'); ?>assets/js/custom.js"></script>
+    <script src="<?= base_url('assets/bs/'); ?>assets/js/login.js"></script>
 
 
 </body>
