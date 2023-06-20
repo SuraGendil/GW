@@ -562,13 +562,13 @@ class C_Gw extends CI_Controller {
 					'username' => $user
 			);
 
-			$ceklogin = $this->M_Login_Admin->cek_login($where)->num_rows();
+			$ceklogin = $this->M_Login_Admin->cek_login($where)->row_array();
 
 			if ($ceklogin > 0) {
 
-				$datauser = $this->db->get_where('t_admin', ['username' => $user])->row_array();
-				echo password_verify($pass, $datauser['password']);
-				if(password_verify($pass, $datauser['password'])){
+				// $datauser = $this->db->get_where('t_admin', ['username' => $user])->row_array();
+				
+				if(password_verify($pass, $ceklogin['password'])){
 					
 					$data_admin = $this->M_Login_Admin->getAdmin($user);
 					$sess_data = array(
