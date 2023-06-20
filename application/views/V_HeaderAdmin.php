@@ -116,7 +116,7 @@ https://templatemo.com/tm-579-cyborg-gaming
 
                         <?php if($data_admin['hak_akses'] == 'A'){
                           ?>
-                            <a href="">Tabel Edit Admin or Operator</a>
+                            <a href="<?php echo site_url ('C_Gw/t_admin'); ?>">Tabel Edit Admin or Operator</a>
                             <?php  
                           }
                           ?>
