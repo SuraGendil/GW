@@ -58,7 +58,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
                         <li><a href="<?= base_url()?>" class="active">Home</a></li>
-                        <li><a href="<?php echo site_url ('C_Gw/login_admin'); ?>">Login<img src="<?= base_url('assets/bs/'); ?>assets/images/profile-header.jpg" alt=""></a></li>
+                        <li><a href="<?php echo site_url ('C_Gw/login'); ?>">Login<img src="<?= base_url('assets/bs/'); ?>assets/images/profile-header.jpg" alt=""></a></li>
                     </ul>   
                     <a class='menu-trigger'>
                         <span>Menu</span>
