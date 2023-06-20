@@ -10,27 +10,23 @@
               <div class="main-profile ">
                 <div class="row">
                   <div class="col-lg-4">
-                  <?php foreach ($dtp as $dt):?>
-                    <img src="<?= base_url('assets/bs/'); ?>assets/images/<?= $dt->foto_produk?>" alt="" style="border-radius: 23px;">
+                    <img src="<?= base_url('assets/bs/'); ?>assets/images/<?= $dtp->foto_produk?>" alt="" style="border-radius: 23px;">
                   </div>
                   <div class="col-lg-4 align-self-center">
                     <div class="main-info header-text">
-                      <?php foreach ($dtjp as $dtj):?>
-                      <span><?= $dtj->nama_jenis_produk ?></span>
-                      <?php endforeach;?>
-                      <h4><?= $dt->nama_produk ?></h4>
-                      <p>You Haven't Gone Live yet. Go Live By Touching The Button Below.</p>
+                        <span><?= $dtjp->nama_jenis_produk ?></span>
+                      <h4><?= $dtp->nama_produk ?></h4>
+                      <p><?= $dtp->deskripsi_produk ?></p>
                       
                       
                     </div>
                   </div>
                   <div class="col-lg-4 align-self-center">
                     <ul>
-                      <li>Terjual :<span><i class="fa fa-cart-arrow-down"></i>   <?= $dt->terjual_produk ?></span></li>
+                      <li>Terjual :<span><i class="fa fa-cart-arrow-down"></i>   <?= $dtp->terjual_produk ?></span></li>
                     </ul>
                   </div>
                 </div>
-                  <?php endforeach;?>
                 <div class="row">
                   <div class="col-lg-12">
                     <div class="clips">
@@ -41,10 +37,15 @@
                           </div>
                         </div>
                         <div>
+                          <?php if(validation_errors()): ?>
+                            <div class="alert alert-danger" role="alert">
+                              <?= validation_errors(); ?>
+                            </div>
+                          <?php endif; ?>
                         <form action="<?php echo site_url('C_Gw/beliAction/'). $id ?>" method="post">
 
                           <h2>Masukan UID :</h2><br>
-                          <input type="text" name="uid" placeholder="User ID / No. Telepon" required>
+                          <input type="text" name="uid" placeholder="User ID / No. Telepon">
                           
                           <br><br><br>
                           <br>
@@ -171,7 +172,23 @@
 <script src="<?= base_url('assets/bs/'); ?>assets/js/tabs.js"></script>
 <script src="<?= base_url('assets/bs/'); ?>assets/js/popup.js"></script>
 <script src="<?= base_url('assets/bs/'); ?>assets/js/custom.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+  // // ES6 Modules or TypeScript
+  // import Swal from 'sweetalert2'
 
+  // // CommonJS
+  // const Swal = require('sweetalert2')
+  <?php if($this->session->flashdata('swal_icon')){?>
+    Swal.fire({
+      title: '<?= $this->session->flashdata('swal_title') ?>',
+      text: '<?= $this->session->flashdata('swal_text') ?>',
+      icon: '<?= $this->session->flashdata('swal_icon') ?>',
+      showConfirmButton: false,
+      timer: 5000
+    })
+  <?php } ?>
+</script>
 
 </body>
 

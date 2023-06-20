@@ -44,8 +44,10 @@
                               <?php  
                             }
                             ?>
-                        
                       </select>
+                      <label for="deskripsi_produk" style="color: white;">Deskripsi Produk: </label>
+                      <textarea class="form-control" name="deskripsi_produk" style="width: 400px;"></textarea>
+                      <br>
                       <!-- <input type="text" class="form-control" placeholder="foto Produk" name="foto_produk"> -->
                       <button type="submit" value="submit" class="btn btn-primary">Tambah Produk</button>
                       <a href="<?=base_url('/index.php/C_Gw/t_produk/')?>"  class="btn btn-danger">Cancel</a>

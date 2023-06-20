@@ -10,7 +10,7 @@
             <div class="row">
               <div class="col-lg-7">
                 <div class="header-text">
-                  <h6>Welcome To <em>GW</em></h6>
+                  <h6>Welcome To <em>GW STORE</em></h6>
                   <h4><em>Anda</em> Senang <em> Kami </em>Senang</h4>
                   <h5>Toko Top UP Voucher Game, APK Premium dan pulsa <em>TERMURAH</em> </h5><br>
                 </div>

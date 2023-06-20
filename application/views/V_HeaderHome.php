@@ -57,7 +57,11 @@ https://templatemo.com/tm-579-cyborg-gaming
                     </a>
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                        <li><a href="<?= base_url()?>" class="active">Home</a></li>
+                        <li><a href="<?= base_url()?>"<?php if($id == 0) echo 'class="active"' ?>>Home</a></li>
+                        <li><a href="<?= site_url ('C_Gw/byJenisProduk/1'); ?>" <?php if($id == 1) echo 'class="active"' ?> >Game</a></li>
+                        <li><a href="<?= site_url ('C_Gw/byJenisProduk/2'); ?>" <?php if($id == 2) echo 'class="active"' ?>>Pulsa</a></li>
+                        <li><a href="<?= site_url ('C_Gw/byJenisProduk/3'); ?>" <?php if($id == 3) echo 'class="active"' ?>>Apk</a></li>
+                        <li><a href="<?= site_url ('C_Gw/about'); ?>" <?php if($id == 4) echo 'class="active"' ?>>About</a></li>
                         <li><a href="<?php echo site_url ('C_Gw/login'); ?>">Login<img src="<?= base_url('assets/bs/'); ?>assets/images/profile-header.jpg" alt=""></a></li>
                     </ul>   
                     <a class='menu-trigger'>
