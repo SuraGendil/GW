@@ -40,8 +40,10 @@
                         <?php  
                         }
                         ?>
-                        
                       </select>
+                      <label for="deskripsi_produk" style="color: white;">Deskripsi Produk: </label>
+                      <textarea class="form-control" name="deskripsi_produk" style="width: 400px;" placeholder="Nama Produk" required><?php echo $dataProduk->deskripsi_produk ?></textarea>
+                        <br>
                       <input type="hidden" value="<?php echo $dataProduk->foto_produk ?>" name="temp_foto">
                       <input type="hidden" value="<?php echo $dataProduk->id_produk ?>" name="id_produk">
                       <input type="hidden" value="<?php echo $dataProduk->terjual_produk ?>" name="terjual_produk">

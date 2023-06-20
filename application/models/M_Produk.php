@@ -32,7 +32,7 @@ class M_Produk extends CI_Model {
 
 	public function getByJenis($id)
 	{
-		$this->db->where('id_produk', $id);
+		$this->db->where('id_jenis_produk', $id);
 		$query = $this->db->get('t_produk');
         return $query -> result();
 	}
@@ -53,7 +53,7 @@ class M_Produk extends CI_Model {
 		$query = $this->db->get();
 
 
-        return $query -> result();
+        return $query -> row();
 	}
 
 	public function updateterjual($id){

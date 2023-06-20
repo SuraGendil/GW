@@ -18,6 +18,13 @@ class C_Gw extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/userguide3/general/urls.html
 	 */
+	public function __construct() {
+        parent::__construct();
+
+        $this->load->model('M_Login_Admin');
+        $this->load->library('form_validation');
+    }
+
 	public function index()
 	{
 		//akses model
@@ -28,56 +35,67 @@ class C_Gw extends CI_Controller {
 
 		//menampung data pada temp
 		$temp['data'] = $dt;
+		$tempheader['id'] = 0;
 
 		//akses v_mitra beserta data
-		$this->load->view('V_HeaderHome');
+		$this->load->view('V_HeaderHome', $tempheader);
 		$this->load->view('V_Home', $temp);
 	}
 
 	public function linkbeli($id)
 	{
-		//akses model
-		$this -> load -> Model ('M_Produk');
-		$this -> load -> Model ('M_Nominal');
-		$this -> load -> Model ('M_Metode_Pembayaran');
+			//akses model
+			$this -> load -> Model ('M_Produk');
+			$this -> load -> Model ('M_Nominal');
+			$this -> load -> Model ('M_Metode_Pembayaran');
 
-		//memanggil fungsi getAll pada M_Mitra
-		$dtp = $this -> M_Produk -> getByJenis ($id);
-		$dtjp = $this -> M_Produk -> getJenis ($id);
-		$dtn = $this -> M_Nominal -> getByProdukShow ($id);
-		$dtmp = $this -> M_Metode_Pembayaran -> getAllShow ();
+			//memanggil fungsi getAll pada M_Mitra
+			$dtp = $this -> M_Produk -> getById ($id);
+			$dtjp = $this -> M_Produk -> getJenis ($id);
+			$dtn = $this -> M_Nominal -> getByProdukShow ($id);
+			$dtmp = $this -> M_Metode_Pembayaran -> getAllShow ();
 
-		//menampung data pada temp
-		$temp['dtp'] = $dtp;
-		$temp['dtjp'] = $dtjp;
-		$temp['dtn'] = $dtn;
-		$temp['dtmp'] = $dtmp;
-		$temp['id'] = $id;
+			//menampung data pada temp
+			$temp['dtp'] = $dtp;
+			$temp['dtjp'] = $dtjp;
+			$temp['dtn'] = $dtn;
+			$temp['dtmp'] = $dtmp;
+			$temp['id'] = $id;
+			$tempheader['id'] = 0;
 
-		//akses v_mitra beserta data
-		$this->load->view('V_HeaderHome');
-		$this->load->view('V_Beli', $temp);
+			//akses v_mitra beserta data
+			$this->load->view('V_HeaderHome', $tempheader);
+			$this->load->view('V_Beli', $temp);
 	}
 
 	public function beliAction($id){
+		$this->form_validation->set_rules('uid','UID/No.Telepon', 'required|trim');
+
+		if($this->form_validation->run() == FALSE){
+			$this->linkbeli($id);
+		} else {
 		
-		$uid = $this->input->post('uid');
-		$nominal = $this->input->post('nominal');
-		$metode = $this->input->post('metode');
+			$uid = $this->input->post('uid');
+			$nominal = $this->input->post('nominal');
+			$metode = $this->input->post('metode');
 
-		//menyiapkan array
-		$pembelianbaru = array(
-			'no_pembeli' => $uid,
-			'id_nominal' => $nominal,
-			'id_metode_pembayaran' => $metode
-		);
+			//menyiapkan array
+			$pembelianbaru = array(
+				'no_pembeli' => $uid,
+				'id_nominal' => $nominal,
+				'id_metode_pembayaran' => $metode
+			);
 
-		$this->M_Pembelian->insertPembelian($pembelianbaru);
-		
+			$this->M_Pembelian->insertPembelian($pembelianbaru);
+			
 
-		$this ->M_Produk->updateterjual($id);
+			$this ->M_Produk->updateterjual($id);
+			$this->session->set_flashdata('swal_icon', 'success');
+			$this->session->set_flashdata('swal_title', 'Produk berhasil dibeli');
+			$this->session->set_flashdata('swal_text', 'Terimakasih telah berbelanja di toko kami');
 
-		redirect (base_url('/index.php/C_Gw/linkbeli/'. $id));
+			redirect (base_url('/index.php/C_Gw/linkbeli/'. $id));
+		}
 	}
 
 	public function login()
@@ -242,6 +260,7 @@ class C_Gw extends CI_Controller {
 		}
 
 		$this->form_validation->set_rules('nama_produk','Nama Produk', 'required');
+		$this->form_validation->set_rules('deskripsi_produk','Deskripsi Produk', 'required');
 
 		if($this->form_validation->run() == FALSE){
 			$this->addProduk();
@@ -250,6 +269,7 @@ class C_Gw extends CI_Controller {
 			
 			$nama_produk = $this->input->post('nama_produk');
 			$id_jenis_produk = $this->input->post('jenis_produk');
+			$deskripsi_produk = $this->input->post('deskripsi_produk');
 			$terjual_produk = 0;
 			$status_produk = 1;
 			
@@ -274,7 +294,8 @@ class C_Gw extends CI_Controller {
 				'id_jenis_produk' => $id_jenis_produk,
 				'foto_produk' => $foto_produk,
 				'terjual_produk' => $terjual_produk,
-				'status_produk' => $status_produk
+				'status_produk' => $status_produk,
+				'deskripsi_produk' => $deskripsi_produk
 			);
 
 			$this->M_Produk->insertProduk($addProdukAction);
@@ -315,6 +336,7 @@ class C_Gw extends CI_Controller {
 			$id_jenis_produk = $this->input->post('jenis_produk');
 			$terjual_produk = $this->input->post('terjual_produk');
 			$status_produk = $this->input->post('status_produk');
+			$deskripsi_produk = $this->input->post('deskripsi_produk');
 
 			$config['upload_path'] = './assets/bs/assets/images/';
 			$config['allowed_types'] = 'JPG|PNG|gif|JPEG|jpg|jpeg|png';
@@ -328,6 +350,9 @@ class C_Gw extends CI_Controller {
 			if( ! $this->upload->do_upload('userfile')){
 				$foto_produk = $this->input->post('temp_foto');
 			} else{
+				if($this->input->post('temp_foto') != 'profile.jp'){
+					unlink(FCPATH . 'assets/bs/assets/images/' . $this->input->post('temp_foto'));
+				}
 				$foto_produk = $this->upload->data('file_name');
 			}
 			
@@ -337,7 +362,8 @@ class C_Gw extends CI_Controller {
 				'id_jenis_produk' => $id_jenis_produk,
 				'foto_produk' => $foto_produk,
 				'terjual_produk' => $terjual_produk,
-				'status_produk' => $status_produk
+				'status_produk' => $status_produk,
+				'deskripsi_produk' => $deskripsi_produk
 			);
 			$this->M_Produk->editProduk($addProdukAction, $id);
 			$this->session->set_flashdata('flash', 'DiUpdate');
@@ -574,14 +600,6 @@ class C_Gw extends CI_Controller {
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 
-	public function __construct() {
-        parent::__construct();
-
-        $this->load->model('M_Login_Admin');
-        $this->load->library('form_validation');
-    }
-
-
 	public function index_login()
 	{
 		$data['show'] = 'login-show';
@@ -666,10 +684,12 @@ class C_Gw extends CI_Controller {
 		[
 			'is_unique' => 'Username has been registered'
 		]);
+
 		$this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[4]|matches[confirm]',
 		['matches' => 'Password dont match!',
 		'min_length' => 'Password too short!'
 		]);
+		
 		$this->form_validation->set_rules('confirm', 'Confirm', 'required|trim|matches[password]');
 		
 		
@@ -685,7 +705,7 @@ class C_Gw extends CI_Controller {
 				'id_role' => 2,
 				'id_jenis_kelamin' => 1,
 				'email' => 'gw_admin@gmail.com',
-				'hak_akses' => 'A'
+				'hak_akses' => 'O'
 			];
 
 			$this->M_Admin->insertAdmin($data);
@@ -870,5 +890,48 @@ class C_Gw extends CI_Controller {
 		
 	}
 	
+	public function byJenisProduk($id){
+		//akses model
+		$this -> load -> Model ('M_Produk');
+
+		//memanggil fungsi getAll pada M_Mitra
+		$dt = $this -> M_Produk -> getByjenis($id);
+		
+		if($id == 2){
+			$temp['title'] = 'Pulsa';
+		} else if($id == 3){
+			$temp['title'] = 'Apk';
+		} else if($id == 1){
+			$temp['title'] = 'Game';
+		} 
+
+		//menampung data pada temp
+		$temp['data'] = $dt;
+		$tempheader['id'] = $id;
+
+		//akses v_mitra beserta data
+		$this->load->view('V_HeaderHome', $tempheader);
+		$this->load->view('V_ByJenisProduk', $temp);
+	}
+
+	public function about(){
+		//akses model
+		$this -> load -> Model ('M_Produk');
+		$this -> load -> Model ('M_Metode_Pembayaran');
+
+		//memanggil fungsi getAll pada M_Mitra
+		$dt = $this -> M_Produk -> getAllShow();
+
+		$dmp = $this -> M_Metode_Pembayaran -> getAllShow();
+
+		//menampung data pada temp
+		$temp['data'] = $dt;
+		$temp['dmp'] = $dmp;
+		$tempheader['id'] = 4;
+
+		//akses v_mitra beserta data
+		$this->load->view('V_HeaderHome', $tempheader);
+		$this->load->view('V_About', $temp);
+	}
 
 }

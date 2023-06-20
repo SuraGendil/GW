@@ -33,7 +33,7 @@
                     <input type="text" class="form-control" value="<?= $data['username']?>" style="width: 400px;" disabled>
                     <br>
                     <label style="color: white;">Hak akses: </label>
-                    <select class="form-select" aria-label="Default select example" disabled >
+                    <select class="form-select" aria-label="Default select example" style="width: 400px;" disabled >
                         <option <?php if($data['hak_akses'] == "A") echo "selected"; ?> value="A">Admin</option>
                         <option <?php if($data['hak_akses'] == "P") echo "selected"; ?> value="P">User</option>
                         <option <?php if($data['hak_akses'] == "O") echo "selected"; ?> value="O">Operator</option>
@@ -42,6 +42,8 @@
                     <label for="moto_admin" style="color: white;">Moto hidup: </label>
                     <input type="text" class="form-control" value="<?= $data['moto_admin']?>" name="moto_admin" style="width: 400px;" required>
                     <br>
+</div>
+<div class="col">
                     <label for="email" style="color: white;">Email: </label>
                     <input type="email" class="form-control" value="<?= $data['email']?>" name="email" style="width: 400px;" required>
                     <br>

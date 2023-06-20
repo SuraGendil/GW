@@ -74,7 +74,7 @@
               <?php foreach ($sh as $sh):?>
               <div class="heading-section">
                 <br>
-                <h4><em>Total Pendapatan :</em> <?= number_format($sh->total_pendapatan, 0, "", ".")?></h4>
+                <h4><em>Total Pendapatan :</em> Rp. <?= number_format($sh->total_pendapatan, 0, "", ".")?>,00</h4>
               </div>
                 <?php endforeach;?>
               <div class="heading-section">
