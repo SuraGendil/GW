@@ -116,6 +116,7 @@ class C_Gw extends CI_Controller {
 		$ppp = $this -> M_Pembelian -> getpopulerProduk(3, $blnthn);
 		// $dt = $this -> M_login -> getById($id);
 		$user = $this->session->userdata('username');
+		// $hak = $this->session->userdata('hak_akses');
 		$admin = $this ->db->get_where('t_admin', ['username' => $user])->row_array();
 		$role = $this ->db->get_where('t_role', ['id_role' => $admin['id_role']])->row_array();
 		$jk = $this ->db->get_where('t_jenis_kelamin', ['id_jenis_kelamin' => $admin['id_jenis_kelamin']])->row_array();
@@ -155,22 +156,11 @@ class C_Gw extends CI_Controller {
 		$temp['data'] = $dtjk;
 	
 		$this->load-> view('V_Login_Admin', $temp);
-		
-		// $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
-		// $this->form_validation->set_rules('password', 'Password', 'trim|required');
-		
-		// if($this->form_validation->run() == false)
-		// {
-			
-		// }else{
-
-		// 	$this->_login();
-		// }
-
 
 	}
 
-	public function t_produk(){
+	public function t_produk()
+	{
 		$this-> load -> Model ('M_Produk');
 
 		$dp = $this ->M_Produk -> getAll();
@@ -187,6 +177,27 @@ class C_Gw extends CI_Controller {
 		
 		$this->load-> view('V_HeaderAdmin', $headertemp);
 		$this->load-> view('V_Produk', $temp);
+	}
+
+	public function t_data_admin()
+	{
+		$this-> load-> model('M_Data_Admin');
+
+		$da = $this->M_Data_Admin -> getALl();
+
+		$user = $this->session->userdata('username');
+		$admin = $this ->db->get_where('t_admin', ['username' => $user])->row_array();
+		$role = $this ->db->get_where('t_role', ['id_role' => $admin['id_role']])->row_array();
+		$jk = $this ->db->get_where('t_jenis_kelamin', ['id_jenis_kelamin' => $admin['id_jenis_kelamin']])->row_array();
+		
+		$headertemp['data_admin'] = $admin;
+		$headertemp['role'] = $role;
+		$headertemp['jk'] = $jk;
+		$temp['dp'] = $da;
+		
+		$this->load-> view('V_HeaderAdmin', $headertemp);
+		$this->load-> view('V_Data_Admin', $temp);
+
 	}
 
 	public function t_nominal($id){
@@ -554,7 +565,8 @@ class C_Gw extends CI_Controller {
 		{
 			$where = array(
 					'username' => $user,
-					'password' => $pass
+					'password' => $pass,
+					// 'hak_akses' => $hak
 			);
 
 			$ceklogin = $this->M_Login_Admin->cek_login($where)->row_array();
@@ -565,6 +577,8 @@ class C_Gw extends CI_Controller {
 				$sess_data = array(
 					// 'id_admin' => $data_admin['id_admin'],
 					'username' => $user,
+					// 'hak_akses' => $data_admin['hak_akses'],
+					// 'hak_askes' => $hak
 					// 'moto_admin' => $data_admin['moto_admin'],
 					// 'Role' => $data_admin['id_role'],
 					// 'jenis_kelamin' => $data_admin['id_jenis_kelamin'],
