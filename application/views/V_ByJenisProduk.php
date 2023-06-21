@@ -12,6 +12,36 @@
             <div class="row">
               <div class="col-lg-12">
                 <div class="heading-section">
+                  <h4><em>Populer <?=$title?></em> Bulan ini</h4>
+                </div>
+                <div class="row">
+                  <?php
+                    foreach($pp as $dt_produk)
+                    {
+                      ?>
+                  <div class="col-lg-3 col-sm-6">
+                    <div class="item">
+                      <a href="<?php echo base_url('index.php/C_Gw/linkbeli/'). $dt_produk->id_produk ?>"><img src="<?= base_url('assets/bs/'); ?>assets/images/<?= $dt_produk->foto_produk?>" alt="">
+                      <h4><?= $dt_produk->nama_produk?></h4></a>
+                      <ul>
+                        <li><i class="fa fa-cart-arrow-down"></i> : <?= $dt_produk->terjual_produk?></li>
+                      </ul>
+                    </div>
+                  </div>
+                    <?php
+                    }
+                    ?>   
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- ***** Most Popular End ***** -->
+          
+          <!-- ***** Most Popular Start ***** -->
+          <div class="most-popular">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="heading-section">
                   <h4><em><?=$title?></em> Right Now</h4>
                 </div>
                 <div class="row">

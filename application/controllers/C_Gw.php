@@ -29,15 +29,24 @@ class C_Gw extends CI_Controller {
 	{
 		//akses model
 		$this -> load -> Model ('M_Produk');
+		$this-> load -> Model ('M_Pembelian');
 
-		//memanggil fungsi getAll pada M_Mitra
-		$dt = $this -> M_Produk -> getAllShow ();
-
+		$blnthn = date('Y-m');
+		
 		//menampung data pada temp
-		$temp['data'] = $dt;
-		$tempheader['id'] = 0;
+		
+		$dt = $this -> M_Produk -> getAllShow ();
+		$ppg = $this -> M_Pembelian -> getpopulerProduk(1, $blnthn, 2);
+		$ppp = $this -> M_Pembelian -> getpopulerProduk(2, $blnthn, 2);
+		$ppa = $this -> M_Pembelian -> getpopulerProduk(3, $blnthn, 2);
 
-		//akses v_mitra beserta data
+
+		$temp['data'] = $dt;
+		$temp['ppg'] = $ppg;
+		$temp['ppp'] = $ppp;
+		$temp['ppa'] = $ppa;
+		$tempheader['id'] = 0;
+		
 		$this->load->view('V_HeaderHome', $tempheader);
 		$this->load->view('V_Home', $temp);
 	}
@@ -114,9 +123,9 @@ class C_Gw extends CI_Controller {
 		$shg = $this -> M_Pembelian -> getSumProduk(1, $blnthn);
 		$shp = $this -> M_Pembelian -> getSumProduk(2, $blnthn);
 		$sha = $this -> M_Pembelian -> getSumProduk(3, $blnthn);
-		$ppg = $this -> M_Pembelian -> getpopulerProduk(1, $blnthn);
-		$ppa = $this -> M_Pembelian -> getpopulerProduk(2, $blnthn);
-		$ppp = $this -> M_Pembelian -> getpopulerProduk(3, $blnthn);
+		$ppg = $this -> M_Pembelian -> getpopulerProduk(1, $blnthn, 1);
+		$ppp = $this -> M_Pembelian -> getpopulerProduk(2, $blnthn, 1);
+		$ppa = $this -> M_Pembelian -> getpopulerProduk(3, $blnthn, 1);
 		// $dt = $this -> M_login -> getById($id);
 		$user = $this->session->userdata('username');
 		// $hak = $this->session->userdata('hak_akses');
@@ -131,8 +140,8 @@ class C_Gw extends CI_Controller {
 		$temp['shp'] = $shp;
 		$temp['sha'] = $sha;
 		$temp['ppg'] = $ppg;
-		$temp['ppa'] = $ppa;
 		$temp['ppp'] = $ppp;
+		$temp['ppa'] = $ppa;
 		$headertemp['data_admin'] = $admin;
 		$headertemp['role'] = $role;
 		$headertemp['jk'] = $jk;
@@ -895,7 +904,9 @@ class C_Gw extends CI_Controller {
 		$this -> load -> Model ('M_Produk');
 
 		//memanggil fungsi getAll pada M_Mitra
+		$blnthn = date('Y-m');
 		$dt = $this -> M_Produk -> getByjenis($id);
+		$pp = $this -> M_Pembelian -> getpopulerProduk($id, $blnthn, 4);
 		
 		if($id == 2){
 			$temp['title'] = 'Pulsa';
@@ -905,8 +916,11 @@ class C_Gw extends CI_Controller {
 			$temp['title'] = 'Game';
 		} 
 
+
+		
 		//menampung data pada temp
 		$temp['data'] = $dt;
+		$temp['pp'] = $pp;
 		$tempheader['id'] = $id;
 
 		//akses v_mitra beserta data
