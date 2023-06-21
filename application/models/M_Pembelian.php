@@ -52,14 +52,15 @@ class M_Pembelian extends CI_Model {
         return $query -> result();
 	}
 
-	public function getpopulerProduk($id, $blnthn){
-		$this->db->select('nama_produk as terpopuler');
+	public function getpopulerProduk($id, $blnthn, $lim){
+		$this->db->select('*', 'count(nama_produk) AS jumlah_produk');
 		$this->db->from('t_pembelian');
 		$this->db->join('t_nominal', 't_pembelian.id_nominal = t_nominal.id_nominal');
 		$this->db->join('t_produk', 't_nominal.id_produk = t_produk.id_produk');
 		$this->db->where('t_produk.id_jenis_produk', $id);
 		$this->db->like('tgl_pembelian', $blnthn, 'after');
-		$this->db->limit('1');
+		$this->db->group_by('nama_produk', 'desc');
+		$this->db->limit($lim);
 		$query = $this->db->get();
 
         return $query -> result();

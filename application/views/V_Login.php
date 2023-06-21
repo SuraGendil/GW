@@ -23,7 +23,7 @@
                     <?php endforeach;?>
                   
                     <?php foreach ($ppg as $ppg):?>
-                  <li><h4>Terbanyak Dibeli</h4><span><?=$ppg->terpopuler ?></span></li>
+                  <li><h4>Terbanyak Dibeli</h4><span><?=$ppg->nama_produk ?></span></li>
                   <?php endforeach;?>
                   <li><div class="main-border-button border-no-active"><a href="https://docs.google.com/spreadsheets/d/1kTlC1o6IHDixodnJUIAosuUCTCfaaUIesDoVhQtl7R4/edit#gid=1724625262">Recap</a></div></li>
                 </ul>
@@ -40,8 +40,8 @@
                     <li><h4>Pendapatan</h4><span>Rp.<?= number_format($shp->total_pendapatan, 0, "", ".")?></span></li>
                     <li><h4>Pembeli</h4><span><?=$shp->jumlah_dibeli ?></span></li>
                     <?php endforeach;?>
-                    <?php foreach ($ppa as $ppa):?>
-                  <li><h4>Terbanyak Dibeli</h4><span><?=$ppa->terpopuler ?></span></li>
+                    <?php foreach ($ppp as $ppp):?>
+                  <li><h4>Terbanyak Dibeli</h4><span><?=$ppp->nama_produk ?> </span></li>
                   <?php endforeach;?>
                   <li><div class="main-border-button border-no-active"><a href="https://docs.google.com/spreadsheets/d/1kTlC1o6IHDixodnJUIAosuUCTCfaaUIesDoVhQtl7R4/edit#gid=1724625262">Recap</a></div></li>
                 </ul>
@@ -58,8 +58,8 @@
                     <li><h4>Pendapatan</h4><span>Rp.<?= number_format($sha->total_pendapatan, 0, "", ".")?></span></li>
                     <li><h4>Pembeli</h4><span><?=$sha->jumlah_dibeli ?></span></li>
                     <?php endforeach;?>
-                    <?php foreach ($ppp as $ppp):?>
-                  <li><h4>Terbanyak Dibeli</h4><span><?=$ppp->terpopuler ?></span></li>
+                    <?php foreach ($ppa as $ppa):?>
+                  <li><h4>Terbanyak Dibeli</h4><span><?=$ppa->nama_produk ?></span></li>
                   <?php endforeach;?>
                   <li><div class="main-border-button border-no-active"><a href="https://docs.google.com/spreadsheets/d/1kTlC1o6IHDixodnJUIAosuUCTCfaaUIesDoVhQtl7R4/edit#gid=1724625262">Recap</a></div></li>
                 </ul>

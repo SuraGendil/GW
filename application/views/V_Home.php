@@ -24,6 +24,65 @@
             <div class="row">
               <div class="col-lg-12">
                 <div class="heading-section">
+                  <h4><em>Populer</em> Bulan Ini</h4>
+                </div>
+                <div class="row">
+                  <?php
+                    foreach($ppg as $ppg):
+                      ?>
+                  <div class="col-lg-3 col-sm-6">
+                    <div class="item">
+                      <a href="<?php echo base_url('index.php/C_Gw/linkbeli/'). $ppg->id_produk ?>"><img src="<?= base_url('assets/bs/'); ?>assets/images/<?= $ppg->foto_produk?>" alt="">
+                      <h4><?= $ppg->nama_produk?></h4></a>
+                      <ul>
+                        <li><i class="fa fa-cart-arrow-down"></i> : <?= $ppg->terjual_produk?></li>
+                      </ul>
+                    </div>
+                  </div>
+                    <?php
+                    endforeach;
+                    ?>   
+                  <?php
+                    foreach($ppp as $ppp):
+                      ?>
+                  <div class="col-lg-3 col-sm-6">
+                    <div class="item">
+                      <a href="<?php echo base_url('index.php/C_Gw/linkbeli/'). $ppp->id_produk ?>"><img src="<?= base_url('assets/bs/'); ?>assets/images/<?= $ppp->foto_produk?>" alt="">
+                      <h4><?= $ppp->nama_produk?></h4></a>
+                      <ul>
+                        <li><i class="fa fa-cart-arrow-down"></i> : <?= $ppp->terjual_produk?></li>
+                      </ul>
+                    </div>
+                  </div>
+                    <?php
+                    endforeach;
+                    ?>   
+                  <?php
+                    foreach($ppa as $ppa):
+                      ?>
+                  <div class="col-lg-3 col-sm-6">
+                    <div class="item">
+                      <a href="<?php echo base_url('index.php/C_Gw/linkbeli/'). $ppa->id_produk ?>"><img src="<?= base_url('assets/bs/'); ?>assets/images/<?= $ppa->foto_produk?>" alt="">
+                      <h4><?= $ppa->nama_produk?></h4></a>
+                      <ul>
+                        <li><i class="fa fa-cart-arrow-down"></i> : <?= $ppa->terjual_produk?></li>
+                      </ul>
+                    </div>
+                  </div>
+                    <?php
+                    endforeach;
+                    ?>   
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- ***** Most Popular End ***** -->
+
+          <!-- ***** Most Popular Start ***** -->
+          <div class="most-popular">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="heading-section">
                   <h4><em>Game</em> Right Now</h4>
                 </div>
                 <div class="row">
