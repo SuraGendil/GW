@@ -25,7 +25,7 @@
                     <?php foreach ($ppg as $ppg):?>
                   <li><h4>Terbanyak Dibeli</h4><span><?=$ppg->terpopuler ?></span></li>
                   <?php endforeach;?>
-                  <li><div class="main-border-button border-no-active"><a href="https://docs.google.com/spreadsheets/d/1kTlC1o6IHDixodnJUIAosuUCTCfaaUIesDoVhQtl7R4/edit#gid=1724625262">Recap</a></div></li>
+                  <li><div class="main-border-button border-no-active"><a href="https://docs.google.com/spreadsheets/d/1gDB4CorOlhlWtCWCbnMY-TVvSsiI8qoNgKigeNwrYYE/edit#gid=0">Recap</a></div></li>
                 </ul>
               </div>
               <div class="item">
@@ -43,7 +43,7 @@
                     <?php foreach ($ppa as $ppa):?>
                   <li><h4>Terbanyak Dibeli</h4><span><?=$ppa->terpopuler ?></span></li>
                   <?php endforeach;?>
-                  <li><div class="main-border-button border-no-active"><a href="https://docs.google.com/spreadsheets/d/1kTlC1o6IHDixodnJUIAosuUCTCfaaUIesDoVhQtl7R4/edit#gid=1724625262">Recap</a></div></li>
+                  <li><div class="main-border-button border-no-active"><a href="https://docs.google.com/spreadsheets/d/1gDB4CorOlhlWtCWCbnMY-TVvSsiI8qoNgKigeNwrYYE/edit#gid=0">Recap</a></div></li>
                 </ul>
               </div>
               <div class="item last-item">
@@ -61,7 +61,7 @@
                     <?php foreach ($ppp as $ppp):?>
                   <li><h4>Terbanyak Dibeli</h4><span><?=$ppp->terpopuler ?></span></li>
                   <?php endforeach;?>
-                  <li><div class="main-border-button border-no-active"><a href="https://docs.google.com/spreadsheets/d/1kTlC1o6IHDixodnJUIAosuUCTCfaaUIesDoVhQtl7R4/edit#gid=1724625262">Recap</a></div></li>
+                  <li><div class="main-border-button border-no-active"><a href="https://docs.google.com/spreadsheets/d/1gDB4CorOlhlWtCWCbnMY-TVvSsiI8qoNgKigeNwrYYE/edit#gid=0">Recap</a></div></li>
                 </ul>
               </div>
             </div>
@@ -148,7 +148,6 @@
   <script src="<?= base_url('assets/bs/'); ?>assets/js/tabs.js"></script>
   <script src="<?= base_url('assets/bs/'); ?>assets/js/popup.js"></script>
   <script src="<?= base_url('assets/bs/'); ?>assets/js/custom.js"></script>
-
 
   </body>
 
