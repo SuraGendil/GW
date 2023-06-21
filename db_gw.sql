@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2023-06-20 23:55:46
+Date: 2023-06-21 10:31:05
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -136,7 +136,7 @@ CREATE TABLE `t_nominal` (
   KEY `nominal_status` (`status_nominal`),
   CONSTRAINT `Produk` FOREIGN KEY (`id_produk`) REFERENCES `t_produk` (`id_produk`),
   CONSTRAINT `nominal_status` FOREIGN KEY (`status_nominal`) REFERENCES `t_jenis_status` (`id_jenis_status`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- ----------------------------
 -- Records of t_nominal
@@ -160,6 +160,30 @@ INSERT INTO `t_nominal` VALUES ('18', '100 Diamond', '5000.00', '1', '1');
 INSERT INTO `t_nominal` VALUES ('19', '7 Days VIP', '20000.00', '41', '1');
 INSERT INTO `t_nominal` VALUES ('20', '31 Days VIP', '39000.00', '41', '1');
 INSERT INTO `t_nominal` VALUES ('21', 'VVIP', '100000000.00', '41', '1');
+INSERT INTO `t_nominal` VALUES ('22', 'Pulsa Rp.100.000', '102000.00', '11', '1');
+INSERT INTO `t_nominal` VALUES ('23', '500 Crystal', '81000.00', '4', '1');
+INSERT INTO `t_nominal` VALUES ('24', '65 Crystal', '15000.00', '4', '1');
+INSERT INTO `t_nominal` VALUES ('25', 'Monthly-Card', '75000.00', '4', '1');
+INSERT INTO `t_nominal` VALUES ('26', '6000 B-Chips', '1500000.00', '4', '1');
+INSERT INTO `t_nominal` VALUES ('27', 'Minecoins - 1720 Coins', '15000.00', '12', '1');
+INSERT INTO `t_nominal` VALUES ('28', 'Minecoins - 3500 Coins', '350000.00', '12', '1');
+INSERT INTO `t_nominal` VALUES ('29', 'Minecoins - 500 Coins', '100000.00', '12', '1');
+INSERT INTO `t_nominal` VALUES ('30', 'Minecraft Java', '300000.00', '12', '1');
+INSERT INTO `t_nominal` VALUES ('31', 'Minecraft Bedrock', '100000.00', '12', '1');
+INSERT INTO `t_nominal` VALUES ('32', '1 Gb / 1 Minggu', '10000.00', '9', '1');
+INSERT INTO `t_nominal` VALUES ('33', '10 Gb / 1 Minggu', '30000.00', '9', '1');
+INSERT INTO `t_nominal` VALUES ('34', '1 Gb / 1 Bulan', '9000.00', '9', '1');
+INSERT INTO `t_nominal` VALUES ('35', 'Pulsa 20.000', '22000.00', '10', '1');
+INSERT INTO `t_nominal` VALUES ('36', '2 Gb / 1 Tahun', '10000.00', '10', '1');
+INSERT INTO `t_nominal` VALUES ('37', '50 Gb / 1 Minggu', '50000.00', '10', '1');
+INSERT INTO `t_nominal` VALUES ('38', '2 Gb / 1 Tahun', '10000.00', '7', '1');
+INSERT INTO `t_nominal` VALUES ('39', '1 Gb / 1 Bulan', '100000.00', '7', '1');
+INSERT INTO `t_nominal` VALUES ('40', '2 Gb / 1 Minggu', '3000.00', '7', '1');
+INSERT INTO `t_nominal` VALUES ('41', '1 Gb / 1 Bulan', '16000.00', '11', '1');
+INSERT INTO `t_nominal` VALUES ('42', '2 Gb / 1 Tahun', '3000.00', '11', '1');
+INSERT INTO `t_nominal` VALUES ('43', '1 Bulan', '16000.00', '5', '1');
+INSERT INTO `t_nominal` VALUES ('44', '3 Bulan', '50000.00', '5', '1');
+INSERT INTO `t_nominal` VALUES ('45', '1 Tahun ', '150000.00', '5', '1');
 
 -- ----------------------------
 -- Table structure for `t_pembelian`
@@ -177,7 +201,7 @@ CREATE TABLE `t_pembelian` (
   KEY `Nominal` (`id_nominal`),
   CONSTRAINT `Metode Pembayaran` FOREIGN KEY (`id_metode_pembayaran`) REFERENCES `t_metode_pembayaran` (`id_metode_pembayaran`),
   CONSTRAINT `Nominal` FOREIGN KEY (`id_nominal`) REFERENCES `t_nominal` (`id_nominal`)
-) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- ----------------------------
 -- Records of t_pembelian
@@ -216,7 +240,6 @@ INSERT INTO `t_pembelian` VALUES ('38', '082213593995', '10', '8', '2023-05-28')
 INSERT INTO `t_pembelian` VALUES ('47', '18313432', '2', '8', '2023-05-29');
 INSERT INTO `t_pembelian` VALUES ('48', '0888199288', '12', '4', '2023-05-29');
 INSERT INTO `t_pembelian` VALUES ('49', '0888119288', '11', '5', '2023-05-29');
-INSERT INTO `t_pembelian` VALUES ('50', '1', null, '1', '2023-05-29');
 INSERT INTO `t_pembelian` VALUES ('51', '2', '2', '1', '2023-05-29');
 INSERT INTO `t_pembelian` VALUES ('52', '111', '2', '8', '2023-06-18');
 INSERT INTO `t_pembelian` VALUES ('53', '111', '3', '5', '2023-06-18');
@@ -228,6 +251,14 @@ INSERT INTO `t_pembelian` VALUES ('58', '0882123', '6', '5', '2023-06-20');
 INSERT INTO `t_pembelian` VALUES ('59', '082213593995', '10', '4', '2023-06-20');
 INSERT INTO `t_pembelian` VALUES ('60', '082213593994', '10', '1', '2023-06-20');
 INSERT INTO `t_pembelian` VALUES ('61', '082213593995', '11', '3', '2023-06-20');
+INSERT INTO `t_pembelian` VALUES ('62', '0882213', '4', '1', '2023-06-21');
+INSERT INTO `t_pembelian` VALUES ('63', '08221359', '4', '2', '2023-06-21');
+INSERT INTO `t_pembelian` VALUES ('64', '082213593995', '7', '9', '2023-06-21');
+INSERT INTO `t_pembelian` VALUES ('65', '111', '4', '7', '2023-06-21');
+INSERT INTO `t_pembelian` VALUES ('66', '082213593995', '20', '3', '2023-06-21');
+INSERT INTO `t_pembelian` VALUES ('67', '08813', '19', '2', '2023-06-21');
+INSERT INTO `t_pembelian` VALUES ('68', '111', '19', '13', '2023-06-21');
+INSERT INTO `t_pembelian` VALUES ('69', '08813', '21', '5', '2023-06-21');
 
 -- ----------------------------
 -- Table structure for `t_produk`
@@ -251,19 +282,19 @@ CREATE TABLE `t_produk` (
 -- ----------------------------
 -- Records of t_produk
 -- ----------------------------
-INSERT INTO `t_produk` VALUES ('1', 'Moblie Legends', '1', 'ml.jpg', '8', '1', 'tes');
-INSERT INTO `t_produk` VALUES ('2', 'Genshin Impact', '1', 'gi.jpg', '8', '1', 'tes');
-INSERT INTO `t_produk` VALUES ('3', 'Dota 2', '1', 'dt2.jpg', '500', '1', 'tes');
-INSERT INTO `t_produk` VALUES ('4', 'Honkai Impact', '1', 'hi1.png', '10', '1', 'tes');
-INSERT INTO `t_produk` VALUES ('5', 'Disney +++', '3', 'dy.jpg', '23', '1', 'tes');
-INSERT INTO `t_produk` VALUES ('6', 'Netflix', '3', 'nf.jpg', '4', '1', 'tes');
-INSERT INTO `t_produk` VALUES ('7', 'Smartfren', '2', 'sf.jpg', '121', '1', 'tes');
-INSERT INTO `t_produk` VALUES ('8', 'Telkomsel', '2', 'tf.jpg', '217', '1', 'tes');
-INSERT INTO `t_produk` VALUES ('9', 'Axis', '2', 'ax.jpg', '8', '1', 'tes');
-INSERT INTO `t_produk` VALUES ('10', 'Indosat', '2', 'in.jpg', '6', '1', 'tes');
-INSERT INTO `t_produk` VALUES ('11', 'XL', '2', 'xl.jpg', '21', '1', 'tes');
-INSERT INTO `t_produk` VALUES ('12', 'Minecraft', '1', 'mc.jpg', '99', '1', 'tes');
-INSERT INTO `t_produk` VALUES ('41', 'Iqiyi', '3', 'iqiyi13.jpg', '1', '1', 'tes');
+INSERT INTO `t_produk` VALUES ('1', 'Moblie Legends', '1', 'ml.jpg', '8', '1', 'Mobile Legends: Bang Bang adalah permainan video seluler ber-genre multiplayer online battle arena (MOBA) yang dikembangkan dan diterbitkan oleh Moonton, anak perusahaan dari ByteDance.');
+INSERT INTO `t_produk` VALUES ('2', 'Genshin Impact', '1', 'gi.jpg', '12', '1', 'Genshin Impact adalah game open-world yang dikembangkan oleh pengembang asal China, miHoYo. Gim ini tersedia secara gratis dan menerapkan sistem gacha di dalamnya. Dalam gameplay-nya, Genshin Impact memiliki arena dunia fantasi terbuka.');
+INSERT INTO `t_produk` VALUES ('3', 'Dota 2', '1', 'dt2.jpg', '500', '1', 'Dota 2 adalah sebuah permainan arena pertarungan online multiplayer, dan merupakan sekuel dari Defense of the Ancients mod pada Warcraft 3: Reign of Chaos dan Warcraft 3: The Frozen Throne. DotA 2 dikembangkan oleh Valve Corporation.');
+INSERT INTO `t_produk` VALUES ('4', 'Honkai Impact 3rd', '1', 'hi1.png', '10', '1', 'Honkai Impact 3rd adalah game free-to-play aksi permainan peran 3D mobile game yang dikembangkan oleh miHoYo. Merupakan seri ketiga dari Seri Honkai dan kelanjutan dari Houkai Gakuen, menggunakan banyak karakter yang sama dari judul sebelumnya, dengan cerita baru yang terpisah.');
+INSERT INTO `t_produk` VALUES ('5', 'Disney +++', '3', 'dy.jpg', '23', '1', 'Disney+ adalah layanan video sesuai permintaan berlangganan Amerika Serikat yang dimiliki dan dikelola Walt Disney Direct-to-Consumer & International dari The Walt Disney Company. Disney+ diluncurkan di Kanada, Amerika Serikat, dan Belanda pada 12 November 2019.');
+INSERT INTO `t_produk` VALUES ('6', 'Netflix', '3', 'nf.jpg', '4', '1', 'Netflix adalah layanan streaming berbasis langganan yang memungkinkan anggota kami menonton acara TV dan film di perangkat yang terhubung ke Internet.');
+INSERT INTO `t_produk` VALUES ('7', 'Smartfren', '2', 'sf.jpg', '121', '1', 'Smartfren adalah operator penyedia jasa telekomunikasi berbasis teknologi 4G LTE Advanced yang merupakan pengembangan lanjutan dari 4G. Dahulu bernama Fren.');
+INSERT INTO `t_produk` VALUES ('8', 'Telkomsel', '2', 'tf.jpg', '217', '1', 'Apa yang dimaksud dengan Telkomsel?\r\nTelkomsel adalah sebuah perusahaan yang bergerak dalam bidang jasa pelayanan telekomuikasi selular berbasis GSM. Telkomsel merupakan singkatan dari “Telekomunikasi Selular”.');
+INSERT INTO `t_produk` VALUES ('9', 'Axis', '2', 'ax.jpg', '8', '1', 'Axis Penyedia Layanan Internet Paling Murah Dengan Jaringan Paling Luas, Tersedia Juga Beragam Paket internet Berkualitas Yang Sesuai Dengan Kebutuhan mu. AXIS (sebelumnya bernama Lippo Telecom dan NTS) adalah sebuah produk layanan telekomunikasi dari XL Axiata, anak perusahaan dari Axiata.');
+INSERT INTO `t_produk` VALUES ('10', 'Indosat', '2', 'in.jpg', '6', '1', 'PT Indosat Tbk (dikenal sebagai Indosat Ooredoo Hutchison atau IOH) adalah salah satu perusahaan penyedia jasa telekomunikasi di Indonesia.');
+INSERT INTO `t_produk` VALUES ('11', 'XL', '2', 'xl.jpg', '22', '1', 'XL (awalnya merupakan singkatan dari Excelcomindo) adalah sebuah produk telekomunikasi seluler berbasis GSM yang dikeluarkan oleh PT XL Axiata Tbk (sebelumnya bernama PT Excelcomindo Pratama Tbk). XL mulai beroperasi secara komersial pada tanggal 8 Oktober 1996, dan merupakan perusahaan swasta ketiga yang menyediakan layanan seluler GSM di Indonesia.');
+INSERT INTO `t_produk` VALUES ('12', 'Minecraft', '1', 'mc.jpg', '99', '1', 'Minecraft adalah sebuah permainan video game sandbox tiga dimensi yang bisa dimainkan oleh satu pemain maupun banyak pemain. Melalui game ini, para pemain dimungkinkan untuk membuat konstruksi dari kubus-kubus 3D untuk membentuk suatu bangunan.');
+INSERT INTO `t_produk` VALUES ('41', 'Iqiyi', '3', 'iqiyi13.jpg', '5', '1', 'iQIYI dalah sebuah platform video daring asal Tiongkok yang berpusat di Beijing, dan diluncurkan pada tanggal 22 April 2010.\r\n\r\nSaat ini, iQIYI merupakan salah satu situs video daring terbesar di dunia.');
 
 -- ----------------------------
 -- Table structure for `t_role`

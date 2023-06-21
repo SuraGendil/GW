@@ -49,7 +49,7 @@ class M_Pembelian extends CI_Model {
 		$this->db->like('tgl_pembelian', $blnthn, 'after');
 		$query = $this->db->get();
 
-        return $query -> result();
+        return $query -> row();
 	}
 
 	public function getpopulerProduk($id, $blnthn, $lim){

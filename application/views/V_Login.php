@@ -13,14 +13,14 @@
               <ul>
                   <li><img src="<?= base_url('assets/bs/'); ?>assets/images/game-01.jpg" alt="" class="templatemo-item"></li>
                   <li><h4>Game</h4><span>ALL</span></li>
-              <?php foreach ($shg as $shg):
+              <?php 
                 if($shg->total_pendapatan == NULL){
                   $shg->total_pendapatan = 0;
                 }
                 ?>
                     <li><h4>Pendapatan</h4><span>Rp.<?= number_format($shg->total_pendapatan, 0, "", ".")?></span></li>
                     <li><h4>Pembeli</h4><span><?=$shg->jumlah_dibeli ?></span></li>
-                    <?php endforeach;?>
+                    
                   
                     <?php foreach ($ppg as $ppg):?>
                   <li><h4>Terbanyak Dibeli</h4><span><?=$ppg->nama_produk ?></span></li>
@@ -32,14 +32,14 @@
                 <ul>
                   <li><img src="<?= base_url('assets/bs/'); ?>assets/images/game-02.jpg" alt="" class="templatemo-item"></li>
                   <li><h4>Pulsa</h4><span>All</span></li>
-                  <?php foreach ($shp as $shp):
+                  <?php 
                       if($shp->total_pendapatan == NULL){
                         $shp->total_pendapatan = 0;
                       }
                     ?>
                     <li><h4>Pendapatan</h4><span>Rp.<?= number_format($shp->total_pendapatan, 0, "", ".")?></span></li>
                     <li><h4>Pembeli</h4><span><?=$shp->jumlah_dibeli ?></span></li>
-                    <?php endforeach;?>
+                    
                     <?php foreach ($ppp as $ppp):?>
                   <li><h4>Terbanyak Dibeli</h4><span><?=$ppp->nama_produk ?> </span></li>
                   <?php endforeach;?>
@@ -50,19 +50,26 @@
                 <ul>
                   <li><img src="<?= base_url('assets/bs/'); ?>assets/images/game-03.jpg" alt="" class="templatemo-item"></li>
                   <li><h4>APK</h4><span>All</span></li>
-                  <?php foreach ($sha as $sha):
+                  <?php
                       if($sha->total_pendapatan == NULL){
                         $sha->total_pendapatan = 0;
                       }
                     ?>
                     <li><h4>Pendapatan</h4><span>Rp.<?= number_format($sha->total_pendapatan, 0, "", ".")?></span></li>
                     <li><h4>Pembeli</h4><span><?=$sha->jumlah_dibeli ?></span></li>
-                    <?php endforeach;?>
+                   
                     <?php foreach ($ppa as $ppa):?>
                   <li><h4>Terbanyak Dibeli</h4><span><?=$ppa->nama_produk ?></span></li>
                   <?php endforeach;?>
                   <li><div class="main-border-button border-no-active"><a href="https://docs.google.com/spreadsheets/d/1gDB4CorOlhlWtCWCbnMY-TVvSsiI8qoNgKigeNwrYYE/edit#gid=0">Recap</a></div></li>
                 </ul>
+                <ul>
+                  <br>
+              <div class="heading-section">
+
+                <h4><em>Total Pendapatan Bulan Ini:</em> Rp. <?= number_format($sha->total_pendapatan+$shp->total_pendapatan+$shg->total_pendapatan, 0, "", ".")?>,00</h4>
+              </div>  
+              </ul>
               </div>
             </div>
           </div>
